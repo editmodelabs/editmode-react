@@ -7,7 +7,7 @@ export default function EditMode(props) {
     script.async = true;
     document.body.append(script);
 
-    cron.schedule('* * * * *', function(){
+    cron.schedule('0 */12 * * *', function(){
         console.log('Cleared cache');
         const cachedChunks = Object.keys(localStorage).filter(k => k.substr(0,4) === "cnk_");
         for (let cnk in cachedChunks) {
@@ -18,7 +18,6 @@ export default function EditMode(props) {
 
     return(
         <div className="wrapper">
-            {console.log(props.children)}
             {props.children}
         </div>
     );
