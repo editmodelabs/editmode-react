@@ -7,5 +7,6 @@ Editmode allows you to turn plain text in your React app into easily inline-edit
 
 ## Installation
 Use npm to install Editmode by running:
-``
+```
 npm install editmode-react
+```
