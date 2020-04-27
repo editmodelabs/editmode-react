@@ -13,7 +13,7 @@ npm install editmode-react
 
 
 ## Usage
-Step 1:
+#### Step 1:
     Within your React app, navigate to `index.js` within your src directory.
     Import the Editmode wrapper and wrap your App within it.
     ```
@@ -29,12 +29,15 @@ Step 1:
       document.getElementById("root")
       );
     ```
-Step 2:  
+#### Step 2:  
   Import the Editmode "Chunk" component to any file that you would like to make editable.
   
   ```
   import { Chunk } from "editmode-react";
   ```
   
-  Select a piece of text and hit CMD+SHIFT+P to open the command palette. Type "Editmode: Create Chunk" and hit enter.
+  Select a piece of text and hit CMD+SHIFT+P to open the command palette. 
+  Type "Editmode: Create Chunk" and hit enter.
+  (For Sublime Text users, you may simply hit CMD+SHIFT+L).
+  
   That's it - you should be able to edit your selected piece of content within the browser!
