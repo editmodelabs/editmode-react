@@ -1,4 +1,4 @@
-# EditMode for React
+# Editmode for React
 
 TBC
 
