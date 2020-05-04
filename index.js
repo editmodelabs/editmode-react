@@ -1,7 +1,7 @@
 import EditMode from "./EditMode";
 import Chunk from "./Chunk";
 
-export {
+module.exports = {
     EditMode,
     Chunk
 }
