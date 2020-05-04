@@ -1,13 +1,18 @@
 {
-  "name": "editmode",
+  "name": "editmode-react",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Convert slices of content in your React app into inline-editable Editmode chunks.",
+  "main": "./index.js",
   "scripts": {
+    "start": "webpack --watch",
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "peerDependencies": {
+    "react": "^16.4.0"
+  },
+  "keywords": ["Editmode", "chunk", "editable", "react"],
+  "author": "Megan Ennis",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2",
