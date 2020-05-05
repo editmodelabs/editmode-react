@@ -1,5 +1,4 @@
 import React from "react";
-import * as cron from "node-cron";
 
 export default function EditMode(props) {
     let script = document.createElement("script");
@@ -8,8 +7,8 @@ export default function EditMode(props) {
     document.body.append(script);
 
     return(
-        <>
+        <div>
             {props.children}
-        </>
+        </div>
     );
 }
