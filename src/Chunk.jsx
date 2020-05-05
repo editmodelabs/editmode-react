@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 
 export default function Chunk(props) {
-  const { identifier, children } = props;
+  const { chunk_type, identifier, children } = props;
   const [chunkData, setChunkData] = useState("");
   const chunkInFocus = useRef("");
 
@@ -19,11 +19,12 @@ export default function Chunk(props) {
 
   return (
     <>
-      {chunk_type === "plain" ? (
+      {chunk_type === "single_line_text" ? (
         <span
           className="chunk"
           data-chunk={identifier}
           ref={chunkInFocus}
+          contentEditable="true"
           suppressContentEditableWarning="true"
         >
           {chunkData ? chunkData.content : children}

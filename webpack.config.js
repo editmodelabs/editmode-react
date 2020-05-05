@@ -1,5 +1,6 @@
 const path = require('path');
 const pkg = require('./package.json');
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
     entry: './src/index.js',
@@ -15,9 +16,16 @@ module.exports = {
                 test: /\.jsx$/,
                 exclude: /(node_modules|bower_components|build)/,
                 use: {
-                    loader: 'babel-loader'
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['env']
+                    }
                 }
             },
         ]
+    },
+    externals: {
+        react: 'commonjs react',
+        'react-dom': 'commonjs react-dom',
     },
 };
