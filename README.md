@@ -17,6 +17,8 @@ npm install editmode-react
     Within your React app, navigate to `index.js` within your src directory.
     Import the Editmode wrapper and wrap your App within it.
     Eg:
+    
+    
     ```
       ....
       import { Editmode } from "editmode-react";
