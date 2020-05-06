@@ -18,7 +18,7 @@ npm install editmode-react
    Eg:
    
    ```
-   import { Editmode } from "editmode-react;
+   import { Editmode } from "editmode-react";
    
    ReactDOM.render(
      <React.StrictMode>
