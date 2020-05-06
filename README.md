@@ -2,20 +2,21 @@
 
 TBC
 
-## Description
+### Description
 Editmode allows you to turn plain text in your React app into easily inline-editable bits of content that can be managed by anyone with no technical knowledge.
 
-## Installation
+### Installation
 Use npm to install Editmode by running:
 ```
 npm install editmode-react
 ```
 
 
-## Usage
+### Usage
 #### Step 1:
     Within your React app, navigate to `index.js` within your src directory.
     Import the Editmode wrapper and wrap your App within it.
+    Eg:
     ```
       ....
       import { Editmode } from "editmode-react";
@@ -36,8 +37,7 @@ npm install editmode-react
   import { Chunk } from "editmode-react";
   ```
   
-  Select a piece of text and hit CMD+SHIFT+P to open the command palette. 
-  Type "Editmode: Create Chunk" and hit enter.
-  (For Sublime Text users, you may simply hit CMD+SHIFT+L).
+  Select a piece of text and hit CMD+SHIFT+L.
+  For VSCode users, you can also hit CMD+SHIFT+P to open the command pallete, type "Editmode: Create Chunk" and hit enter.
   
-  That's it - you should be able to edit your selected piece of content within the browser!
+  That's it - you can now edit your selected piece of content within the browser!
