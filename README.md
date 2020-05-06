@@ -39,4 +39,4 @@ npm install editmode-react
   Select a piece of text and hit CMD+SHIFT+L.
   For Visual Studio Code users, you can also hit CMD+SHIFT+P to open the command pallete, type "Editmode: Create Chunk" and hit enter.
   
-  That's it - you can now edit your selected piece of content within the browser!
+  That's it - you can now edit and save changes to your selected piece of content from within the browser!
