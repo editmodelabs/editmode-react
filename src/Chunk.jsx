@@ -11,9 +11,9 @@ export default function Chunk(props) {
       .get(`https://www.editmode.app/api/v1/chunks/${identifier}`)
       .then((res) => {
         localStorage.setItem(identifier, JSON.stringify(res.data));
+        setChunkData(res.data);
       })
       .catch((err) => console.log(err));
-    setChunkData(JSON.parse(localStorage.getItem(identifier)));
   }, [identifier]);
 
 
@@ -24,8 +24,8 @@ export default function Chunk(props) {
           className="chunk"
           data-chunk={identifier}
           ref={chunkInFocus}
-          contentEditable="true"
-          suppressContentEditableWarning="true"
+          contentEditable={true}
+          suppressContentEditableWarning={true}
         >
           {chunkData ? chunkData.content : children}
         </span>

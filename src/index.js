@@ -1,7 +1,7 @@
-import EditMode from "./EditMode.jsx";
+import Editmode from "./Editmode.jsx";
 import Chunk from "./Chunk.jsx";
 
 export {
-    EditMode,
+    Editmode,
     Chunk
 }
