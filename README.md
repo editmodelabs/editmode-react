@@ -11,27 +11,24 @@ Use npm to install Editmode by running:
 npm install editmode-react
 ```
 
-
 ### Usage
 #### Step 1:
-    Within your React app, navigate to `index.js` within your src directory.
-    Import the Editmode wrapper and wrap your App within it.
-    Eg:
-    
-    
-    ```
-      ....
-      import { Editmode } from "editmode-react";
-         
-      ReactDOM.render(
-        <React.StrictMode>
-          <Editmode>
-            <App />
-          </Editmode>
-        </React.StrictMode>,
-      document.getElementById("root")
-      );
-    ```
+   Within your React app, navigate to index.js within your src directory.
+   Import the Editmode wrapper and wrap your App within it.
+   Eg:
+   
+   ```
+   import { Editmode } from "editmode-react;
+   
+   ReactDOM.render(
+     <React.StrictMode>
+        <Editmode>
+           <App />
+        </Editmode>
+     </React.StrictMode>,
+   document.getElementById("root")
+   );
+   ```
 #### Step 2:  
   Import the Editmode "Chunk" component to any file that you would like to make editable.
   
@@ -40,6 +37,6 @@ npm install editmode-react
   ```
   
   Select a piece of text and hit CMD+SHIFT+L.
-  For VSCode users, you can also hit CMD+SHIFT+P to open the command pallete, type "Editmode: Create Chunk" and hit enter.
+  For Visual Studio Code users, you can also hit CMD+SHIFT+P to open the command pallete, type "Editmode: Create Chunk" and hit enter.
   
   That's it - you can now edit your selected piece of content within the browser!
