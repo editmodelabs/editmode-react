@@ -24,8 +24,6 @@ export default function Chunk(props) {
           className="chunk"
           data-chunk={identifier}
           ref={chunkInFocus}
-          contentEditable={true}
-          suppressContentEditableWarning={true}
         >
           {chunkData ? chunkData.content : children}
         </span>

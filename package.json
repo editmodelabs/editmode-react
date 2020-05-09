@@ -1,6 +1,6 @@
 {
   "name": "editmode-react",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Convert slices of content in your React app into inline-editable Editmode chunks.",
   "main": "dist/main.js",
   "scripts": {
@@ -9,7 +9,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "peerDependencies": {
-    "react": "16.13.1",
+    "react": "16.*",
+    "react-dom": "16.*",
     "axios": "^0.19.2"
   },
   "keywords": [
@@ -22,7 +23,8 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2",
-    "react": "^16.13.1"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
