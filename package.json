@@ -1,6 +1,6 @@
 {
   "name": "editmode-react",
-  "version": "1.0.7",
+  "version": "1.0.12",
   "description": "Convert slices of content in your React app into inline-editable Editmode chunks.",
   "main": "dist/main",
   "scripts": {
@@ -9,7 +9,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "peerDependencies": {
-    "react": "16.13.1",
+    "react": "16.*",
+    "react-dom": "16.*",
     "axios": "^0.19.2"
   },
   "keywords": [
@@ -20,12 +21,15 @@
   ],
   "author": "Megan Ennis",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "axios": "^0.19.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.9.6",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/preset-react": "^7.9.4",
-    "axios": "^0.19.2",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.1.0",
@@ -33,7 +37,6 @@
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "extract-text-webpack-plugin": "^3.0.2",
-    "react": "^16.13.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
     "webpack-node-externals": "^1.7.2"
