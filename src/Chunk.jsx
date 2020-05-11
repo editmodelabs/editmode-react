@@ -10,12 +10,11 @@ export default function Chunk(props) {
     axios
       .get(`https://www.editmode.app/api/v1/chunks/${identifier}`)
       .then((res) => {
-        localStorage.setItem(identifier, JSON.stringify(res.data));
         setChunkData(res.data);
       })
       .catch((err) => console.log(err));
-  }, [identifier]);
 
+  }, [identifier]);
 
   return (
     <>
@@ -24,12 +23,13 @@ export default function Chunk(props) {
           className="chunk"
           data-chunk={identifier}
           ref={chunkInFocus}
-          contentEditable={true}
-          suppressContentEditableWarning={true}
+          // contentEditable={true}
+          // suppressContentEditableWarning={true}
         >
-          {chunkData ? chunkData.content : children}
+          {!chunkData ? children : chunkData}
         </span>
       ) : null}
+      {console.log(props)}
     </>
   );
 }
