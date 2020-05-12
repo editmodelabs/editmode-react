@@ -1,37 +1,39 @@
-import React, { useEffect, useState, useRef } from "react";
+import React from "react";
 import axios from "axios";
+import DOMpurify from "dompurify";
 
-export default function Chunk(props) {
-  const { identifier, children } = props;
-  const [chunkData, setChunkData] = useState("");
-  const chunkRef = useRef();
+export default class Chunk extends React.Component {
+  constructor(props) {
+    super();
+    this.identifier = props.identifier;
+    this.state = {
+      chunk_data: {}
+    };
+  }
 
-  useEffect(() => {
+  componentDidMount() {
     axios
-      .get(`https://www.editmode.app/api/v1/chunks/${identifier}`)
+      .get(`https://www.editmode.app/api/v1/chunks/${this.identifier}`)
       .then(res => {
-        localStorage.setItem(identifier, JSON.stringify(res.data));
-        setChunkData(res.data);
+        let sanitized_content = DOMpurify.sanitize(res.data.content);
+        this.setState({
+          chunk_data: { ...res.data, content: sanitized_content }
+        });
       })
-      .catch(err => console.log("err"));
-  }, [identifier]);
+      .catch(err =>
+        console.log(
+          `Something went wrong trying to retrieve chunk data: ${err}.Have you provided the correct Editmode identifier as a prop to your Chunk component instance?`
+        )
+      );
+  }
 
-  return (
-    <>
-      {(chunkData && chunkData.chunk_type === "single_line_text") ||
-      (JSON.parse(localStorage.getItem(identifier)) &&
-        JSON.parse(localStorage.getItem(identifier)).chunk_type ===
-          "single_line_text") ? (
-        <span className="em-chunk" data-chunk={identifier} ref={chunkRef}>
-          {chunkData
-            ? chunkData.content
-            : JSON.parse(localStorage.getItem(identifier))
-            ? JSON.parse(localStorage.getItem(identifier)).content
-            : children}
+  render() {
+    return (
+      <>
+        <span data-chunk={this.state.chunk_data.identifier}>
+          {this.state.chunk_data.content || this.props.children}
         </span>
-      ) : (
-        <span>{children}</span>
-      )}
-    </>
-  );
+      </>
+    );
+  }
 }
