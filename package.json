@@ -1,6 +1,6 @@
 {
   "name": "editmode-react",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "Convert slices of content in your React app into inline-editable Editmode chunks.",
   "main": "dist/main",
   "scripts": {

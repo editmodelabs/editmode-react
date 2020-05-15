@@ -1,8 +1,9 @@
 import React from "react";
 import axios from "axios";
 import { renderChunk } from "./utils/renderChunk.jsx";
+import { BranchContext } from "./Editmode.jsx";
 
-export default class Chunk extends React.Component {
+class Chunk extends React.Component {
   constructor(props) {
     super();
     this.identifier = props.identifier;
@@ -12,8 +13,9 @@ export default class Chunk extends React.Component {
   }
 
   componentDidMount() {
+    let branch = this.context;
     axios
-      .get(`https://www.editmode.app/api/v1/chunks/${this.identifier}`)
+      .get(`https://www.editmode.app/api/v1/chunks/${this.identifier}`, branch)
       .then(res => {
         this.setState({
           chunk_data: res.data
@@ -36,3 +38,7 @@ export default class Chunk extends React.Component {
     );
   }
 }
+
+Chunk.contextType = BranchContext;
+
+export default Chunk;
