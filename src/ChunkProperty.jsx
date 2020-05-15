@@ -1,20 +1,26 @@
 import React from "react";
-import DOMpurify from "dompurify";
+import { renderChunk } from "../src/utils/renderChunk";
+import { CollectionContext } from "./ChunkCollection";
 
 export default class ChunkProperty extends React.Component {
   constructor(props) {
     super();
+    this.identifier = props.identifier;
   }
+
   render() {
-    let cnk = this.props.chunk_properties;
-    cnk = {...cnk, content: DOMpurify.sanitize(cnk.content)}
-    switch (cnk.chunk_type){
-      case "single_line_text":
-        return <span data-chunk={cnk.identifier}>{cnk.content}</span>
-      case "image":
-        return <img src={cnk.content} alt=""/>
-      default:
-        return <span>{cnk.content}</span>
-    }
+    return (
+      <CollectionContext.Consumer>
+        {chunkData =>
+          chunkData && chunkData.length
+            ? chunkData.map(cnk =>
+                cnk[`${this.identifier}`]
+                  ? renderChunk(cnk[`${this.identifier}`], this.props.className)
+                  : null
+              )
+            : null
+        }
+      </CollectionContext.Consumer>
+    );
   }
 }
