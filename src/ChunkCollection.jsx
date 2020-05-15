@@ -29,9 +29,15 @@ export default class ChunkCollection extends React.Component {
   render() {
     return this.state.chunks.length ? (
       this.state.chunks.map(cnk => {
+        console.log(cnk);
         return (
           <CollectionContext.Provider value={cnk.content} key={cnk.identifier}>
-            {this.props.children}
+            <div
+              collection-name={cnk.collection.name}
+              className={this.props.className}
+            >
+              {this.props.children}
+            </div>
           </CollectionContext.Provider>
         );
       })

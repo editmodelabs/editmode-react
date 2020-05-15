@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { renderChunk } from "../src/utils/renderChunk";
+import { renderChunk } from "./utils/renderChunk.jsx";
 
 export default class Chunk extends React.Component {
   constructor(props) {

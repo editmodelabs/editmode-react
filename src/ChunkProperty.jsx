@@ -1,6 +1,6 @@
 import React from "react";
-import { renderChunk } from "../src/utils/renderChunk";
-import { CollectionContext } from "./ChunkCollection";
+import { renderChunk } from "./utils/renderChunk.jsx";
+import { CollectionContext } from "./ChunkCollection.jsx";
 
 export default class ChunkProperty extends React.Component {
   constructor(props) {
