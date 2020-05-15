@@ -30,7 +30,7 @@ export default class Chunk extends React.Component {
     return (
       <>
         {this.state.chunk_data.identifier
-          ? renderChunk(this.state.chunk_data)
+          ? renderChunk(this.state.chunk_data, this.props.className)
           : this.props.children}
       </>
     );
