@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
-import ChunkProperty from "./ChunkProperty.jsx";
+export const CollectionContext = React.createContext();
 
-export default class Chunk extends React.Component {
+export default class ChunkCollection extends React.Component {
   constructor(props) {
     super();
     this.identifier = props.identifier;
@@ -17,7 +17,7 @@ export default class Chunk extends React.Component {
         params: { collection_identifier: this.props.identifier }
       })
       .then(res => {
-        this.setState({ chunks: res.data.chunks[0] });
+        this.setState({ chunks: res.data.chunks });
       })
       .catch(err =>
         console.log(
@@ -27,20 +27,16 @@ export default class Chunk extends React.Component {
   }
 
   render() {
-    return (
-      <>
-        {this.state.chunks.content &&
-          this.state.chunks.content.map(cnk => {
-            let chunk_properties = Object.values(cnk)[0];
-            return (
-              <ChunkProperty
-                chunk_properties={chunk_properties}
-                key={chunk_properties.identifier}
-              />
-            );
-          })}
-        <span />
-      </>
+    return this.state.chunks.length ? (
+      this.state.chunks.map(cnk => {
+        return (
+          <CollectionContext.Provider value={cnk.content} key={cnk.identifier}>
+            {this.props.children}
+          </CollectionContext.Provider>
+        );
+      })
+    ) : (
+      <>{this.props.children}</>
     );
   }
 }
