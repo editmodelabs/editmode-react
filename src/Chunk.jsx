@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import DOMpurify from "dompurify";
+import { renderChunk } from "../src/utils/renderChunk";
 
 export default class Chunk extends React.Component {
   constructor(props) {
@@ -15,9 +15,8 @@ export default class Chunk extends React.Component {
     axios
       .get(`https://www.editmode.app/api/v1/chunks/${this.identifier}`)
       .then(res => {
-        let sanitized_content = DOMpurify.sanitize(res.data.content);
         this.setState({
-          chunk_data: { ...res.data, content: sanitized_content }
+          chunk_data: res.data
         });
       })
       .catch(err =>
@@ -30,9 +29,9 @@ export default class Chunk extends React.Component {
   render() {
     return (
       <>
-        <span data-chunk={this.state.chunk_data.identifier}>
-          {this.state.chunk_data.content || this.props.children}
-        </span>
+        {this.state.chunk_data.identifier
+          ? renderChunk(this.state.chunk_data)
+          : this.props.children}
       </>
     );
   }
