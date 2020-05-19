@@ -12,8 +12,8 @@ npm install editmode-react
 
 ### Step 1:
 
-Within your React app, navigate to the index file within your src directory. 
-Import the Editmode wrapper and wrap your App within. 
+Within your React app, navigate to the index file in your src directory. 
+Import the Editmode wrapper and wrap your App within:
 
 ```
 import { Editmode } from "editmode-react";
@@ -34,7 +34,7 @@ document.getElementById("root")
 #### Rendering a chunk:
 
 If you have already created the chunk you would like to render on the Editmode CMS, you can simply pass the identifier as a prop and begin editing. 
-You can provide default content as a fallback should anything go wrong trying to retrieve the data from the API:
+You can also provide default content as a fallback should anything go wrong trying to retrieve the data from the API:
 
 ```
 import { Chunk } from "editmode-react";
@@ -42,15 +42,15 @@ import { Chunk } from "editmode-react";
 function Example() {
 	return (
 		<div>
-			<p>
-				<Chunk identifier="cnk_123"/>
-			</p>
-			<p>
-				<Chunk identifier="cnk_321">
-					I have default content
-				</Chunk>
-			</p>
-		</div>
+		   <p>
+		      <Chunk identifier="cnk_123"/>
+		   </p>
+		   <p>
+		      <Chunk identifier="cnk_321">
+			 I have default content
+		      </Chunk>
+		   </p>
+	       </div>
 	);
 }
 ```
