@@ -8,6 +8,7 @@ export const renderChunk = (cnk, cssClass) => {
       return (
         <span
           data-chunk={chunk.identifier}
+          data-chunk-editable={true}
           className={cssClass}
           key={chunk.identifier}
         >
@@ -18,6 +19,8 @@ export const renderChunk = (cnk, cssClass) => {
       return (
         <img
           src={chunk.content}
+          data-chunk={chunk.identifier}
+          data-chunk-editable={false}
           alt=""
           className={cssClass}
           key={chunk.identifier}
