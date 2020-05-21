@@ -41,16 +41,10 @@ import { Chunk } from "editmode-react";
 
 function Example() {
 	return (
-		<div>
-			<p>
-				<Chunk identifier="cnk_123"/>
-			</p>
-			<p>
-				<Chunk identifier="cnk_321">
-					I have default content
-				</Chunk>
-			</p>
-		</div>
+	  <div>
+	     <p> <Chunk identifier="cnk_123"/> </p>
+	     <p> <Chunk identifier="cnk_321"> I have default content </Chunk> </p>
+	  </div>
 	);
 }
 ```
@@ -69,13 +63,13 @@ import { ChunkCollection, ChunkProperty } from "editmode-react";
 
 function Example() {
 	return (
-		<section className="meet_the_team">
-			<ChunkCollection identifier="lst_123" className="team_member">
-				<h2><ChunkProperty identifier="prop_001" className="name"/><h2>
-				<h5><ChunkProperty identifier="prop_002" className="title"/></h5>
-				<ChunkProperty identifier="prop_003" className="headshot"/>
-			</ChunkCollection>
-		</section>
+	   <section className="meet_the_team">
+	       <ChunkCollection identifier="lst_123" className="team_member">
+		  <h2> <ChunkProperty identifier="prop_001" className="name"/> <h2>
+		  <h5> <ChunkProperty identifier="prop_002" className="title"/> </h5>
+		  <ChunkProperty identifier="prop_003" className="headshot"/>
+	       </ChunkCollection>
+	   </section>
 	);
 }
 ```
