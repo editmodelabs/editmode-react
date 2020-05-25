@@ -1,0 +1,14 @@
+{
+  "projectName": "editmode-react",
+  "projectOwner": "Editmode-app",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 40,
+  "commit": true,
+  "commitConvention": "none",
+  "contributors": [],
+  "contributorsPerLine": 7
+}
