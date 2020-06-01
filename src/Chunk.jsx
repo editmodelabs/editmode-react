@@ -1,44 +1,12 @@
-import React from "react";
-import axios from "axios";
-import { renderChunk } from "./utils/renderChunk.jsx";
-import { BranchContext } from "./Editmode.jsx";
+// @ts-check
 
-class Chunk extends React.Component {
-  constructor(props) {
-    super();
-    this.identifier = props.identifier;
-    this.state = {
-      chunk_data: {}
-    };
-  }
+import { useChunk } from "./useChunk";
 
-  componentDidMount() {
-    let branch = this.context;
-    axios
-      .get(`https://www.editmode.app/api/v1/chunks/${this.identifier}`, branch)
-      .then(res => {
-        this.setState({
-          chunk_data: res.data
-        });
-      })
-      .catch(err =>
-        console.log(
-          `Something went wrong trying to retrieve chunk data: ${err}.Have you provided the correct Editmode identifier as a prop to your Chunk component instance?`
-        )
-      );
-  }
+export function Chunk({ children, className, identifier }) {
+  const chunk = useChunk(children, { identifier });
 
-  render() {
-    return (
-      <>
-        {this.state.chunk_data.identifier
-          ? renderChunk(this.state.chunk_data, this.props.className)
-          : this.props.children}
-      </>
-    );
-  }
+  return chunk.element;
 }
 
-Chunk.contextType = BranchContext;
-
+// Here for backwards-compatibility, but named exports are preferred
 export default Chunk;
