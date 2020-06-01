@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
-import { BranchContext } from "./Editmode.jsx";
 export const CollectionContext = React.createContext();
+import { BranchContext } from "./BranchContext";
 
 class ChunkCollection extends React.Component {
   constructor(props) {

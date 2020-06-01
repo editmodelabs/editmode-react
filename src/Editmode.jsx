@@ -1,5 +1,5 @@
 import React from "react";
-export const BranchContext = React.createContext();
+import { BranchContext } from "./BranchContext";
 
 function Editmode(props) {
   let script = document.createElement("script");
