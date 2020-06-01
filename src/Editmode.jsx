@@ -1,3 +1,4 @@
+// @ts-check
 import React from "react";
 import { BranchContext } from "./BranchContext";
 
@@ -7,7 +8,7 @@ function Editmode(props) {
   script.async = true;
   document.body.append(script);
 
-  let params = new URL(document.location).searchParams;
+  let params = new URL(document.location.href).searchParams;
   let em_branch = params.get("em_branch");
 
   return (
