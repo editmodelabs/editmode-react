@@ -6,13 +6,20 @@ import { useContext, useEffect, useState } from "react";
 import { BranchContext } from "./BranchContext";
 import { renderChunk } from "./utils/renderChunk.jsx";
 
+const api = axios.create({
+  baseURL: "https://www.editmode.app/api/v1/",
+  headers: {
+    Accept: "application/json",
+  },
+});
+
 export function useChunk(defaultContent, { identifier }) {
   const [chunk, setChunk] = useState(null);
   const branch = useContext(BranchContext);
 
   useEffect(() => {
-    axios
-      .get(`https://www.editmode.app/api/v1/chunks/${identifier}`, branch)
+    api
+      .get(`chunks/${identifier}`, branch)
       .then((res) => {
         setChunk(res.data);
       })
