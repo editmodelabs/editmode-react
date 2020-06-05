@@ -19,7 +19,7 @@ export function useChunk(defaultContent, { identifier }) {
 
   useEffect(() => {
     api
-      .get(`chunks/${identifier}`, branch)
+      .get(`chunks/${identifier}`)
       .then((res) => {
         setChunk(res.data);
       })
