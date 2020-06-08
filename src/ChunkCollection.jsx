@@ -18,7 +18,7 @@ class ChunkCollection extends React.Component {
 
   componentDidMount() {
     axios
-      .get(`https://www.editmode.app/api/v1/chunks/`, {
+      .get(`https://api.editmode.com/`, {
         params: { collection_identifier: this.props.identifier },
         // @ts-ignore
         em_branch: this.context.em_branch,

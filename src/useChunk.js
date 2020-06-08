@@ -7,7 +7,7 @@ import { BranchContext } from "./BranchContext";
 import { renderChunk } from "./utils/renderChunk.jsx";
 
 const api = axios.create({
-  baseURL: "https://www.editmode.app/api/v1/",
+  baseURL: "https://api.editmode.com/",
   headers: {
     Accept: "application/json",
   },
