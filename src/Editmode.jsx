@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { Context } from "./Context";
 
-function Editmode({ children, projectId }) {
+export function Editmode({ children, projectId }) {
   if (!projectId) {
     throw new Error("<Editmode projectId={...}> is missing a valid projectId");
   }
