@@ -17,11 +17,12 @@ const api = axios.create({
 export function useChunk(defaultContent, { identifier }) {
   const [chunk, setChunk] = useState(null);
   const { branch, projectId } = useContext(Context);
+  const contentKey = computeContentKey(defaultContent);
 
   useEffect(() => {
     const url = identifier
       ? `chunks/${identifier}`
-      : `chunks/${computeContentKey(defaultContent)}?project_id=${projectId}`;
+      : `chunks/${contentKey}?project_id=${projectId}`;
 
     api
       .get(url)
@@ -35,10 +36,20 @@ export function useChunk(defaultContent, { identifier }) {
       );
   }, [branch, defaultContent, identifier]);
 
+  // TODO What about other content types (e.g. collection, image, etc.?)
+  // Possibilities are:
+  // - <Chunk type={Editmode.IMAGE_CHUNK} />
+  // - useChunk(defaultContent, { identifier: "123", type: Editmode.IMAGE_CHUNK })
+  // - <ImageChunk>
+  // - useChunkCollection / useChunkImage / useChunkCollection
   if (!chunk) {
     return {
       content: defaultContent,
-      element: defaultContent,
+      element: renderChunk({
+        chunk_type: "single_line_text",
+        content: defaultContent,
+        content_key: contentKey,
+      }),
     };
   }
 
