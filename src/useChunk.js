@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 
 import { Context } from "./Context";
 import { renderChunk } from "./utils/renderChunk.jsx";
+import { computeContentKey } from "./utils/computeContentKey";
 
 const api = axios.create({
   baseURL: "https://api.editmode.com/",
@@ -18,8 +19,12 @@ export function useChunk(defaultContent, { identifier }) {
   const { branch, projectId } = useContext(Context);
 
   useEffect(() => {
+    const url = identifier
+      ? `chunks/${identifier}`
+      : `chunks/${computeContentKey(defaultContent)}?project_id=${projectId}`;
+
     api
-      .get(`chunks/${identifier}`)
+      .get(url)
       .then((res) => {
         setChunk(res.data);
       })
