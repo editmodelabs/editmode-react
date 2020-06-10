@@ -1,6 +1,6 @@
 // @ts-check
 import React, { useEffect } from "react";
-import { BranchContext } from "./BranchContext";
+import { Context } from "./Context";
 
 function Editmode({ children, projectId }) {
   if (!projectId) {
@@ -17,12 +17,12 @@ function Editmode({ children, projectId }) {
   }, []);
 
   let params = new URL(document.location.href).searchParams;
-  let em_branch = params.get("em_branch");
+  let branch = params.get("em_branch");
 
   return (
-    <BranchContext.Provider value={{ em_branch }}>
+    <Context.Provider value={{ branch, projectId }}>
       {children}
-    </BranchContext.Provider>
+    </Context.Provider>
   );
 }
 export default Editmode;

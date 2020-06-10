@@ -3,7 +3,7 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 
-import { BranchContext } from "./BranchContext";
+import { Context } from "./Context";
 import { renderChunk } from "./utils/renderChunk.jsx";
 
 const api = axios.create({
@@ -15,7 +15,7 @@ const api = axios.create({
 
 export function useChunk(defaultContent, { identifier }) {
   const [chunk, setChunk] = useState(null);
-  const branch = useContext(BranchContext);
+  const { branch, projectId } = useContext(Context);
 
   useEffect(() => {
     api

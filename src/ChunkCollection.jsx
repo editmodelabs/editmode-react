@@ -2,7 +2,7 @@
 
 import React from "react";
 import axios from "axios";
-import { BranchContext } from "./BranchContext";
+import { Context } from "./Context";
 
 export const CollectionContext = React.createContext(null);
 
@@ -21,7 +21,7 @@ class ChunkCollection extends React.Component {
       .get(`https://api.editmode.com/`, {
         params: { collection_identifier: this.props.identifier },
         // @ts-ignore
-        em_branch: this.context.em_branch,
+        em_branch: this.context.branch,
       })
       .then((res) => {
         this.setState({ chunks: res.data.chunks });
@@ -53,6 +53,6 @@ class ChunkCollection extends React.Component {
   }
 }
 
-ChunkCollection.contextType = BranchContext;
+ChunkCollection.contextType = Context;
 
 export default ChunkCollection;
