@@ -1,7 +1,7 @@
 // @ts-check
 
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import useSWR from "swr";
 
 import { Context } from "./Context";
