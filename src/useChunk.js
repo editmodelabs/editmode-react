@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
+import useSWR from "swr";
 
 import { Context } from "./Context";
 import { renderChunk } from "./utils/renderChunk.jsx";
@@ -15,31 +16,29 @@ const api = axios.create({
 });
 
 export function useChunk(defaultContent, { identifier }) {
-  const [chunk, setChunk] = useState(null);
-  const { branch, projectId } = useContext(Context);
+  const { projectId } = useContext(Context);
   const contentKey = computeContentKey(defaultContent);
 
-  useEffect(() => {
-    const url = identifier
-      ? `chunks/${identifier}`
-      : `chunks/${contentKey}?project_id=${projectId}`;
+  const url = identifier
+    ? `chunks/${identifier}`
+    : `chunks/${contentKey}?project_id=${projectId}`;
 
-    api
-      .get(url)
-      .then((res) => {
-        setChunk(res.data);
-      })
-      .catch((err) => {
-        // Chunks with contentKey are created onSave when they don't exist
-        if (err.response.status === 404 && !identifier && contentKey) {
-          return;
-        }
+  const { data: chunk, error } = useSWR(url, (url) =>
+    api.get(url).then((res) => res.data)
+  );
 
-        console.log(
-          `Something went wrong trying to retrieve chunk data: ${err}.Have you provided the correct Editmode identifier as a prop to your Chunk component instance?`
-        );
-      });
-  }, [branch, defaultContent, identifier]);
+  if (error) {
+    console.log(
+      `Something went wrong trying to retrieve chunk data: ${error}. Have you provided the correct Editmode identifier as a prop to your Chunk component instance?`
+    );
+  }
+
+  if (!chunk) {
+    return {
+      content: defaultContent,
+      element: null,
+    };
+  }
 
   // TODO What about other content types (e.g. collection, image, etc.?)
   // Possibilities are:
@@ -47,17 +46,6 @@ export function useChunk(defaultContent, { identifier }) {
   // - useChunk(defaultContent, { identifier: "123", type: Editmode.IMAGE_CHUNK })
   // - <ImageChunk>
   // - useChunkCollection / useChunkImage / useChunkCollection
-  if (!chunk) {
-    return {
-      content: defaultContent,
-      element: renderChunk({
-        chunk_type: "single_line_text",
-        content: defaultContent,
-        content_key: contentKey,
-      }),
-    };
-  }
-
   return {
     content: chunk.content,
     element: renderChunk(chunk),
