@@ -9,8 +9,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "peerDependencies": {
-    "axios": "^0.19.2",
-    "dompurify": "^2.0.11",
     "react": "16.*",
     "react-dom": "16.*"
   },
@@ -28,7 +26,8 @@
     "dompurify": "^2.0.11",
     "lodash-es": "^4.17.15",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "swr": "^0.2.2"
   },
   "devDependencies": {
     "@auto-it/all-contributors": "^9.35.1",
