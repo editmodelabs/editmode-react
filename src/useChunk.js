@@ -29,11 +29,16 @@ export function useChunk(defaultContent, { identifier }) {
       .then((res) => {
         setChunk(res.data);
       })
-      .catch((err) =>
+      .catch((err) => {
+        // Chunks with contentKey are created onSave when they don't exist
+        if (err.response.status === 404 && !identifier && contentKey) {
+          return;
+        }
+
         console.log(
           `Something went wrong trying to retrieve chunk data: ${err}.Have you provided the correct Editmode identifier as a prop to your Chunk component instance?`
-        )
-      );
+        );
+      });
   }, [branch, defaultContent, identifier]);
 
   // TODO What about other content types (e.g. collection, image, etc.?)
