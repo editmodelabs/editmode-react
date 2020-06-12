@@ -31,6 +31,15 @@ export function useChunk(defaultContent, { identifier }) {
     console.log(
       `Something went wrong trying to retrieve chunk data: ${error}. Have you provided the correct Editmode identifier as a prop to your Chunk component instance?`
     );
+
+    return {
+      content: defaultContent,
+      element: renderChunk({
+        chunk_type: "single_line_text",
+        content: defaultContent,
+        content_key: contentKey,
+      }),
+    };
   }
 
   if (!chunk) {
