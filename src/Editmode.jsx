@@ -8,7 +8,7 @@ export function Editmode({ children, projectId }) {
   }
 
   useEffect(() => {
-    window["chunksProjectIdentifier"] = "prj_yvskxAScvL8x";
+    window["chunksProjectIdentifier"] = projectId;
 
     const script = document.createElement("script");
     script.src = "https://static.editmode.com/editmode@^1.0.0/dist/editmode.js";
