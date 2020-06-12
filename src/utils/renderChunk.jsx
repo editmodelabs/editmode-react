@@ -9,6 +9,7 @@ export const renderChunk = (cnk, cssClass) => {
         <span
           data-chunk={chunk.identifier}
           data-chunk-editable={true}
+          data-chunk-content-key={chunk.content_key}
           className={cssClass}
           key={chunk.identifier}
         >
