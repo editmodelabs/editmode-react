@@ -1,19 +1,28 @@
-import React from "react";
-export const BranchContext = React.createContext();
+// @ts-check
+import React, { useEffect } from "react";
+import { Context } from "./Context";
 
-function Editmode(props) {
-  let script = document.createElement("script");
-  script.src = "https://www.editmode.app/assets/chunks.js";
-  script.async = true;
-  document.body.append(script);
+export function Editmode({ children, projectId }) {
+  if (!projectId) {
+    throw new Error("<Editmode projectId={...}> is missing a valid projectId");
+  }
 
-  let params = new URL(document.location).searchParams;
-  let em_branch = params.get("em_branch");
+  useEffect(() => {
+    window["chunksProjectIdentifier"] = "prj_yvskxAScvL8x";
+
+    const script = document.createElement("script");
+    script.src = "https://static.editmode.com/editmode@^1.0.0/dist/editmode.js";
+    script.async = true;
+    document.body.append(script);
+  }, []);
+
+  let params = new URL(document.location.href).searchParams;
+  let branch = params.get("em_branch");
 
   return (
-    <BranchContext.Provider value={{ em_branch }}>
-      {props.children}
-    </BranchContext.Provider>
+    <Context.Provider value={{ branch, projectId }}>
+      {children}
+    </Context.Provider>
   );
 }
 export default Editmode;

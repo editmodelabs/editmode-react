@@ -2,7 +2,7 @@ import React from "react";
 import { renderChunk } from "./utils/renderChunk.jsx";
 import { CollectionContext } from "./ChunkCollection.jsx";
 
-export default class ChunkProperty extends React.Component {
+export default class ChunkFieldValue extends React.Component {
   constructor(props) {
     super();
     this.identifier = props.identifier;

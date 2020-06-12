@@ -1,27 +1,32 @@
+// @ts-check
+
 import React from "react";
 import axios from "axios";
-import { BranchContext } from "./Editmode.jsx";
-export const CollectionContext = React.createContext();
+import { Context } from "./Context";
+
+export const CollectionContext = React.createContext(null);
 
 class ChunkCollection extends React.Component {
   constructor(props) {
-    super();
+    super(props);
+
     this.identifier = props.identifier;
     this.state = {
-      chunks: []
+      chunks: [],
     };
   }
 
   componentDidMount() {
     axios
-      .get(`https://www.editmode.app/api/v1/chunks/`, {
+      .get(`https://api.editmode.com/`, {
         params: { collection_identifier: this.props.identifier },
-        em_branch: this.context.em_branch
+        // @ts-ignore
+        em_branch: this.context.branch,
       })
-      .then(res => {
+      .then((res) => {
         this.setState({ chunks: res.data.chunks });
       })
-      .catch(err =>
+      .catch((err) =>
         console.log(
           `Something went wrong trying to retrieve chunk collection: ${err}. Have you provided the correct Editmode identifier as a prop to your ChunkCollection component instance?`
         )
@@ -30,7 +35,7 @@ class ChunkCollection extends React.Component {
 
   render() {
     return this.state.chunks.length ? (
-      this.state.chunks.map(cnk => {
+      this.state.chunks.map((cnk) => {
         return (
           <CollectionContext.Provider value={cnk.content} key={cnk.identifier}>
             <div
@@ -48,6 +53,6 @@ class ChunkCollection extends React.Component {
   }
 }
 
-ChunkCollection.contextType = BranchContext;
+ChunkCollection.contextType = Context;
 
 export default ChunkCollection;
