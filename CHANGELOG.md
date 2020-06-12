@@ -1,3 +1,15 @@
+# v2.0.1 (Fri Jun 12 2020)
+
+#### 🐛 Bug Fix
+
+- Cache with SWR [#4](https://github.com/Editmode-app/editmode-react/pull/4) ([@ericclemmons](https://github.com/ericclemmons))
+
+#### Authors: 1
+
+- Eric Clemmons ([@ericclemmons](https://github.com/ericclemmons))
+
+---
+
 # v2.0.0 (Fri Jun 12 2020)
 
 #### 💥 Breaking Change
