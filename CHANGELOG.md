@@ -1,3 +1,17 @@
+# v2.0.3 (Fri Jun 12 2020)
+
+#### ⚠️  Pushed to `master`
+
+- Merge branch 'master' of github.com:Editmode-app/editmode-react ([@ericclemmons](https://github.com/ericclemmons))
+- Release ([@ericclemmons](https://github.com/ericclemmons))
+- Fix window.chunksProjectIdentifier ref ([@ericclemmons](https://github.com/ericclemmons))
+
+#### Authors: 1
+
+- Eric Clemmons ([@ericclemmons](https://github.com/ericclemmons))
+
+---
+
 # v2.0.2 (Fri Jun 12 2020)
 
 #### ⚠️  Pushed to `master`
