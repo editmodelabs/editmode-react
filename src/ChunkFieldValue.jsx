@@ -1,26 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import { renderChunk } from "./utils/renderChunk.jsx";
 import { CollectionContext } from "./ChunkCollection.jsx";
 
-export default class ChunkFieldValue extends React.Component {
-  constructor(props) {
-    super();
-    this.identifier = props.identifier;
+import { ChunkCollectionContext } from "./ChunkCollectionContext";
+
+export function ChunkFieldValue({ children, className, identifier }) {
+  const chunk = useContext(ChunkCollectionContext);
+
+  if (!chunk) {
+    return null;
   }
 
-  render() {
-    return (
-      <CollectionContext.Consumer>
-        {chunkData =>
-          chunkData && chunkData.length
-            ? chunkData.map(cnk =>
-                cnk[`${this.identifier}`]
-                  ? renderChunk(cnk[`${this.identifier}`], this.props.className)
-                  : null
-              )
-            : null
-        }
-      </CollectionContext.Consumer>
+  const fieldChunk = chunk.content.find(
+    (chunk) => chunk.custom_field_identifier === identifier
+  );
+
+  if (!fieldChunk) {
+    console.warn(
+      `Could not find field ${identifier} for ${chunk.collection.name}`
     );
+
+    return null;
   }
+
+  return renderChunk(fieldChunk, className);
 }
+
+export default ChunkFieldValue;
