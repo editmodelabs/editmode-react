@@ -1,3 +1,15 @@
+# v2.0.4 (Wed Jun 17 2020)
+
+#### 🐛 Bug Fix
+
+- ChunkCollection uses new API response format [#5](https://github.com/Editmode-app/editmode-react/pull/5) ([@ericclemmons](https://github.com/ericclemmons))
+
+#### Authors: 1
+
+- Eric Clemmons ([@ericclemmons](https://github.com/ericclemmons))
+
+---
+
 # v2.0.3 (Fri Jun 12 2020)
 
 #### ⚠️  Pushed to `master`
