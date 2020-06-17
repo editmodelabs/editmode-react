@@ -1,19 +1,11 @@
 // @ts-check
-
-import axios from "axios";
 import { useContext } from "react";
 import useSWR from "swr";
 
+import { api } from "./api";
 import { EditmodeContext } from "./EditmodeContext";
 import { renderChunk } from "./utils/renderChunk.jsx";
 import { computeContentKey } from "./utils/computeContentKey";
-
-const api = axios.create({
-  baseURL: "https://api.editmode.com/",
-  headers: {
-    Accept: "application/json",
-  },
-});
 
 export function useChunk(defaultContent, { identifier }) {
   const { projectId } = useContext(EditmodeContext);
