@@ -4,7 +4,7 @@ import axios from "axios";
 import { useContext } from "react";
 import useSWR from "swr";
 
-import { Context } from "./Context";
+import { EditmodeContext } from "./EditmodeContext";
 import { renderChunk } from "./utils/renderChunk.jsx";
 import { computeContentKey } from "./utils/computeContentKey";
 
@@ -16,7 +16,7 @@ const api = axios.create({
 });
 
 export function useChunk(defaultContent, { identifier }) {
-  const { projectId } = useContext(Context);
+  const { projectId } = useContext(EditmodeContext);
   const contentKey = computeContentKey(defaultContent);
 
   const url = identifier
