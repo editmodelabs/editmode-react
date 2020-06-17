@@ -1,9 +1,7 @@
 // @ts-check
 
-import Editmode from "./Editmode.jsx";
-import Chunk from "./Chunk.jsx";
-import ChunkCollection from "./ChunkCollection.jsx";
-import ChunkFieldValue from "./ChunkFieldValue.jsx";
-
+export { Editmode } from "./Editmode.jsx";
+export { Chunk } from "./Chunk.jsx";
+export { ChunkCollection } from "./ChunkCollection.jsx";
+export { ChunkFieldValue } from "./ChunkFieldValue.jsx";
 export { useChunk } from "./useChunk";
-export { Editmode, Chunk, ChunkFieldValue, ChunkCollection };

@@ -35,5 +35,3 @@ export function ChunkCollection({ children, className, identifier }) {
 }
 
 export default ChunkCollection;
-
-export const CollectionContext = React.createContext(null);

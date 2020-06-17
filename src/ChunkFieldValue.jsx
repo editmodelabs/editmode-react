@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
-import { renderChunk } from "./utils/renderChunk.jsx";
-import { CollectionContext } from "./ChunkCollection.jsx";
 
+import { renderChunk } from "./utils/renderChunk.jsx";
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
 
 export function ChunkFieldValue({ children, className, identifier }) {
