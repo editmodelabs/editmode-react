@@ -1,58 +1,39 @@
 // @ts-check
-
 import React from "react";
-import axios from "axios";
-import { Context } from "./Context";
+import useSWR from "swr";
 
-export const CollectionContext = React.createContext(null);
+import { api } from "./api";
+import { ChunkCollectionContext } from "./ChunkCollectionContext";
 
-class ChunkCollection extends React.Component {
-  constructor(props) {
-    super(props);
+export function ChunkCollection({ children, className, identifier }) {
+  const {
+    data: chunks = [],
+    error,
+  } = useSWR(`chunks?collection_identifier=${identifier}`, (url) =>
+    api.get(url).then((res) => res.data.chunks)
+  );
 
-    this.identifier = props.identifier;
-    this.state = {
-      chunks: [],
-    };
-  }
-
-  componentDidMount() {
-    axios
-      .get(`https://api.editmode.com/chunks`, {
-        params: { collection_identifier: this.props.identifier },
-        // @ts-ignore
-        em_branch: this.context.branch,
-      })
-      .then((res) => {
-        this.setState({ chunks: res.data.chunks });
-      })
-      .catch((err) =>
-        console.log(
-          `Something went wrong trying to retrieve chunk collection: ${err}. Have you provided the correct Editmode identifier as a prop to your ChunkCollection component instance?`
-        )
-      );
-  }
-
-  render() {
-    return this.state.chunks.length ? (
-      this.state.chunks.map((cnk) => {
-        return (
-          <CollectionContext.Provider value={cnk.content} key={cnk.identifier}>
-            <div
-              collection-name={cnk.collection.name}
-              className={this.props.className}
-            >
-              {this.props.children}
-            </div>
-          </CollectionContext.Provider>
-        );
-      })
-    ) : (
-      <>{this.props.children}</>
+  if (error) {
+    console.log(
+      `Something went wrong trying to retrieve chunk collection: ${error}. Have you provided the correct Editmode identifier as a prop to your ChunkCollection component instance?`
     );
+
+    return <>{children}</>;
   }
+
+  if (!chunks.length) {
+    return children;
+  }
+
+  return chunks.map((chunk) => (
+    <ChunkCollectionContext.Provider key={chunk.identifier} value={chunk}>
+      <div data-collection-name={chunk.collection.name} className={className}>
+        {children}
+      </div>
+    </ChunkCollectionContext.Provider>
+  ));
 }
 
-ChunkCollection.contextType = Context;
-
 export default ChunkCollection;
+
+export const CollectionContext = React.createContext(null);

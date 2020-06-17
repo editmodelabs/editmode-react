@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-export const Context = createContext({
+export const EditmodeContext = createContext({
   branch: null,
   projectId: null,
 });

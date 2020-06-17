@@ -1,6 +1,6 @@
 // @ts-check
 import React, { useEffect } from "react";
-import { Context } from "./Context";
+import { EditmodeContext } from "./EditmodeContext";
 
 export function Editmode({ children, projectId }) {
   if (!projectId) {
@@ -20,9 +20,9 @@ export function Editmode({ children, projectId }) {
   let branch = params.get("em_branch");
 
   return (
-    <Context.Provider value={{ branch, projectId }}>
+    <EditmodeContext.Provider value={{ branch, projectId }}>
       {children}
-    </Context.Provider>
+    </EditmodeContext.Provider>
   );
 }
 export default Editmode;
