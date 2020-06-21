@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { renderChunk } from "./utils/renderChunk.jsx";
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
 
-export function ChunkFieldValue({ children, className, identifier }) {
+export function ChunkFieldValue({ children, identifier, ...props }) {
   const chunk = useContext(ChunkCollectionContext);
 
   if (!chunk) {
@@ -22,7 +22,7 @@ export function ChunkFieldValue({ children, className, identifier }) {
     return null;
   }
 
-  return renderChunk(fieldChunk, className);
+  return renderChunk(fieldChunk, props);
 }
 
 export default ChunkFieldValue;

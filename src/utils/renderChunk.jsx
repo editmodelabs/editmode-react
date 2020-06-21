@@ -1,7 +1,7 @@
 import DOMpurify from "dompurify";
 import React from "react";
 
-export const renderChunk = (cnk, cssClass) => {
+export const renderChunk = (cnk, props) => {
   let chunk = { ...cnk, content: DOMpurify.sanitize(cnk.content) };
   switch (chunk.chunk_type) {
     case "single_line_text":
@@ -10,8 +10,8 @@ export const renderChunk = (cnk, cssClass) => {
           data-chunk={chunk.identifier}
           data-chunk-editable={true}
           data-chunk-content-key={chunk.content_key}
-          className={cssClass}
           key={chunk.identifier}
+          {...props}
         >
           {chunk.content}
         </span>
@@ -23,11 +23,11 @@ export const renderChunk = (cnk, cssClass) => {
           data-chunk={chunk.identifier}
           data-chunk-editable={false}
           alt=""
-          className={cssClass}
           key={chunk.identifier}
+          {...props}
         />
       );
     default:
-      return <span className={cssClass}>{chunk.content}</span>;
+      return <span {...props}>{chunk.content}</span>;
   }
 };

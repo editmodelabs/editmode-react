@@ -9,7 +9,7 @@ import { computeContentKey } from "./utils/computeContentKey";
 
 export function useChunk(defaultContent, { identifier }) {
   const { projectId } = useContext(EditmodeContext);
-  const contentKey = computeContentKey(defaultContent);
+  const contentKey = defaultContent ? computeContentKey(defaultContent) : null;
 
   const url = identifier
     ? `chunks/${identifier}`
@@ -25,19 +25,26 @@ export function useChunk(defaultContent, { identifier }) {
     );
 
     return {
+      Component(props) {
+        return renderChunk(
+          {
+            chunk_type: "single_line_text",
+            content: defaultContent,
+            content_key: contentKey,
+          },
+          props
+        );
+      },
       content: defaultContent,
-      element: renderChunk({
-        chunk_type: "single_line_text",
-        content: defaultContent,
-        content_key: contentKey,
-      }),
     };
   }
 
   if (!chunk) {
     return {
+      Component() {
+        return null;
+      },
       content: defaultContent,
-      element: null,
     };
   }
 
@@ -48,7 +55,9 @@ export function useChunk(defaultContent, { identifier }) {
   // - <ImageChunk>
   // - useChunkCollection / useChunkImage / useChunkCollection
   return {
+    Component(props) {
+      return renderChunk(chunk, props);
+    },
     content: chunk.content,
-    element: renderChunk(chunk),
   };
 }
