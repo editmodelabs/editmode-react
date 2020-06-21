@@ -1,3 +1,19 @@
+# v3.0.0 (Sun Jun 21 2020)
+
+#### 💥 Breaking Change
+
+- <Chunk {...props /> are passed to renderChunk(chunk[, props]) [#6](https://github.com/Editmode-app/editmode-react/pull/6) ([@ericclemmons](https://github.com/ericclemmons))
+
+#### ⚠️  Pushed to `master`
+
+- Remove unused exports ([@ericclemmons](https://github.com/ericclemmons))
+
+#### Authors: 1
+
+- Eric Clemmons ([@ericclemmons](https://github.com/ericclemmons))
+
+---
+
 # v2.0.4 (Wed Jun 17 2020)
 
 #### 🐛 Bug Fix
