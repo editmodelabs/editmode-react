@@ -2,8 +2,6 @@
 import React, { useEffect } from "react";
 import { EditmodeContext } from "./EditmodeContext";
 
-const devMode = false;
-
 export function Editmode({ children, projectId }) {
   if (!projectId) {
     throw new Error("<Editmode projectId={...}> is missing a valid projectId");
@@ -13,7 +11,7 @@ export function Editmode({ children, projectId }) {
     window["chunksProjectIdentifier"] = projectId;
 
     const script = document.createElement("script");
-    script.src = devMode ? "http://static.lvh.me:3002/editmode@^1.0.0/dist/editmode.js" : "https://static.editmode.com/editmode@^1.0.0/dist/editmode.js";
+    script.src = "https://static.editmode.com/editmode@^1.0.0/dist/editmode.js";
     script.async = true;
     document.body.append(script);
   }, []);

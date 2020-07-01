@@ -4,14 +4,12 @@ import useSWR from "swr";
 
 import { api } from "./api";
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
-import { toQuery } from "./utils/toQuery"
 
-export function ChunkCollection({ children, className, identifier, limit, tags }) {
-  let urlParams = toQuery({
-    collection_identifier: identifier,
-    limit: limit || "",
-    'tags[]': tags || [],
-  })
+export function ChunkCollection({ children, className, identifier, limit = "", tags = [] }) {
+  let urlParams = new URLSearchParams()
+  urlParams.append('collection_identifier', identifier)
+  urlParams.append('limit', limit)
+  if ( tags.length > 0 ) tags.map( tag => urlParams.append('tags[]', tag))
 
   const {
     data: chunks = [],
