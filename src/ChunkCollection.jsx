@@ -5,11 +5,16 @@ import useSWR from "swr";
 import { api } from "./api";
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
 
-export function ChunkCollection({ children, className, identifier }) {
+export function ChunkCollection({ children, className, identifier, limit = "", tags = [] }) {
+  let urlParams = new URLSearchParams()
+  urlParams.append('collection_identifier', identifier)
+  urlParams.append('limit', limit)
+  if ( tags.length > 0 ) tags.map( tag => urlParams.append('tags[]', tag))
+
   const {
     data: chunks = [],
     error,
-  } = useSWR(`chunks?collection_identifier=${identifier}`, (url) =>
+  } = useSWR(`chunks?${urlParams}`, (url) =>
     api.get(url).then((res) => res.data.chunks)
   );
 
