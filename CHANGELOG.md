@@ -1,3 +1,19 @@
+# v3.0.1 (Wed Jul 08 2020)
+
+:tada: This release contains work from a new contributor! :tada:
+
+Thank you, Jen Villaganas ([@puuripurii](https://github.com/puuripurii)), for all your work!
+
+#### 🐛 Bug Fix
+
+- add tag filter, and limit functionality for collection chunks [#7](https://github.com/Editmode-app/editmode-react/pull/7) ([@puuripurii](https://github.com/puuripurii))
+
+#### Authors: 1
+
+- Jen Villaganas ([@puuripurii](https://github.com/puuripurii))
+
+---
+
 # v3.0.0 (Sun Jun 21 2020)
 
 #### 💥 Breaking Change
