@@ -1,3 +1,15 @@
+# v3.1.1 (Sun Jul 19 2020)
+
+#### ⚠️  Pushed to `master`
+
+- Remove SWR from yarn.lock ([@ericclemmons](https://github.com/ericclemmons))
+
+#### Authors: 1
+
+- Eric Clemmons ([@ericclemmons](https://github.com/ericclemmons))
+
+---
+
 # v3.1.0 (Sun Jul 19 2020)
 
 #### 🚀 Enhancement
