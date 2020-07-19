@@ -6,7 +6,7 @@ import { EditmodeContext } from "./EditmodeContext";
 import { renderChunk } from "./utils/renderChunk.jsx";
 import { computeContentKey } from "./utils/computeContentKey";
 
-export function useChunk(defaultContent, { identifier }) {
+export function useChunk(defaultContent, { identifier, type }) {
   const { projectId } = useContext(EditmodeContext);
   const [[error, chunk], setResponse] = useState([undefined, undefined]);
   const contentKey = defaultContent ? computeContentKey(defaultContent) : null;
@@ -33,7 +33,7 @@ export function useChunk(defaultContent, { identifier }) {
       Component(props) {
         return renderChunk(
           {
-            chunk_type: "single_line_text",
+            chunk_type: type || "single_line_text",
             content: defaultContent,
             content_key: contentKey,
           },
@@ -53,12 +53,6 @@ export function useChunk(defaultContent, { identifier }) {
     };
   }
 
-  // TODO What about other content types (e.g. collection, image, etc.?)
-  // Possibilities are:
-  // - <Chunk type={Editmode.IMAGE_CHUNK} />
-  // - useChunk(defaultContent, { identifier: "123", type: Editmode.IMAGE_CHUNK })
-  // - <ImageChunk>
-  // - useChunkCollection / useChunkImage / useChunkCollection
   return {
     Component(props) {
       return renderChunk(chunk, props);

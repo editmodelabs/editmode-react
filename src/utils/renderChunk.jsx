@@ -10,6 +10,7 @@ export const renderChunk = (cnk, props) => {
           data-chunk={chunk.identifier}
           data-chunk-editable={true}
           data-chunk-content-key={chunk.content_key}
+          data-chunk-type="single_line_text"
           key={chunk.identifier}
           {...props}
         >
@@ -22,6 +23,8 @@ export const renderChunk = (cnk, props) => {
           src={chunk.content}
           data-chunk={chunk.identifier}
           data-chunk-editable={false}
+          data-chunk-content-key={chunk.content_key}
+          data-chunk-type="image"
           alt=""
           key={chunk.identifier}
           {...props}
