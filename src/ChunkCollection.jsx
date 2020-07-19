@@ -1,17 +1,18 @@
 // @ts-check
-import React from "react";
-import useSWR from "swr";
+import React, { useEffect, useState } from "react";
 
 import { api } from "./api";
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
 
 export function ChunkCollection({ children, className, identifier }) {
-  const {
-    data: chunks = [],
-    error,
-  } = useSWR(`chunks?collection_identifier=${identifier}`, (url) =>
-    api.get(url).then((res) => res.data.chunks)
-  );
+  const [[error, chunks], setResponse] = useState([undefined, []]);
+
+  useEffect(() => {
+    api
+      .get(`chunks?collection_identifier=${identifier}`)
+      .then((res) => setResponse([null, res.data.chunks]))
+      .catch((error) => setResponse([error, []]));
+  }, [identifier]);
 
   if (error) {
     console.log(
@@ -22,7 +23,7 @@ export function ChunkCollection({ children, className, identifier }) {
   }
 
   if (!chunks.length) {
-    return children;
+    return <>children</>;
   }
 
   return chunks.map((chunk) => (
