@@ -4,12 +4,25 @@ import React, { useEffect, useState } from "react";
 import { api } from "./api";
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
 
-export function ChunkCollection({ children, className, identifier }) {
+export function ChunkCollection({
+  children,
+  className,
+  identifier,
+  limit = "",
+  tags = [],
+}) {
   const [[error, chunks], setResponse] = useState([undefined, []]);
 
   useEffect(() => {
+    const urlParams = new URLSearchParams({
+      limit,
+      collection_identifier: identifier,
+    });
+
+    tags.map((tag) => urlParams.append("tags[]", tag));
+
     api
-      .get(`chunks?collection_identifier=${identifier}`)
+      .get(`chunks?${urlParams}`)
       .then((res) => setResponse([null, res.data.chunks]))
       .catch((error) => setResponse([error, []]));
   }, [identifier]);
