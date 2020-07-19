@@ -1,22 +1,31 @@
 // @ts-check
-import React from "react";
-import useSWR from "swr";
+import React, { useEffect, useState } from "react";
 
 import { api } from "./api";
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
 
-export function ChunkCollection({ children, className, identifier, limit = "", tags = [] }) {
-  let urlParams = new URLSearchParams()
-  urlParams.append('collection_identifier', identifier)
-  urlParams.append('limit', limit)
-  if ( tags.length > 0 ) tags.map( tag => urlParams.append('tags[]', tag))
+export function ChunkCollection({
+  children,
+  className,
+  identifier,
+  limit = "",
+  tags = [],
+}) {
+  const [[error, chunks], setResponse] = useState([undefined, []]);
 
-  const {
-    data: chunks = [],
-    error,
-  } = useSWR(`chunks?${urlParams}`, (url) =>
-    api.get(url).then((res) => res.data.chunks)
-  );
+  useEffect(() => {
+    const urlParams = new URLSearchParams({
+      limit,
+      collection_identifier: identifier,
+    });
+
+    tags.map((tag) => urlParams.append("tags[]", tag));
+
+    api
+      .get(`chunks?${urlParams}`)
+      .then((res) => setResponse([null, res.data.chunks]))
+      .catch((error) => setResponse([error, []]));
+  }, [identifier]);
 
   if (error) {
     console.log(
@@ -27,7 +36,7 @@ export function ChunkCollection({ children, className, identifier, limit = "", t
   }
 
   if (!chunks.length) {
-    return children;
+    return <>children</>;
   }
 
   return chunks.map((chunk) => (
