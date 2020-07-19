@@ -1,3 +1,15 @@
+# v3.1.0 (Sun Jul 19 2020)
+
+#### 🚀 Enhancement
+
+- Code-first <Chunk src="...." /> for images [#11](https://github.com/Editmode-app/editmode-react/pull/11) ([@ericclemmons](https://github.com/ericclemmons))
+
+#### Authors: 1
+
+- Eric Clemmons ([@ericclemmons](https://github.com/ericclemmons))
+
+---
+
 # v3.0.1 (Wed Jul 08 2020)
 
 :tada: This release contains work from a new contributor! :tada:
