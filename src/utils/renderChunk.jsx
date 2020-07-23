@@ -1,5 +1,6 @@
 import DOMpurify from "dompurify";
 import React from "react";
+import { Platform } from 'react-native';
 
 export const renderChunk = (cnk, props) => {
   let chunk = { ...cnk, content: DOMpurify.sanitize(cnk.content) };
@@ -14,7 +15,7 @@ export const renderChunk = (cnk, props) => {
           key={chunk.identifier}
           {...props}
         >
-          {chunk.content}
+          {chunk.content} - {Platform}
         </span>
       );
     case "image":
