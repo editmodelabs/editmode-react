@@ -15,7 +15,7 @@ export const renderChunk = (cnk, props) => {
           key={chunk.identifier}
           {...props}
         >
-          {chunk.content} - {Platform}
+          {chunk.content}
         </span>
       );
     case "image":
@@ -32,6 +32,6 @@ export const renderChunk = (cnk, props) => {
         />
       );
     default:
-      return <span {...props}>{chunk.content}</span>;
+      return <span {...props}>{chunk.content} - {Platform}</span>;
   }
 };
