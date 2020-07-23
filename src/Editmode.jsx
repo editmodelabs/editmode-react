@@ -8,6 +8,8 @@ export function Editmode({ children, projectId }) {
     throw new Error("<Editmode projectId={...}> is missing a valid projectId");
   }
 
+  let branch;
+
   if (Platform.OS === 'web') {
     useEffect(() => {
       window["chunksProjectIdentifier"] = projectId;
@@ -19,7 +21,7 @@ export function Editmode({ children, projectId }) {
     }, []);
 
     let params = new URL(document.location.href).searchParams;
-    let branch = params.get("em_branch");
+    branch = params.get("em_branch");
   }
 
   return (
