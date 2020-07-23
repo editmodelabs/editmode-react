@@ -1,8 +1,13 @@
 import DOMpurify from "dompurify";
 import React from "react";
+import { Platform } from 'react-native';
 
 export const renderChunk = (cnk, props) => {
-  let chunk = { ...cnk, content: DOMpurify.sanitize(cnk.content) };
+  const sanitizedContent = Platform.OS === 'web'
+    ? DOMpurify.sanitize(cnk.content) :
+    : cnk.content;
+
+  let chunk = { ...cnk, content: sanitizedContent };
   switch (chunk.chunk_type) {
     case "single_line_text":
       return (
