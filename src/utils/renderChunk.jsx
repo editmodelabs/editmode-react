@@ -4,7 +4,7 @@ import { Platform } from 'react-native';
 
 export const renderChunk = (cnk, props) => {
   const sanitizedContent = Platform.OS === 'web'
-    ? DOMpurify.sanitize(cnk.content) :
+    ? DOMpurify.sanitize(cnk.content)
     : cnk.content;
 
   let chunk = { ...cnk, content: sanitizedContent };
