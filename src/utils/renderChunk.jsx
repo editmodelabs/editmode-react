@@ -44,7 +44,7 @@ export const renderChunk = (cnk, props) => {
             {...props}
           />)
         : (<Image
-            source={chunk.content}
+            source={{ uri: chunk.content }}
             data-chunk={chunk.identifier}
             data-chunk-editable={false}
             data-chunk-content-key={chunk.content_key}
