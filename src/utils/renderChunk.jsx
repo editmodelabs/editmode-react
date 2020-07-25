@@ -49,7 +49,7 @@ export const renderChunk = (cnk, props) => {
             <Image
               style={styles.image}
               source={{
-                uri: chunk.content,
+                uri: 'https:' + chunk.content,
                 isStatic: true,
               }}
             />
