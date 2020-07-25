@@ -49,6 +49,7 @@ export const renderChunk = (cnk, props) => {
             style={styles.image}
             source={{
               uri: chunk.content,
+              isStatic: true,
             }}
           />);
     default:
