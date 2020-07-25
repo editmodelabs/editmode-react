@@ -1,6 +1,14 @@
 import DOMpurify from "dompurify";
 import React from "react";
-import { Platform, Text, Image } from 'react-native';
+import { Platform, Text, Image, StyleSheet } from 'react-native';
+
+const styles = StyleSheet.create({
+  image: {
+    borderWidth: '5px',
+    borderStyle: 'solid',
+    borderColor: 'pink',
+  },
+});
 
 export const renderChunk = (cnk, props) => {
   const sanitizedContent = Platform.OS === 'web'
@@ -40,6 +48,7 @@ export const renderChunk = (cnk, props) => {
             {...props}
           />)
         : (<Image
+            style={styles.image}
             source={{
               uri: chunk.content,
             }}
