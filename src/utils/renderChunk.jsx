@@ -40,8 +40,9 @@ export const renderChunk = (cnk, props) => {
             {...props}
           />)
         : (<Image
-            source={{ uri: chunk.content }}
-            alt=""
+            source={{
+              uri: chunk.content,
+            }}
           />);
     default:
       return Platform.OS === 'web' ? <span {...props}>{chunk.content}</span> : <Text {...props}>{chunk.content}</Text> ;
