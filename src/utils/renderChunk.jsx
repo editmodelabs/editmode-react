@@ -1,6 +1,6 @@
 import DOMpurify from "dompurify";
 import React from "react";
-import { View, Platform, Text, Image, StyleSheet } from 'react-native';
+import { Platform, Text, Image, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   image: {
@@ -45,16 +45,13 @@ export const renderChunk = (cnk, props) => {
             key={chunk.identifier}
             {...props}
           />)
-        : (<View>
-            <Image
+        : (<Image
               style={styles.image}
               source={{
                 uri: 'https:' + chunk.content,
                 isStatic: true,
               }}
-            />
-            <Text>{chunk.content}</Text>
-          </View>);
+            />);
     default:
       return Platform.OS === 'web' ? <span {...props}>{chunk.content}</span> : <Text {...props}>{chunk.content}</Text> ;
   }
