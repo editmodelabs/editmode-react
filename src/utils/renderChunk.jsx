@@ -5,8 +5,6 @@ import { Platform, Text, Image, StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   image: {
     borderWidth: 5,
-    borderStyle: 'solid',
-    borderColor: 'pink',
   },
 });
 
