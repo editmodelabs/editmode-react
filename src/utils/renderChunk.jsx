@@ -46,6 +46,8 @@ export const renderChunk = (cnk, props) => {
               }}
             />);
     default:
-      return Platform.OS === 'web' ? <span {...props}>{chunk.content}</span> : <Text {...props}>{chunk.content}</Text> ;
+      return Platform.OS === 'web'
+        ? <span {...props}>{chunk.content}</span>
+        : <Text {...props}>{chunk.content}</Text>;
   }
 };
