@@ -14,7 +14,6 @@ export function useChunk(defaultContent, { identifier, type }) {
     ? `chunks/${identifier}`
     : `chunks/${contentKey}?project_id=${projectId}`;
 
-
   useEffect(() => {
     api
       .get(url)
