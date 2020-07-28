@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "http://api.lvh.me:3002/",
+  baseURL: "https://api.editmode.com/",
   headers: {
     Accept: "application/json",
   },
