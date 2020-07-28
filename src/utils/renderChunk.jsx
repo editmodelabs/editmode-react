@@ -17,6 +17,19 @@ export const renderChunk = (cnk, props) => {
           {chunk.content}
         </em-span>
       );
+    case "long_text":
+      return (
+        <em-span
+          data-chunk={chunk.identifier}
+          data-chunk-editable={true}
+          data-chunk-content-key={chunk.content_key}
+          data-chunk-type="long_text"
+          key={chunk.identifier}
+          {...props}
+        >
+          {chunk.content}
+        </em-span>
+      )
     case "rich_text":
       return (
         <em-span
