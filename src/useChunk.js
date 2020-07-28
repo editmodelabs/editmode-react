@@ -10,10 +10,10 @@ export function useChunk(defaultContent, { identifier, type }) {
   const { projectId } = useContext(EditmodeContext);
   const [[error, chunk], setResponse] = useState([undefined, undefined]);
   const contentKey = defaultContent ? computeContentKey(defaultContent) : null;
-
   const url = identifier
     ? `chunks/${identifier}`
     : `chunks/${contentKey}?project_id=${projectId}`;
+
 
   useEffect(() => {
     api
