@@ -1,3 +1,19 @@
+# v3.1.3 (Mon Aug 03 2020)
+
+:tada: This release contains work from a new contributor! :tada:
+
+Thank you, Bos Eriko Reyes ([@BosEriko](https://github.com/BosEriko)), for all your work!
+
+#### 🐛 Bug Fix
+
+- React Native Support [#15](https://github.com/Editmode-app/editmode-react/pull/15) ([@BosEriko](https://github.com/BosEriko))
+
+#### Authors: 1
+
+- Bos Eriko Reyes ([@BosEriko](https://github.com/BosEriko))
+
+---
+
 # v3.1.2 (Wed Jul 29 2020)
 
 #### 🐛 Bug Fix
