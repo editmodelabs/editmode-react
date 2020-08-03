@@ -1,3 +1,15 @@
+# v3.1.2 (Wed Jul 29 2020)
+
+#### 🐛 Bug Fix
+
+- Feature: Enable Rich Text [#16](https://github.com/Editmode-app/editmode-react/pull/16) ([@puuripurii](https://github.com/puuripurii))
+
+#### Authors: 1
+
+- Jen Villaganas ([@puuripurii](https://github.com/puuripurii))
+
+---
+
 # v3.1.1 (Sun Jul 19 2020)
 
 #### ⚠️  Pushed to `master`
