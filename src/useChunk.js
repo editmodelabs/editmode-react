@@ -5,6 +5,7 @@ import { api } from "./api";
 import { EditmodeContext } from "./EditmodeContext";
 import { renderChunk } from "./utils/renderChunk.jsx";
 import { computeContentKey } from "./utils/computeContentKey";
+import { Platform, AsyncStorage } from 'react-native';
 
 export function useChunk(defaultContent, { identifier, type }) {
   const { projectId } = useContext(EditmodeContext);
@@ -43,13 +44,52 @@ export function useChunk(defaultContent, { identifier, type }) {
     };
   }
 
+  let cachedChunk;
+
   if (!chunk) {
-    return {
-      Component() {
-        return null;
-      },
-      content: defaultContent,
-    };
+    if (defaultContent) {
+      return {
+        Component() {
+          return null;
+        },
+        content: defaultContent,
+      };
+    } else {
+      // Fetch Data
+      if(Platform.OS === 'web') {
+        cachedChunk = localStorage.getItem(identifier);
+      } else {
+        const fetchChunk = async () => {
+          try {
+            cachedChunk = await AsyncStorage.getItem(identifier);
+          } catch (error) {
+            console.log('Error in fetching chunk.', error);
+          }
+        };
+      }
+      return {
+        Component() {
+          return null;
+        },
+        content: cachedChunk,
+      };
+    }
+  } else {
+    // Store Data
+    if(Platform.OS === 'web') {
+      localStorage.setItem(chunk.identifier, JSON.stringify(chunk));
+    } else {
+      const storeChunk = async () => {
+        try {
+          await AsyncStorage.setItem(
+            chunk.identifier,
+            JSON.stringify(chunk)
+          );
+        } catch (error) {
+          console.log('Error in saving chunk.', error);
+        }
+      }
+    }
   }
 
   return {
