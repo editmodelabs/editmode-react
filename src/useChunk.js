@@ -7,7 +7,7 @@ import { renderChunk } from "./utils/renderChunk.jsx";
 import { computeContentKey } from "./utils/computeContentKey";
 import { Platform, AsyncStorage } from 'react-native';
 
-export function useChunk(defaultContent, { identifier, type }) {
+export function useChunk(defaultContent, { identifier, type, variable }) {
   const { projectId, chunkFallback } = useContext(EditmodeContext);
   const [[error, chunk], setResponse] = useState([undefined, undefined]);
   const contentKey = defaultContent ? computeContentKey(defaultContent) : null;

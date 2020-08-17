@@ -8,6 +8,16 @@ export const renderChunk = (cnk, props) => {
     : cnk.content;
 
   let chunk = { ...cnk, content: sanitizedContent };
+  let tokens = chunk.content.match(/\{{(.*?)\}}/g);
+
+  let parsedChunk = chunk.content;
+
+  if (tokens !== null) {
+    tokens.forEach(function(token) {
+      parsedChunk = parsedChunk.replace(token, props.variable[token.substr(2, token.length-4)]);
+    });
+  }
+
   switch (chunk.chunk_type) {
     case "single_line_text":
     case "long_text":
@@ -20,13 +30,13 @@ export const renderChunk = (cnk, props) => {
             key={chunk.identifier}
             {...props}
           >
-            {chunk.content}
+            {parsedChunk}
           </em-span>)
         : (<Text
             key={chunk.identifier}
             {...props}
           >
-            {chunk.content}
+            {parsedChunk}
           </Text>);
     case "rich_text":
       return Platform.OS === 'web'
@@ -37,7 +47,7 @@ export const renderChunk = (cnk, props) => {
             data-chunk-content-key={chunk.content_key}
             data-chunk-type="rich_text"
             key={chunk.identifier}
-            dangerouslySetInnerHTML={{__html: chunk.content}}
+            dangerouslySetInnerHTML={{__html: parsedChunk}}
             {...props}
           >
           </em-span>)
@@ -62,7 +72,7 @@ export const renderChunk = (cnk, props) => {
             />);
     default:
       return Platform.OS === 'web'
-        ? <span {...props}>{chunk.content}</span>
-        : <Text {...props}>{chunk.content}</Text>;
+        ? <span {...props}>{parsedChunk}</span>
+        : <Text {...props}>{parsedChunk}</Text>;
   }
 };
