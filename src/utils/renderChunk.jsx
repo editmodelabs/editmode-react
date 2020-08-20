@@ -14,7 +14,7 @@ export const renderChunk = (cnk, props) => {
 
   if (tokens !== null) {
     tokens.forEach(function(token) {
-      parsedChunk = parsedChunk.replace(token, props.variable[token.substr(2, token.length-4)]);
+      parsedChunk = parsedChunk.replace(token, props.variables[token.substr(2, token.length-4)]);
     });
   }
 
