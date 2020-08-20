@@ -8,7 +8,7 @@ import { computeContentKey } from "./utils/computeContentKey";
 import { Platform, AsyncStorage } from 'react-native';
 
 export function useChunk(defaultContent, { identifier, type }) {
-  const { projectId, chunkFallback } = useContext(EditmodeContext);
+  const { projectId, defaultChunks } = useContext(EditmodeContext);
   const [[error, chunk], setResponse] = useState([undefined, undefined]);
   const contentKey = defaultContent ? computeContentKey(defaultContent) : null;
   const url = identifier
@@ -44,7 +44,7 @@ export function useChunk(defaultContent, { identifier, type }) {
     };
   }
 
-  const fallbackChunk = chunkFallback.filter(chunkItem => chunkItem.identifier === identifier)[0];
+  const fallbackChunk = defaultChunks.filter(chunkItem => chunkItem.identifier === identifier)[0];
 
   if (!chunk) {
     if (!defaultContent && !fallbackChunk) {
