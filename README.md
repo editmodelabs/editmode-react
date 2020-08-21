@@ -84,7 +84,7 @@ function Example() {
 
 This will render editable headings containing the name and title and an image containing the headshot for every person in the "Team Member" collection.
 
-#### Using default chunks array as fallback
+#### Using default chunks array as fallback:
 
 For cases when there's no internet connection but your app is designed to work in offline mode, Editmode supports having an array of default chunks as fallback.
 
@@ -104,7 +104,7 @@ function Example() {
 }
 ```
 
-#### Using variables
+#### Using variables:
 
 Variables that are created in the Editmode CMS are also supported by passing an object prop as `variables`.
 
