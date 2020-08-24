@@ -84,6 +84,44 @@ function Example() {
 
 This will render editable headings containing the name and title and an image containing the headshot for every person in the "Team Member" collection.
 
+#### Using default chunks array as fallback:
+
+For cases when there's no internet connection but your app is designed to work in offline mode, Editmode supports having an array of default chunks as fallback.
+
+```js
+const defaultChunksValue = [
+  {"identifier":"cnk_2177d77492a2dead1585","chunk_type":"single_line_text","project_id":"prj_h3Gk3gFVMXbl","branch_id":"d1dWhVyF85Yr","master_branch":true,"content_key":"","content":"This is a single line text!"},
+];
+
+function Example() {
+  return (
+    <section>
+      <Editmode projectId="prj_h3Gk3gFVMXbl" defaultChunks={defaultChunksValue}>
+        <Chunk identifier="cnk_2177d77492a2dead1585" />
+      </Editmode>
+    </section>
+  );
+}
+```
+
+#### Using variables:
+
+Variables that are created in the Editmode CMS are also supported by passing an object prop as `variables`.
+
+```js
+function Example() {
+  return (
+    <section>
+      <Editmode projectId="prj_h3Gk3gFVMXbl" defaultChunks={defaultChunksValue}>
+        <Chunk identifier="cnk_2177d77492a2dead1585" variables={{ "name": "John" }} />
+      </Editmode>
+    </section>
+  );
+}
+```
+
+With this, chunks such as `Hello, {{name}}!` will be parsed as `Hello, John!`
+
 ### Step 3:
 
 You can now edit and save all of the chunks in your React app from within the browser - just add `editmode=1` as a query string parameter to the current URL.
