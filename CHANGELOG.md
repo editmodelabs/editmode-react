@@ -1,3 +1,16 @@
+# v3.1.4 (Mon Aug 24 2020)
+
+#### 🐛 Bug Fix
+
+- Feature: Chunks Fallback [#18](https://github.com/Editmode-app/editmode-react/pull/18) ([@BosEriko](https://github.com/BosEriko))
+- Feature: Update README.md with Default Chunks and Variables [#21](https://github.com/Editmode-app/editmode-react/pull/21) ([@BosEriko](https://github.com/BosEriko))
+
+#### Authors: 1
+
+- Bos Eriko Reyes ([@BosEriko](https://github.com/BosEriko))
+
+---
+
 # v3.1.3 (Mon Aug 03 2020)
 
 :tada: This release contains work from a new contributor! :tada:
