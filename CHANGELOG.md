@@ -1,3 +1,15 @@
+# v3.1.6 (Mon Aug 24 2020)
+
+#### ⚠️  Pushed to `master`
+
+- Feature: Add react-native to peerDependecies ([@BosEriko](https://github.com/BosEriko))
+
+#### Authors: 1
+
+- Bos Eriko Reyes ([@BosEriko](https://github.com/BosEriko))
+
+---
+
 # v3.1.5 (Mon Aug 24 2020)
 
 #### 🐛 Bug Fix
