@@ -10,7 +10,8 @@
   },
   "peerDependencies": {
     "react": "16.*",
-    "react-dom": "16.*"
+    "react-dom": "16.*",
+    "react-native": "^0.63.2"
   },
   "keywords": [
     "Editmode",
