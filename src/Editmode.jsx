@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { EditmodeContext } from "./EditmodeContext";
 import { Platform } from 'react-native';
 
-export function Editmode({ children, projectId }) {
+export function Editmode({ children, projectId, defaultChunks }) {
   if (!projectId) {
     throw new Error("<Editmode projectId={...}> is missing a valid projectId");
   }
@@ -25,7 +25,7 @@ export function Editmode({ children, projectId }) {
   }
 
   return (
-    <EditmodeContext.Provider value={{ branch, projectId }}>
+    <EditmodeContext.Provider value={{ branch, projectId, defaultChunks }}>
       {children}
     </EditmodeContext.Provider>
   );
