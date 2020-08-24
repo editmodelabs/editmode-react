@@ -1,3 +1,15 @@
+# v3.1.5 (Mon Aug 24 2020)
+
+#### 🐛 Bug Fix
+
+- Feature: Variables Fallback [#19](https://github.com/Editmode-app/editmode-react/pull/19) ([@BosEriko](https://github.com/BosEriko))
+
+#### Authors: 1
+
+- Bos Eriko Reyes ([@BosEriko](https://github.com/BosEriko))
+
+---
+
 # v3.1.4 (Mon Aug 24 2020)
 
 #### 🐛 Bug Fix
