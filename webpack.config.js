@@ -18,13 +18,11 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-env", "react-native"],
+            presets: ["@babel/preset-env"],
           },
         },
       },
     ],
   },
-  externals: [nodeExternals({
-    whitelist: ["react-native"]
-  })],
+  externals: [nodeExternals()],
 };

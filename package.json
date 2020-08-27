@@ -10,8 +10,7 @@
   },
   "peerDependencies": {
     "react": "16.*",
-    "react-dom": "16.*",
-    "react-native": "0.*"
+    "react-dom": "16.*"
   },
   "keywords": [
     "Editmode",
@@ -27,8 +26,7 @@
     "dompurify": "^2.0.11",
     "lodash-es": "^4.17.15",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-native": "^0.63.2"
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "@auto-it/all-contributors": "^9.35.1",
