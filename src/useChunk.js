@@ -14,7 +14,11 @@ export function useChunk(defaultContent, { identifier, type }) {
     ? `chunks/${identifier}`
     : `chunks/${contentKey}?project_id=${projectId}`;
 
-  const { data: chunk, error } = useSWR(url, (url) => api.get(url).then((res) => res.data));
+  const SWROptions = {
+    revalidateOnFocus: false,
+  };
+
+  const { data: chunk, error } = useSWR(url, (url) => api.get(url).then((res) => res.data), SWROptions);
 
   if (error) {
     if (identifier) {
