@@ -1,5 +1,6 @@
 // @ts-check
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
+import useSWR from 'swr';
 
 import { api } from "./api";
 import { EditmodeContext } from "./EditmodeContext";
@@ -8,18 +9,12 @@ import { computeContentKey } from "./utils/computeContentKey";
 
 export function useChunk(defaultContent, { identifier, type }) {
   const { projectId, defaultChunks } = useContext(EditmodeContext);
-  const [[error, chunk], setResponse] = useState([undefined, undefined]);
   const contentKey = defaultContent ? computeContentKey(defaultContent) : null;
   const url = identifier
     ? `chunks/${identifier}`
     : `chunks/${contentKey}?project_id=${projectId}`;
 
-  useEffect(() => {
-    api
-      .get(url)
-      .then((res) => setResponse([null, res.data]))
-      .catch((error) => setResponse([error, null]));
-  }, [url]);
+  const { data: chunk, error } = useSWR(url, (url) => api.get(url));
 
   if (error) {
     if (identifier) {
@@ -46,15 +41,7 @@ export function useChunk(defaultContent, { identifier, type }) {
   const fallbackChunk = defaultChunks.filter(chunkItem => chunkItem.identifier === identifier)[0];
 
   if (!chunk) {
-    if (!defaultContent && !fallbackChunk) {
-      let cachedChunk = localStorage.getItem(identifier);
-      return {
-        Component() {
-          return null;
-        },
-        content: cachedChunk,
-      };
-    } else if (fallbackChunk) {
+    if (fallbackChunk) {
       return {
         Component() {
           return null;
@@ -69,8 +56,6 @@ export function useChunk(defaultContent, { identifier, type }) {
         content: defaultContent,
       };
     }
-  } else {
-    localStorage.setItem(chunk.identifier, JSON.stringify(chunk));
   }
 
   return {
