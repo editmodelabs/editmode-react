@@ -16,7 +16,7 @@ export const renderChunk = (cnk, props) => {
   switch (chunk.chunk_type) {
     case "single_line_text":
     case "long_text":
-      <em-span
+      return <em-span
         data-chunk={chunk.identifier}
         data-chunk-editable={true}
         data-chunk-content-key={chunk.content_key}
@@ -27,7 +27,7 @@ export const renderChunk = (cnk, props) => {
         {parsedChunk}
       </em-span>
     case "rich_text":
-      <em-span
+      return <em-span
         class="editmode-richtext-editor"
         data-chunk={chunk.identifier}
         data-chunk-editable={true}
@@ -39,7 +39,7 @@ export const renderChunk = (cnk, props) => {
       >
       </em-span>
     case "image":
-      <img
+      return <img
         src={chunk.content}
         data-chunk={chunk.identifier}
         data-chunk-editable={false}
@@ -50,6 +50,6 @@ export const renderChunk = (cnk, props) => {
         {...props}
       />
     default:
-        <span {...props}>{parsedChunk}</span>
+        return <span {...props}>{parsedChunk}</span>
   }
 };
