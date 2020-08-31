@@ -1,5 +1,5 @@
 // @ts-check
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import useSWR from 'swr';
 
 import { api } from "./api";
@@ -10,14 +10,18 @@ import { computeContentKey } from "./utils/computeContentKey";
 export function useChunk(defaultContent, { identifier, type }) {
   const { projectId, defaultChunks } = useContext(EditmodeContext);
   const contentKey = defaultContent ? computeContentKey(defaultContent) : null;
+  const fallbackChunk = useMemo(
+    () => defaultChunks.find(chunkItem => chunkItem.identifier === identifier),
+    [defaultChunks, identifier]
+  );
   const url = identifier
     ? `chunks/${identifier}`
     : `chunks/${contentKey}?project_id=${projectId}`;
   const SWROptions = {
     revalidateOnFocus: false,
+    initialData: fallbackChunk
   };
   const { data: chunk, error } = useSWR(url, (url) => api.get(url).then((res) => res.data), SWROptions);
-  const fallbackChunk = defaultChunks.filter(chunkItem => chunkItem.identifier === identifier)[0];
 
   if (error) {
     if (identifier) {
@@ -42,21 +46,12 @@ export function useChunk(defaultContent, { identifier, type }) {
   }
 
   if (!chunk) {
-    if (fallbackChunk) {
-      return {
-        Component() {
-          return null;
-        },
-        content: fallbackChunk,
-      };
-    } else if (defaultContent) {
-      return {
-        Component() {
-          return null;
-        },
-        content: defaultContent,
-      };
-    }
+    return {
+      Component() {
+        return null;
+      },
+      content: defaultContent,
+    };
   }
 
   return {
