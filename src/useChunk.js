@@ -19,6 +19,7 @@ export function useChunk(defaultContent, { identifier, type }) {
     : `chunks/${contentKey}?project_id=${projectId}`;
   const SWROptions = {
     revalidateOnFocus: false,
+    revalidateOnMount: true,
     initialData: fallbackChunk
   };
   const { data: chunk, error } = useSWR(url, (url) => api.get(url).then((res) => res.data), SWROptions);
