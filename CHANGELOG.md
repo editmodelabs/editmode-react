@@ -1,3 +1,15 @@
+# v3.1.7 (Mon Aug 31 2020)
+
+#### 🐛 Bug Fix
+
+- Hotfix: React Native Not Found [#22](https://github.com/Editmode-app/editmode-react/pull/22) ([@BosEriko](https://github.com/BosEriko))
+
+#### Authors: 1
+
+- Bos Eriko Reyes ([@BosEriko](https://github.com/BosEriko))
+
+---
+
 # v3.1.6 (Mon Aug 24 2020)
 
 #### ⚠️  Pushed to `master`
