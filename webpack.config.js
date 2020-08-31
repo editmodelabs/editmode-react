@@ -10,11 +10,6 @@ module.exports = {
     library: pkg.name,
     libraryTarget: "commonjs2",
   },
-  resolve: {
-    alias: {
-      'react-native': path.join(__dirname, 'node_modules/react-native'),
-    },
-  },
   module: {
     rules: [
       {
