@@ -10,13 +10,13 @@ import { computeContentKey } from "./utils/computeContentKey";
 export function useChunk(defaultContent, { identifier, type }) {
   const { projectId, defaultChunks } = useContext(EditmodeContext);
   const contentKey = defaultContent ? computeContentKey(defaultContent) : null;
+  const url = identifier
+    ? `chunks/${identifier}`
+    : `chunks/${contentKey}?project_id=${projectId}`;
   const fallbackChunk = useMemo(
     () => defaultChunks.find(chunkItem => chunkItem.identifier === identifier),
     [defaultChunks, identifier]
   );
-  const url = identifier
-    ? `chunks/${identifier}`
-    : `chunks/${contentKey}?project_id=${projectId}`;
   const SWROptions = {
     revalidateOnFocus: false,
   };
@@ -45,21 +45,12 @@ export function useChunk(defaultContent, { identifier, type }) {
   }
 
   if (!chunk) {
-    if (fallbackChunk) {
-      return {
-        Component() {
-          return null;
-        },
-        content: fallbackChunk,
-      };
-    } else if (defaultContent) {
-      return {
-        Component() {
-          return null;
-        },
-        content: defaultContent,
-      };
-    }
+    return {
+      Component() {
+        return null;
+      },
+      content: fallbackChunk ? fallbackChunk : defaultContent,
+    };
   }
 
   return {
