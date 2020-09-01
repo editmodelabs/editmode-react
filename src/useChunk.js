@@ -19,8 +19,6 @@ export function useChunk(defaultContent, { identifier, type }) {
     : `chunks/${contentKey}?project_id=${projectId}`;
   const SWROptions = {
     revalidateOnFocus: false,
-    revalidateOnMount: true,
-    initialData: fallbackChunk
   };
   const { data: chunk, error } = useSWR(url, (url) => api.get(url).then((res) => res.data), SWROptions);
 
@@ -47,12 +45,21 @@ export function useChunk(defaultContent, { identifier, type }) {
   }
 
   if (!chunk) {
-    return {
-      Component() {
-        return null;
-      },
-      content: defaultContent,
-    };
+    if (fallbackChunk) {
+      return {
+        Component() {
+          return null;
+        },
+        content: fallbackChunk,
+      };
+    } else if (defaultContent) {
+      return {
+        Component() {
+          return null;
+        },
+        content: defaultContent,
+      };
+    }
   }
 
   return {
