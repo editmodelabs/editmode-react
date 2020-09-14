@@ -10,17 +10,21 @@ import { computeContentKey } from "./utils/computeContentKey";
 export function useChunk(defaultContent, { identifier, type }) {
   const { projectId, defaultChunks } = useContext(EditmodeContext);
   const contentKey = defaultContent ? computeContentKey(defaultContent) : null;
+
+  const SWROptions = {
+    revalidateOnFocus: false,
+  };
+
   const url = identifier
     ? `chunks/${identifier}`
     : `chunks/${contentKey}?project_id=${projectId}`;
+
+  const { data: chunk, error } = useSWR(url, (url) => api.get(url).then((res) => res.data), SWROptions);
+
   const fallbackChunk = useMemo(
     () => defaultChunks.find(chunkItem => chunkItem.identifier === identifier),
     [defaultChunks, identifier]
   );
-  const SWROptions = {
-    revalidateOnFocus: false,
-  };
-  const { data: chunk, error } = useSWR(url, (url) => api.get(url).then((res) => res.data), SWROptions);
 
   if (error) {
     if (identifier) {
