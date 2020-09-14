@@ -11,10 +11,13 @@ export function useChunk(defaultContent, { identifier, type }) {
   const { projectId, defaultChunks } = useContext(EditmodeContext);
   const [[error, chunk], setResponse] = useState([undefined, undefined]);
   const contentKey = defaultContent ? computeContentKey(defaultContent) : null;
-  const fallbackChunk = useMemo(
-    () => defaultChunks.find(chunkItem => chunkItem.identifier === identifier),
-    [defaultChunks, identifier]
-  );
+  let fallbackChunk;
+  if (typeof defaultChunks !== 'undefined') {
+    fallbackChunk = useMemo(
+      () => defaultChunks.find(chunkItem => chunkItem.identifier === identifier),
+      [defaultChunks, identifier]
+    );
+  }
   const url = identifier
     ? `chunks/${identifier}`
     : `chunks/${contentKey}?project_id=${projectId}`;
