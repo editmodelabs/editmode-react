@@ -1,5 +1,5 @@
 // @ts-check
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useMemo } from "react";
 
 import { api } from "./api";
 import { EditmodeContext } from "./EditmodeContext";
@@ -11,6 +11,10 @@ export function useChunk(defaultContent, { identifier, type }) {
   const { projectId, defaultChunks } = useContext(EditmodeContext);
   const [[error, chunk], setResponse] = useState([undefined, undefined]);
   const contentKey = defaultContent ? computeContentKey(defaultContent) : null;
+  const fallbackChunk = useMemo(
+    () => defaultChunks.find(chunkItem => chunkItem.identifier === identifier),
+    [defaultChunks, identifier]
+  );
   const url = identifier
     ? `chunks/${identifier}`
     : `chunks/${contentKey}?project_id=${projectId}`;
@@ -43,8 +47,6 @@ export function useChunk(defaultContent, { identifier, type }) {
       content: defaultContent,
     };
   }
-
-  const fallbackChunk = defaultChunks.filter(chunkItem => chunkItem.identifier === identifier)[0];
 
   if (!chunk) {
     if (!defaultContent && !fallbackChunk) {
