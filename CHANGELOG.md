@@ -1,3 +1,16 @@
+# v3.1.8 (Tue Sep 15 2020)
+
+#### 🐛 Bug Fix
+
+- Hotfix: Undefined filter method [#23](https://github.com/editmodelabs/editmode-react/pull/23) ([@BosEriko](https://github.com/BosEriko) [@puuripurii](https://github.com/puuripurii))
+
+#### Authors: 2
+
+- Bos Eriko Reyes ([@BosEriko](https://github.com/BosEriko))
+- Jen Villaganas  ([@puuripurii](https://github.com/puuripurii))
+
+---
+
 # v3.1.7 (Mon Aug 31 2020)
 
 #### 🐛 Bug Fix
