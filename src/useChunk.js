@@ -25,16 +25,16 @@ export function useChunk(defaultContent, { identifier, type }) {
     );
   }
 
-  let chachedId = identifier || contentKey + projectId;
+  let cacheId = identifier || contentKey + projectId;
   useEffect(() => {
     // Fetch data from localStorage
     let cachedChunk;
     if(Platform.OS === 'web') {
-      cachedChunk = localStorage.getItem(chachedId);
+      cachedChunk = localStorage.getItem(cacheId);
     } else {
       const fetchChunk = async () => {
         try {
-          cachedChunk = await AsyncStorage.getItem(chachedId);
+          cachedChunk = await AsyncStorage.getItem(cacheId);
         } catch (error) {
           console.log('Error in fetching chunk.', error);
         }
@@ -56,7 +56,7 @@ export function useChunk(defaultContent, { identifier, type }) {
         .then((res) => setResponse([null, res.data]))
         .catch((error) => setResponse([error, null]));
     }
-  }, [chachedId]);
+  }, [cacheId]);
 
   if (error || !chunk) {
     if (identifier) {
@@ -81,12 +81,12 @@ export function useChunk(defaultContent, { identifier, type }) {
   } else {
     // Store Data
     if(Platform.OS === 'web') {
-      localStorage.setItem(chachedId, JSON.stringify(chunk));
+      localStorage.setItem(cacheId, JSON.stringify(chunk));
     } else {
       const storeChunk = async () => {
         try {
           await AsyncStorage.setItem(
-            chachedId,
+            cacheId,
             JSON.stringify(chunk)
           );
         } catch (error) {
