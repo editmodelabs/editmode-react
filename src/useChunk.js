@@ -14,22 +14,51 @@ export function useChunk(defaultContent, { identifier, type }) {
   let fallbackChunk;
   if (typeof defaultChunks !== 'undefined') {
     fallbackChunk = useMemo(
-      () => defaultChunks.find(chunkItem => chunkItem.identifier === identifier),
+      () => {
+        if (identifier) {
+          return defaultChunks.find(chunkItem => chunkItem.identifier === identifier);
+        } else {
+          return defaultChunks.find(chunkItem => chunkItem.content_key === contentKey && chunkItem.project_id == projectId);
+        }
+      },
       [defaultChunks, identifier]
     );
   }
-  const url = identifier
-    ? `chunks/${identifier}`
-    : `chunks/${contentKey}?project_id=${projectId}`;
 
+  let chachedId = identifier || contentKey + projectId;
   useEffect(() => {
-    api
-      .get(url)
-      .then((res) => setResponse([null, res.data]))
-      .catch((error) => setResponse([error, null]));
-  }, [url]);
+    // Fetch data from localStorage
+    let cachedChunk;
+    if(Platform.OS === 'web') {
+      cachedChunk = localStorage.getItem(chachedId);
+    } else {
+      const fetchChunk = async () => {
+        try {
+          cachedChunk = await AsyncStorage.getItem(chachedId);
+        } catch (error) {
+          console.log('Error in fetching chunk.', error);
+        }
+      };
+    }
 
-  if (error) {
+    if (cachedChunk) {
+      setResponse([null, JSON.parse(cachedChunk)]);
+    } else if (fallbackChunk) {
+      setResponse([null, fallbackChunk]);
+    } else {
+      // Fetch data from API
+      const url = identifier
+      ? `chunks/${identifier}`
+      : `chunks/${contentKey}?project_id=${projectId}`;
+  
+      api
+        .get(url)
+        .then((res) => setResponse([null, res.data]))
+        .catch((error) => setResponse([error, null]));
+    }
+  }, [chachedId]);
+
+  if (error || !chunk) {
     if (identifier) {
       console.warn(
         `Something went wrong trying to retrieve chunk data: ${error}. Have you provided the correct Editmode identifier (${identifier}) as a prop to your Chunk component instance?`
@@ -49,54 +78,15 @@ export function useChunk(defaultContent, { identifier, type }) {
       },
       content: defaultContent,
     };
-  }
-
-  if (!chunk) {
-    if (!defaultContent && !fallbackChunk) {
-      let cachedChunk;
-
-      // Fetch Data
-      if(Platform.OS === 'web') {
-        cachedChunk = localStorage.getItem(identifier);
-      } else {
-        const fetchChunk = async () => {
-          try {
-            cachedChunk = await AsyncStorage.getItem(identifier);
-          } catch (error) {
-            console.log('Error in fetching chunk.', error);
-          }
-        };
-      }
-      return {
-        Component() {
-          return null;
-        },
-        content: cachedChunk,
-      };
-    } else if (fallbackChunk) {
-      return {
-        Component() {
-          return null;
-        },
-        content: fallbackChunk,
-      };
-    } else if (defaultContent) {
-      return {
-        Component() {
-          return null;
-        },
-        content: defaultContent,
-      };
-    }
   } else {
     // Store Data
     if(Platform.OS === 'web') {
-      localStorage.setItem(chunk.identifier, JSON.stringify(chunk));
+      localStorage.setItem(chachedId, JSON.stringify(chunk));
     } else {
       const storeChunk = async () => {
         try {
           await AsyncStorage.setItem(
-            chunk.identifier,
+            chachedId,
             JSON.stringify(chunk)
           );
         } catch (error) {
