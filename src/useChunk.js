@@ -44,13 +44,27 @@ export function useChunk(defaultContent, { identifier, type }) {
 
   // Render content
   let cachedChunk = getCachedData(cacheId)
-  let chunk = cachedChunk ? JSON.parse(cachedChunk) : fallbackChunk || defaultContent
+  let chunk = cachedChunk ? JSON.parse(cachedChunk) : fallbackChunk
   if (chunk) {
     return {
       Component(props) {
         return renderChunk(chunk, props)
       },
       content: chunk.content
+    };
+  } else {
+    return {
+      Component(props) {
+        return renderChunk(
+          {
+            chunk_type: type || "single_line_text",
+            content: defaultContent,
+            content_key: contentKey,
+          },
+          props
+        );
+      },
+      content: defaultContent,
     };
   }
 }
