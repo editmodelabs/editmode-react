@@ -9,7 +9,7 @@ import { Platform, AsyncStorage } from 'react-native';
 
 export function useChunk(defaultContent, { identifier, type }) {
   const { projectId, defaultChunks } = useContext(EditmodeContext);
-  const [[error, chunk], setResponse] = useState([undefined, undefined]);
+  const [[error, response], setResponse] = useState([undefined, undefined]);
   const contentKey = defaultContent ? computeContentKey(defaultContent) : null;
   const cacheId = identifier || contentKey + projectId;
   let fallbackChunk;
@@ -32,90 +32,58 @@ export function useChunk(defaultContent, { identifier, type }) {
   useEffect(() => {
     api
       .get(url)
-      .then((res) => setResponse([null, res.data]))
-      .catch((error) => setResponse([error, null]));
+      .then((res) => storeCache(cacheId, res.data)) // Store chunk to localstorage
+      .catch((error) => setResponse([error, null])); // Set error state
   }, [url]);
 
-  if (error) {
-    if (identifier) {
-      console.warn(
-        `Something went wrong trying to retrieve chunk data: ${error}. Have you provided the correct Editmode identifier (${identifier}) as a prop to your Chunk component instance?`
-      );
-    }
-
-    return {
-      Component(props) {
-        return renderChunk(
-          {
-            chunk_type: type || "single_line_text",
-            content: defaultContent,
-            content_key: contentKey,
-          },
-          props
-        );
-      },
-      content: defaultContent,
-    };
+  if (error && identifier) {
+    console.warn(
+      `Something went wrong trying to retrieve chunk data: ${error}. Have you provided the correct Editmode identifier (${identifier}) as a prop to your Chunk component instance?`
+    );
   }
 
-  if (!chunk) {
-    let cachedChunk;
-    // Fetch Data
-    if(Platform.OS === 'web') {
-      cachedChunk = localStorage.getItem(cacheId);
-    } else {
-      const fetchChunk = async () => {
-        try {
-          cachedChunk = await AsyncStorage.getItem(cacheId);
-        } catch (error) {
-          console.log('Error in fetching chunk.', error);
-        }
-      };
-    }
-    if (cachedChunk) {
-      return {
-        Component() {
-          return null;
-        },
-        content: cachedChunk,
-      };
-    } else if (fallbackChunk) {
-      return {
-        Component() {
-          return null;
-        },
-        content: fallbackChunk,
-      };
-    } else if (defaultContent) {
-      return {
-        Component() {
-          return null;
-        },
-        content: defaultContent,
-      };
-    }
+  // Render content
+  let cachedChunk = getCachedData(cacheId)
+  let chunk = cachedChunk ? JSON.parse(cachedChunk) : fallbackChunk || defaultContent
+  if (chunk) {
+    return {
+      Component(props) {
+        return renderChunk(chunk, props)
+      },
+      content: chunk.content
+    };
+  }
+}
+
+const getCachedData = (id) => {
+  if(Platform.OS === 'web') {
+    return localStorage.getItem(id);
   } else {
+    const fetchChunk = async () => {
+      try {
+        return await AsyncStorage.getItem(id);
+      } catch (error) {
+        console.log('Error in fetching chunk.', error);
+      }
+    };
+  }
+  return false
+}
+
+const storeCache = (id, data) => {
     // Store Data
     if(Platform.OS === 'web') {
-      localStorage.setItem(cacheId, JSON.stringify(chunk));
+      localStorage.setItem(id, JSON.stringify(data));
     } else {
       const storeChunk = async () => {
         try {
           await AsyncStorage.setItem(
-            chunk.identifier,
-            JSON.stringify(chunk)
+            id,
+            JSON.stringify(data)
           );
         } catch (error) {
           console.log('Error in saving chunk.', error);
         }
       }
     }
-  }
-
-  return {
-    Component(props) {
-      return renderChunk(chunk, props);
-    },
-    content: chunk.content,
-  };
 }
