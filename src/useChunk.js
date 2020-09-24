@@ -8,7 +8,7 @@ import { computeContentKey } from "./utils/computeContentKey";
 
 export function useChunk(defaultContent, { identifier, type }) {
   const { projectId, defaultChunks } = useContext(EditmodeContext);
-  const [[error, response], setResponse] = useState([undefined, undefined]);
+  const [chunk, setChunk] = useState(undefined);
   const contentKey = defaultContent ? computeContentKey(defaultContent) : null;
   const cacheId = identifier || contentKey + projectId;
   let fallbackChunk;
@@ -29,21 +29,32 @@ export function useChunk(defaultContent, { identifier, type }) {
     : `chunks/${contentKey}?project_id=${projectId}`;
 
   useEffect(() => {
+    // Render content
+    let cachedChunk = getCachedData(cacheId)
+    let newChunk = cachedChunk ? JSON.parse(cachedChunk) : fallbackChunk || {
+      chunk_type: type || "single_line_text",
+      content: defaultContent,
+      content_key: contentKey
+    }
+
+    setChunk(newChunk)
+
+    // Fetch new data
+    let error;
     api
       .get(url)
       .then((res) => storeCache(cacheId, res.data)) // Store chunk to localstorage
-      .catch((error) => setResponse([error, null])); // Set error state
-  }, [url]);
+      .catch((error) => console.log(error)); // Set error state
 
-  if (error && identifier) {
-    console.warn(
-      `Something went wrong trying to retrieve chunk data: ${error}. Have you provided the correct Editmode identifier (${identifier}) as a prop to your Chunk component instance?`
-    );
-  }
+    if (error && identifier) {
+      console.warn(
+        `Something went wrong trying to retrieve chunk data: ${error}. Have you provided the correct Editmode identifier (${identifier}) as a prop to your Chunk component instance?`
+      );
+    }
+  }, [cacheId]);
 
-  // Render content
-  let cachedChunk = getCachedData(cacheId)
-  let chunk = cachedChunk ? JSON.parse(cachedChunk) : fallbackChunk
+  
+
   if (chunk) {
     return {
       Component(props) {
@@ -53,18 +64,10 @@ export function useChunk(defaultContent, { identifier, type }) {
     };
   } else {
     return {
-      Component(props) {
-        return renderChunk(
-          {
-            chunk_type: type || "single_line_text",
-            content: defaultContent,
-            content_key: contentKey,
-          },
-          props
-        );
-      },
-      content: defaultContent,
-    };
+      Component() {
+        return null
+      }
+    }
   }
 }
 

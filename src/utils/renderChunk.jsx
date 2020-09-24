@@ -1,9 +1,9 @@
-import DOMpurify from "dompurify";
+import DOMpurify from "isomorphic-dompurify";
 import React from "react";
 
 export const renderChunk = (cnk, props) => {
   const sanitizedContent = DOMpurify.sanitize(cnk.content);
-
+  
   let chunk = { ...cnk, content: sanitizedContent };
   let tokens = chunk.content.match(/\{{(.*?)\}}/g);
 

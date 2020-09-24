@@ -1,5 +1,5 @@
 import hash from "@emotion/hash";
-import { kebabCase } from "lodash-es";
+import kebabCase from "lodash.kebabcase";
 
 export function computeContentKey(content) {
   if (typeof content !== "string") {
