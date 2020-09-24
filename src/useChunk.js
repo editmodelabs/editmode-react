@@ -5,7 +5,6 @@ import { api } from "./api";
 import { EditmodeContext } from "./EditmodeContext";
 import { renderChunk } from "./utils/renderChunk.jsx";
 import { computeContentKey } from "./utils/computeContentKey";
-import { Platform, AsyncStorage } from 'react-native';
 
 export function useChunk(defaultContent, { identifier, type }) {
   const { projectId, defaultChunks } = useContext(EditmodeContext);
@@ -70,34 +69,9 @@ export function useChunk(defaultContent, { identifier, type }) {
 }
 
 const getCachedData = (id) => {
-  if(Platform.OS === 'web') {
-    return localStorage.getItem(id);
-  } else {
-    const fetchChunk = async () => {
-      try {
-        return await AsyncStorage.getItem(id);
-      } catch (error) {
-        console.log('Error in fetching chunk.', error);
-      }
-    };
-  }
-  return false
+  return localStorage.getItem(id);
 }
 
 const storeCache = (id, data) => {
-    // Store Data
-    if(Platform.OS === 'web') {
-      localStorage.setItem(id, JSON.stringify(data));
-    } else {
-      const storeChunk = async () => {
-        try {
-          await AsyncStorage.setItem(
-            id,
-            JSON.stringify(data)
-          );
-        } catch (error) {
-          console.log('Error in saving chunk.', error);
-        }
-      }
-    }
+  localStorage.setItem(id, JSON.stringify(data));
 }
