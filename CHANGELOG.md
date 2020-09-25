@@ -1,3 +1,15 @@
+# v3.1.10 (Fri Sep 25 2020)
+
+#### 🐛 Bug Fix
+
+- Feature: Data fetching and caching [#25](https://github.com/editmodelabs/editmode-react/pull/25) ([@puuripurii](https://github.com/puuripurii))
+
+#### Authors: 1
+
+- Jen Villaganas  ([@puuripurii](https://github.com/puuripurii))
+
+---
+
 # v3.1.9 (Fri Sep 18 2020)
 
 #### 🐛 Bug Fix
