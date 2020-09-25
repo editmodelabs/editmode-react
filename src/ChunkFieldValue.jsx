@@ -11,7 +11,7 @@ export function ChunkFieldValue({ children, identifier, ...props }) {
   }
 
   const fieldChunk = chunk.content.find(
-    (chunk) => chunk.custom_field_identifier === identifier
+    (chunk) => chunk.custom_field_identifier === identifier || chunk.custom_field_name === identifier
   );
 
   if (!fieldChunk) {
