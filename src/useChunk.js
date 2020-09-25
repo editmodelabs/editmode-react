@@ -5,16 +5,22 @@ import { api } from "./api";
 import { EditmodeContext } from "./EditmodeContext";
 import { renderChunk } from "./utils/renderChunk.jsx";
 import { computeContentKey } from "./utils/computeContentKey";
-import { Platform, AsyncStorage } from 'react-native';
 
 export function useChunk(defaultContent, { identifier, type }) {
   const { projectId, defaultChunks } = useContext(EditmodeContext);
-  const [[error, chunk], setResponse] = useState([undefined, undefined]);
+  const [chunk, setChunk] = useState(undefined);
   const contentKey = defaultContent ? computeContentKey(defaultContent) : null;
+  const cacheId = identifier || contentKey + projectId;
   let fallbackChunk;
   if (typeof defaultChunks !== 'undefined') {
     fallbackChunk = useMemo(
-      () => defaultChunks.find(chunkItem => chunkItem.identifier === identifier),
+      () => {
+        if (identifier) {
+          return defaultChunks.find(chunkItem => chunkItem.identifier === identifier);
+        } else {
+          return defaultChunks.find(chunkItem => chunkItem.content_key === contentKey && chunkItem.project_id == projectId);
+        }
+      },
       [defaultChunks, identifier]
     );
   }
@@ -23,93 +29,52 @@ export function useChunk(defaultContent, { identifier, type }) {
     : `chunks/${contentKey}?project_id=${projectId}`;
 
   useEffect(() => {
+    // Render content
+    let cachedChunk = getCachedData(cacheId)
+    let newChunk = cachedChunk ? JSON.parse(cachedChunk) : fallbackChunk || {
+      chunk_type: type || "single_line_text",
+      content: defaultContent,
+      content_key: contentKey
+    }
+
+    setChunk(newChunk)
+
+    // Fetch new data
+    let error;
     api
       .get(url)
-      .then((res) => setResponse([null, res.data]))
-      .catch((error) => setResponse([error, null]));
-  }, [url]);
+      .then((res) => storeCache(cacheId, res.data)) // Store chunk to localstorage
+      .catch((error) => console.log(error)); // Set error state
 
-  if (error) {
-    if (identifier) {
+    if (error && identifier) {
       console.warn(
         `Something went wrong trying to retrieve chunk data: ${error}. Have you provided the correct Editmode identifier (${identifier}) as a prop to your Chunk component instance?`
       );
     }
+  }, [cacheId]);
 
+  
+
+  if (chunk) {
     return {
       Component(props) {
-        return renderChunk(
-          {
-            chunk_type: type || "single_line_text",
-            content: defaultContent,
-            content_key: contentKey,
-          },
-          props
-        );
+        return renderChunk(chunk, props)
       },
-      content: defaultContent,
+      content: chunk.content
     };
-  }
-
-  if (!chunk) {
-    if (!defaultContent && !fallbackChunk) {
-      let cachedChunk;
-
-      // Fetch Data
-      if(Platform.OS === 'web') {
-        cachedChunk = localStorage.getItem(identifier);
-      } else {
-        const fetchChunk = async () => {
-          try {
-            cachedChunk = await AsyncStorage.getItem(identifier);
-          } catch (error) {
-            console.log('Error in fetching chunk.', error);
-          }
-        };
-      }
-      return {
-        Component() {
-          return null;
-        },
-        content: cachedChunk,
-      };
-    } else if (fallbackChunk) {
-      return {
-        Component() {
-          return null;
-        },
-        content: fallbackChunk,
-      };
-    } else if (defaultContent) {
-      return {
-        Component() {
-          return null;
-        },
-        content: defaultContent,
-      };
-    }
   } else {
-    // Store Data
-    if(Platform.OS === 'web') {
-      localStorage.setItem(chunk.identifier, JSON.stringify(chunk));
-    } else {
-      const storeChunk = async () => {
-        try {
-          await AsyncStorage.setItem(
-            chunk.identifier,
-            JSON.stringify(chunk)
-          );
-        } catch (error) {
-          console.log('Error in saving chunk.', error);
-        }
+    return {
+      Component() {
+        return null
       }
     }
   }
+}
 
-  return {
-    Component(props) {
-      return renderChunk(chunk, props);
-    },
-    content: chunk.content,
-  };
+const getCachedData = (id) => {
+  return localStorage.getItem(id);
+}
+
+const storeCache = (id, data) => {
+  localStorage.setItem(id, JSON.stringify(data));
 }
