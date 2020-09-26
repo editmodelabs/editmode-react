@@ -1,9 +1,8 @@
 // @ts-check
 import React, { useEffect, useState } from "react";
 
-import { api } from "./api";
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
-import { getCachedData, storeCache } from './utils'
+import { api, getCachedData, storeCache } from './utils'
 
 export function ChunkCollection({
   children,

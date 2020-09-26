@@ -1,19 +1,8 @@
-import DOMpurify from "isomorphic-dompurify";
 import React from "react";
+import { sanitizeContent } from './'
 
-export const renderChunk = (cnk, props) => {
-  const sanitizedContent = DOMpurify.sanitize(cnk.content);
-  
-  let chunk = { ...cnk, content: sanitizedContent };
-  let tokens = chunk.content.match(/\{{(.*?)\}}/g);
-
-  let parsedChunk = chunk.content;
-
-  if (tokens !== null) {
-    tokens.forEach(function(token) {
-      parsedChunk = parsedChunk.replace(token, props.variables[token.substr(2, token.length-4)]);
-    });
-  }
+export const renderChunk = (data, props) => {
+  const { chunk, parsedChunk } = sanitizeContent(data, props)
 
   switch (chunk.chunk_type) {
     case "single_line_text":

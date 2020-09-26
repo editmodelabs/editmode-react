@@ -1,9 +1,6 @@
-const getCachedData = (id) => {
-  return localStorage.getItem(id);
-}
+export { getCachedData, storeCache } from './caching'
+export { computeContentKey } from './computeContentKey'
+export { sanitizeContent } from './sanitizeContent'
+export { api } from './api'
 
-const storeCache = (id, data) => {
-  localStorage.setItem(id, JSON.stringify(data));
-}
-
-export {getCachedData, storeCache}
+export { renderChunk } from './renderChunk.jsx'
