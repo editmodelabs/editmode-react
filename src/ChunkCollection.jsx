@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 
 import { api } from "./api";
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
+import { getCachedData, storeCache } from './utils'
 
 export function ChunkCollection({
   children,
@@ -11,7 +12,8 @@ export function ChunkCollection({
   limit = "",
   tags = [],
 }) {
-  const [[error, chunks], setResponse] = useState([undefined, []]);
+  const [chunks, setResponse] = useState([]);
+  const cacheId = identifier + limit + tags.join("")
 
   useEffect(() => {
     const urlParams = new URLSearchParams({
@@ -19,23 +21,30 @@ export function ChunkCollection({
       collection_identifier: identifier,
     });
 
+    // Render content
+    let cachedChunk = getCachedData(cacheId)
+    let data = cachedChunk && JSON.parse(cachedChunk)
+    setResponse(data)
+
     tags.map((tag) => urlParams.append("tags[]", tag));
 
+    let error; 
     api
       .get(`chunks?${urlParams}`)
-      .then((res) => setResponse([null, res.data.chunks]))
-      .catch((error) => setResponse([error, []]));
+      .then((res) => {
+        storeCache(cacheId, res.data.chunks)
+        if (!chunks.length) setResponse(res.data.chunks)
+      })
+      .catch((error) => error = error);
+    
+    if (error) {
+      console.log(
+        `Something went wrong trying to retrieve chunk collection: ${error}. Have you provided the correct Editmode identifier as a prop to your ChunkCollection component instance?`
+      );
+    }
   }, [identifier]);
 
-  if (error) {
-    console.log(
-      `Something went wrong trying to retrieve chunk collection: ${error}. Have you provided the correct Editmode identifier as a prop to your ChunkCollection component instance?`
-    );
-
-    return <>{children}</>;
-  }
-
-  if (!chunks.length) {
+  if (!chunks || !chunks.length) {
     return <>children</>;
   }
 

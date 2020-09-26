@@ -5,6 +5,7 @@ import { api } from "./api";
 import { EditmodeContext } from "./EditmodeContext";
 import { renderChunk } from "./utils/renderChunk.jsx";
 import { computeContentKey } from "./utils/computeContentKey";
+import { getCachedData, storeCache } from './utils'
 
 export function useChunk(defaultContent, { identifier, type }) {
   const { projectId, defaultChunks } = useContext(EditmodeContext);
@@ -43,7 +44,10 @@ export function useChunk(defaultContent, { identifier, type }) {
     let error;
     api
       .get(url)
-      .then((res) => storeCache(cacheId, res.data)) // Store chunk to localstorage
+      .then((res) => {
+        storeCache(cacheId, res.data)
+        if (!chunk) setChunk(res.data)
+      }) // Store chunk to localstorage
       .catch((error) => console.log(error)); // Set error state
 
     if (error && identifier) {
@@ -69,12 +73,4 @@ export function useChunk(defaultContent, { identifier, type }) {
       }
     }
   }
-}
-
-const getCachedData = (id) => {
-  return localStorage.getItem(id);
-}
-
-const storeCache = (id, data) => {
-  localStorage.setItem(id, JSON.stringify(data));
 }
