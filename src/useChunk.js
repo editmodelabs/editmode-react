@@ -9,6 +9,7 @@ export function useChunk(defaultContent, { identifier, type }) {
   const [chunk, setChunk] = useState(undefined);
   const contentKey = defaultContent ? computeContentKey(defaultContent) : null;
   const cacheId = identifier || contentKey + projectId;
+
   let fallbackChunk;
   if (typeof defaultChunks !== 'undefined') {
     fallbackChunk = useMemo(
@@ -22,6 +23,7 @@ export function useChunk(defaultContent, { identifier, type }) {
       [defaultChunks, identifier]
     );
   }
+
   const url = identifier
     ? `chunks/${identifier}`
     : `chunks/${contentKey}?project_id=${projectId}`;
@@ -35,7 +37,7 @@ export function useChunk(defaultContent, { identifier, type }) {
       content_key: contentKey
     }
 
-    setChunk(newChunk)
+    if (newChunk) setChunk(newChunk)
 
     // Fetch new data
     let error;
@@ -43,7 +45,7 @@ export function useChunk(defaultContent, { identifier, type }) {
       .get(url)
       .then((res) => {
         storeCache(cacheId, res.data)
-        if (!chunk) setChunk(res.data)
+        if (!newChunk) setChunk(res.data)
       }) // Store chunk to localstorage
       .catch((error) => console.log(error)); // Set error state
 
