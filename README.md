@@ -77,7 +77,7 @@ function Example() {
       <ChunkCollection identifier="lst_123" className="team_member">
         <h2><ChunkFieldValue identifier="prop_001" className="name"/><h2>
         <h5><ChunkFieldValue identifier="prop_002" className="title"/></h5>
-		    <div><ChunkFieldValue identifier="prop_003" className="headshot"/></div>
+        <div><ChunkFieldValue identifier="prop_003" className="headshot"/></div>
       </ChunkCollection>
     </section>
 	);
