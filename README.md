@@ -57,7 +57,7 @@ function Example() {
 }
 ```
 
-Alternatively, if you are using one of our **text editor plugins** and would like to create a new chunk directly from the editor, you may select the piece of text you would like to convert and hit CMD+SHIFT+L. (For Visual Studio Code users, you can also hit CMD+SHIFT+P to open the command palette, type "Editmode: Create Chunk" and hit enter).
+Alternatively, if you are using one of our **text editor plugins** and would like to create a new chunk directly from the editor, you may select the piece of text you would like to convert and hit <button>CMD</button>+<button>SHIFT</button>+<button>L</button>. (For Visual Studio Code users, you can also hit <button>CMD</button>+<button>SHIFT</button>+<button>P</button> to open the command palette, type "Editmode: Create Chunk" and hit enter).
 
 #### Rendering a chunk collection:
 
