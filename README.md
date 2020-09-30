@@ -52,8 +52,8 @@ import { Chunk } from "editmode-react";
 function Example() {
   return (
     <section>
-      <Chunk identifier="cnk_123" />
       <Chunk identifier="cnk_321">I have default content</Chunk>
+      <Chunk identifier="cnk_123" />
     </section>
   );
 }
