@@ -10,6 +10,12 @@ Use npm to install Editmode:
 npm install editmode-react
 ```
 
+or if you prefer yarn:
+
+```
+yarn add editmode-react
+```
+
 ## Usage
 
 ### Step 1:
@@ -45,19 +51,15 @@ import { Chunk } from "editmode-react";
 
 function Example() {
   return (
-    <div>
-      <p>
-        <Chunk identifier="cnk_123" />
-      </p>
-      <p>
-        <Chunk identifier="cnk_321"> I have default content </Chunk>
-      </p>
-    </div>
+    <section>
+      <Chunk identifier="cnk_123" />
+      <Chunk identifier="cnk_321">I have default content</Chunk>
+    </section>
   );
 }
 ```
 
-Alternatively, if you are using one of our **text editor plugins** and would like to create a new chunk directly from the editor, you may select the piece of text you would like to convert and hit <button>CMD</button>+<button>SHIFT</button>+<button>L</button>. (For Visual Studio Code users, you can also hit <button>CMD</button>+<button>SHIFT</button>+<button>P</button> to open the command palette, type "Editmode: Create Chunk" and hit enter).
+Alternatively, if you are using one of our **text editor plugins** and would like to create a new chunk directly from the editor, you may select the piece of text you would like to convert and hit <button>CMD</button>+<button>SHIFT</button>+<button>L</button> if you're on Mac and <button>CTRL</button>+<button>SHIFT</button>+<button>L</button> if you're on Windows. (For Visual Studio Code users, you can also hit <button>CMD</button>+<button>SHIFT</button>+<button>P</button> if you're on Mac and <button>CTRL</button>+<button>SHIFT</button>+<button>P</button> if you're on Windows to open the command palette, type "Editmode: Create Chunk" and hit enter).
 
 #### Rendering a chunk collection:
 
@@ -71,13 +73,13 @@ import { ChunkCollection, ChunkFieldValue } from "editmode-react";
 
 function Example() {
 	return (
-	   <section className="meet_the_team">
-	       <ChunkCollection identifier="lst_123" className="team_member">
-		  <h2> <ChunkFieldValue identifier="prop_001" className="name"/> <h2>
-		  <h5> <ChunkFieldValue identifier="prop_002" className="title"/> </h5>
-		  <ChunkFieldValue identifier="prop_003" className="headshot"/>
-	       </ChunkCollection>
-	   </section>
+    <section className="meet_the_team">
+      <ChunkCollection identifier="lst_123" className="team_member">
+        <h2><ChunkFieldValue identifier="prop_001" className="name"/><h2>
+        <h5><ChunkFieldValue identifier="prop_002" className="title"/></h5>
+		    <ChunkFieldValue identifier="prop_003" className="headshot"/>
+      </ChunkCollection>
+    </section>
 	);
 }
 ```
