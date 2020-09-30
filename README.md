@@ -128,6 +128,8 @@ With this, chunks such as `Hello, {{name}}!` will be parsed as `Hello, John!`
 
 You can now edit and save all of the chunks in your React app from within the browser - just add `editmode=1` as a query string parameter to the current URL.
 
+<div class="contributors-section"></div>
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
