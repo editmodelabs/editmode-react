@@ -26,7 +26,7 @@ export function ChunkFieldValue({ children, identifier, ...props }) {
   if (chunk && chunk.placeholder) {
     dummyFieldChunk = {...fieldChunk, 
       identifier: "",
-      content: fieldChunk.chunk_type === 'image' ? 'http://lvh.me:3001/upload.png' : ""
+      content: fieldChunk.chunk_type === 'image' ? 'https://editmode.com/upload.png' : ""
     }
     if (dummyFieldChunk.chunk_type === 'rich_text') {
       props.style ? props.style['width'] = "100px" : props.style = {minWidth: "200px"}
