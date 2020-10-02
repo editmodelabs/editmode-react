@@ -46,14 +46,31 @@ export function ChunkCollection({
   if (!chunks || !chunks.length) {
     return <>children</>;
   }
+  
+  const placeholderChunk = ( chunks.length && {...chunks[0], placeholder: true} ) || {}
 
-  return chunks.map((chunk) => (
-    <ChunkCollectionContext.Provider key={chunk.identifier} value={chunk}>
-      <div data-collection-name={chunk.collection.name} className={className}>
-        {children}
-      </div>
-    </ChunkCollectionContext.Provider>
-  ));
+  return (
+    <div className={className + " chunks-collection-wrapper"} data-chunk-cache-id={cacheId} data-chunk-collection-identifier={identifier}>
+      {
+        chunks.map((chunk) => (
+          <ChunkCollectionContext.Provider key={chunk.identifier} value={chunk}>
+            <div className="chunks-collection-item--wrapper">
+              {children}
+            </div>
+          </ChunkCollectionContext.Provider>
+        ))
+      }
+      {
+        chunks.length &&
+          <ChunkCollectionContext.Provider key={chunks[0].identifier + "dummy"} value={placeholderChunk}>
+            <div className="chunks-col-placeholder-wrapper chunks-hide">
+              {children}
+            </div>
+          </ChunkCollectionContext.Provider>
+      }
+      
+    </div>
+  )
 }
 
 export default ChunkCollection;
