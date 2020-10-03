@@ -1,8 +1,7 @@
 import axios from "axios";
-import { generateUrl } from './'
 
 export const api = axios.create({
-  baseURL: generateUrl('api'),
+  baseURL: "https://api.editmode.com/",
   headers: {
     Accept: "application/json",
   },
