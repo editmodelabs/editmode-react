@@ -1,6 +1,8 @@
 // @ts-check
 import React, { useEffect, useState } from "react";
 import { EditmodeContext } from "./EditmodeContext";
+import { generateUrl } from './utils'
+
 
 export function Editmode({ children, projectId, defaultChunks }) {
   const [branch, setbranch] = useState(null)
@@ -9,11 +11,13 @@ export function Editmode({ children, projectId, defaultChunks }) {
     throw new Error("<Editmode projectId={...}> is missing a valid projectId");
   }
 
+
+
   useEffect(() => {
     window["chunksProjectIdentifier"] = projectId;
-
     const script = document.createElement("script");
-    script.src = "https://static.editmode.com/editmode@^2.0.0/dist/editmode.js";
+    const url = generateUrl('asset')
+    script.src = `${url}/editmode@^2.0.0/dist/editmode.js`;
     script.async = true;
     document.body.append(script);
 
