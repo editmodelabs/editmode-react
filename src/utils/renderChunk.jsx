@@ -4,7 +4,7 @@ import { sanitizeContent } from './'
 export const renderChunk = (data, props) => {
   const { chunk, parsedChunk } = sanitizeContent(data, props)
 
-  let defaultprops = {
+  const defaultprops = {
     "data-chunk": chunk.identifier,
     "data-chunk-editable": true,
     "data-chunk-content-key": chunk.content_key,

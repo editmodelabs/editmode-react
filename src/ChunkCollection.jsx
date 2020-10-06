@@ -43,7 +43,7 @@ export function ChunkCollection({
   }, [identifier]);
 
   if (!chunks?.length) {
-    return <></>;
+    return null;
   }
   
   const placeholderChunk = chunks.length ? {...chunks[0], placeholder: true} : {}
