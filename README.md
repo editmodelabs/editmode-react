@@ -22,6 +22,7 @@ yarn add editmode-react
 
 Within your React app, navigate to the index file within your src directory.
 Import the Editmode wrapper and wrap your App within.
+<div class="project-id-holder"></div>
 
 ```js
 import { Editmode } from "editmode-react";
@@ -38,7 +39,6 @@ ReactDOM.render(
   document.getElementById("root")
 );
 ```
-<div class="project-id-holder"></div>
 
 ### Step 2:
 
