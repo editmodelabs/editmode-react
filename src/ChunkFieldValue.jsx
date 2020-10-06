@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { renderChunk } from "./utils/renderChunk.jsx";
+import { renderChunk } from "./utils";
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
 
 export function ChunkFieldValue({ children, identifier, ...props }) {
@@ -22,7 +22,18 @@ export function ChunkFieldValue({ children, identifier, ...props }) {
     return null;
   }
 
-  return renderChunk(fieldChunk, props);
+  const dummyFieldChunk = chunk?.placeholder && ({
+    ...fieldChunk,
+    identifier: '',
+    content: fieldChunk.chunk_type === 'image'
+      ? 'https://editmode.com/upload.png'
+      : "",
+  })
+
+  if (chunk && fieldChunk) {
+    props = {...props, "data-parent-identifier": chunk.identifier, 'data-custom-field-identifier': fieldChunk.custom_field_identifier }
+  }
+  return renderChunk(dummyFieldChunk || fieldChunk, props);
 }
 
 export default ChunkFieldValue;
