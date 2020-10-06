@@ -1,9 +1,7 @@
-const getCachedData = (id) => {
+export const getCachedData = (id) => {
   return localStorage.getItem(id);
 }
 
-const storeCache = (id, data) => {
+export const storeCache = (id, data) => {
   localStorage.setItem(id, JSON.stringify(data));
 }
-
-export { getCachedData, storeCache }

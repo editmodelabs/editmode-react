@@ -22,18 +22,17 @@ export function ChunkFieldValue({ children, identifier, ...props }) {
     return null;
   }
 
-  let dummyFieldChunk;
-  if (chunk && chunk.placeholder) {
-    dummyFieldChunk = {...fieldChunk, 
-      identifier: "",
-      content: fieldChunk.chunk_type === 'image' ? 'https://editmode.com/upload.png' : ""
-    }
-    if (dummyFieldChunk.chunk_type === 'rich_text') {
-      props.style ? props.style['width'] = "100px" : props.style = {minWidth: "200px"}
-    }
-  }
+  const dummyFieldChunk = chunk?.placeholder && ({
+    ...fieldChunk,
+    identifier: '',
+    content: fieldChunk.chunk_type === 'image'
+      ? 'https://editmode.com/upload.png'
+      : "",
+  })
 
-  if (chunk && fieldChunk) props = {...props, "data-parent-identifier": chunk.identifier, 'data-custom-field-identifier': fieldChunk.custom_field_identifier }
+  if (chunk && fieldChunk) {
+    props = {...props, "data-parent-identifier": chunk.identifier, 'data-custom-field-identifier': fieldChunk.custom_field_identifier }
+  }
   return renderChunk(dummyFieldChunk || fieldChunk, props);
 }
 

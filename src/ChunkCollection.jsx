@@ -12,14 +12,14 @@ export function ChunkCollection({
   tags = [],
   itemClass = "",
 }) {
-  const [chunks, setResponse] = useState([]);
+  const [chunks, setChunk] = useState([]);
   const cacheId = identifier + limit + tags.join("")
 
   useEffect(() => {
     // Get data from localStorage
     let cachedChunk = getCachedData(cacheId)
     let data = cachedChunk && JSON.parse(cachedChunk)
-    if (data) setResponse(data)
+    if (data) setChunk(data)
 
     const urlParams = new URLSearchParams({
       limit,
@@ -33,7 +33,7 @@ export function ChunkCollection({
       .get(`chunks?${urlParams}`)
       .then((res) => {
         storeCache(cacheId, res.data.chunks)
-        if (!data) setResponse(res.data.chunks)
+        if (!data) setChunk(res.data.chunks)
       })
       .catch((error) => error = error);
     
