@@ -10,6 +10,7 @@ export function ChunkCollection({
   identifier,
   limit = "",
   tags = [],
+  itemClass = "",
 }) {
   const [chunks, setResponse] = useState([]);
   const cacheId = identifier + limit + tags.join("")
@@ -63,7 +64,7 @@ export function ChunkCollection({
       {
         chunks.length &&
           <ChunkCollectionContext.Provider key={chunks[0].identifier + "dummy"} value={placeholderChunk}>
-            <div className="chunks-col-placeholder-wrapper chunks-hide">
+            <div className={itemClass + " chunks-col-placeholder-wrapper chunks-hide"}>
               {children}
             </div>
           </ChunkCollectionContext.Provider>
