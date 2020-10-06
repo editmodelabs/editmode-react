@@ -38,7 +38,7 @@ ReactDOM.render(
   document.getElementById("root")
 );
 ```
-<div id="project-id-holder"></div>
+<div class="project-id-holder"></div>
 
 ### Step 2:
 
