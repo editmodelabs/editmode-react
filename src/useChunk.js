@@ -47,7 +47,7 @@ export function useChunk(defaultContent, { identifier, type, contentKey }) {
       .get(url)
       .then((res) => {
         storeCache(cacheId, res.data)
-        if (!newChunk) setChunk(res.data)
+        if (!cachedChunk) setChunk(res.data)
       }) // Store chunk to localstorage
       .catch((error) => console.log(error)); // Set error state
 
