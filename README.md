@@ -10,12 +10,19 @@ Use npm to install Editmode:
 npm install editmode-react
 ```
 
+or if you prefer yarn:
+
+```
+yarn add editmode-react
+```
+
 ## Usage
 
 ### Step 1:
 
 Within your React app, navigate to the index file within your src directory.
 Import the Editmode wrapper and wrap your App within.
+<div class="project-id-holder"></div>
 
 ```js
 import { Editmode } from "editmode-react";
@@ -45,19 +52,15 @@ import { Chunk } from "editmode-react";
 
 function Example() {
   return (
-    <div>
-      <p>
-        <Chunk identifier="cnk_123" />
-      </p>
-      <p>
-        <Chunk identifier="cnk_321"> I have default content </Chunk>
-      </p>
-    </div>
+    <section>
+      <Chunk identifier="cnk_321">I have default content</Chunk>
+      <Chunk identifier="cnk_123" />
+    </section>
   );
 }
 ```
 
-Alternatively, if you are using one of our **text editor plugins** and would like to create a new chunk directly from the editor, you may select the piece of text you would like to convert and hit CMD+SHIFT+L. (For Visual Studio Code users, you can also hit CMD+SHIFT+P to open the command palette, type "Editmode: Create Chunk" and hit enter).
+Alternatively, if you are using one of our **text editor plugins** and would like to create a new chunk directly from the editor, you may select the piece of text you would like to convert and hit <button class="display-button">CMD</button>+<button class="display-button">SHIFT</button>+<button class="display-button">L</button> if you're on Mac and <button class="display-button">CTRL</button>+<button class="display-button">SHIFT</button>+<button class="display-button">L</button> if you're on Windows. (For Visual Studio Code users, you can also hit <button class="display-button">CMD</button>+<button class="display-button">SHIFT</button>+<button class="display-button">P</button> if you're on Mac and <button class="display-button">CTRL</button>+<button class="display-button">SHIFT</button>+<button class="display-button">P</button> if you're on Windows to open the command palette, type "Editmode: Create Chunk" and hit enter).
 
 #### Rendering a chunk collection:
 
@@ -71,13 +74,13 @@ import { ChunkCollection, ChunkFieldValue } from "editmode-react";
 
 function Example() {
 	return (
-	   <section className="meet_the_team">
-	       <ChunkCollection identifier="lst_123" className="team_member">
-		  <h2> <ChunkFieldValue identifier="prop_001" className="name"/> <h2>
-		  <h5> <ChunkFieldValue identifier="prop_002" className="title"/> </h5>
-		  <ChunkFieldValue identifier="prop_003" className="headshot"/>
-	       </ChunkCollection>
-	   </section>
+    <section className="meet_the_team">
+      <ChunkCollection identifier="lst_123" className="team_member">
+        <h2><ChunkFieldValue identifier="prop_001" className="name"/><h2>
+        <h5><ChunkFieldValue identifier="prop_002" className="title"/></h5>
+        <div><ChunkFieldValue identifier="prop_003" className="headshot"/></div>
+      </ChunkCollection>
+    </section>
 	);
 }
 ```
@@ -125,6 +128,8 @@ With this, chunks such as `Hello, {{name}}!` will be parsed as `Hello, John!`
 ### Step 3:
 
 You can now edit and save all of the chunks in your React app from within the browser - just add `editmode=1` as a query string parameter to the current URL.
+
+<div class="contributors-section"></div>
 
 ## Contributors ✨
 

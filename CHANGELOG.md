@@ -1,3 +1,27 @@
+# v3.1.12 (Tue Oct 06 2020)
+
+#### 🐛 Bug Fix
+
+- NextJS Compatibility and Editmode 2.0.0 Compatibility [#26](https://github.com/editmodelabs/editmode-react/pull/26) ([@puuripurii](https://github.com/puuripurii))
+
+#### Authors: 1
+
+- Jen Villaganas  ([@puuripurii](https://github.com/puuripurii))
+
+---
+
+# v3.1.11 (Wed Sep 30 2020)
+
+#### 🐛 Bug Fix
+
+- Hotfix: Docs UX Update [#27](https://github.com/editmodelabs/editmode-react/pull/27) ([@BosEriko](https://github.com/BosEriko))
+
+#### Authors: 1
+
+- Bos Eriko Reyes ([@BosEriko](https://github.com/BosEriko))
+
+---
+
 # v3.1.10 (Fri Sep 25 2020)
 
 #### 🐛 Bug Fix
