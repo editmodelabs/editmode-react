@@ -28,9 +28,7 @@ export function useChunk(defaultContent, { identifier, type, contentKey }) {
     );
   }
 
-  const url = identifier
-    ? `chunks/${identifier}?project_id=${projectId}`
-    : `chunks/${contentKey}?project_id=${projectId}`;
+  const url = `chunks/${identifier || contentKey}?project_id=${projectId}`;
 
   useEffect(() => {
     // Render content
