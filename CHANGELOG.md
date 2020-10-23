@@ -1,3 +1,15 @@
+# v3.1.13 (Thu Oct 08 2020)
+
+#### 🐛 Bug Fix
+
+- Feature: Add contentKey support [#28](https://github.com/editmodelabs/editmode-react/pull/28) ([@puuripurii](https://github.com/puuripurii))
+
+#### Authors: 1
+
+- Jen Villaganas  ([@puuripurii](https://github.com/puuripurii))
+
+---
+
 # v3.1.12 (Tue Oct 06 2020)
 
 #### 🐛 Bug Fix
