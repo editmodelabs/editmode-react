@@ -19,16 +19,14 @@ export const renderChunk = (data, props) => {
         {...defaultprops}
         dangerouslySetInnerHTML={{__html: parsedChunk}}
         {...props}
-      >
-      </em-span>);
+      />);
     case "rich_text":
       return (<em-span
         {...defaultprops}
         class="editmode-richtext-editor"
         dangerouslySetInnerHTML={{__html: parsedChunk}}
         {...props}
-      >
-      </em-span>);
+      />);
     case "image":
       return (<img
         {...defaultprops}
