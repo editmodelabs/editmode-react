@@ -1,3 +1,15 @@
+# v3.1.14 (Fri Oct 23 2020)
+
+#### 🐛 Bug Fix
+
+- Feature: Add variable wrapper [#30](https://github.com/editmodelabs/editmode-react/pull/30) ([@puuripurii](https://github.com/puuripurii))
+
+#### Authors: 1
+
+- Jen Villaganas  ([@puuripurii](https://github.com/puuripurii))
+
+---
+
 # v3.1.13 (Thu Oct 08 2020)
 
 #### 🐛 Bug Fix
