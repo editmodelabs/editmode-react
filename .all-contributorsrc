@@ -37,7 +37,8 @@
       "profile": "http://boseriko.com/",
       "contributions": [
         "code",
-        "doc"
+        "doc",
+        "infra"
       ]
     }
   ],
