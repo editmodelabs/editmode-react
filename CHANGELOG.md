@@ -1,3 +1,15 @@
+# v3.1.15 (Fri Oct 30 2020)
+
+#### ⚠️ Pushed to `master`
+
+- Hotfix: Return empty array when regex is null (src/util) ([@BosEriko](https://github.com/BosEriko))
+
+#### Authors: 1
+
+- Bos Eriko Reyes ([@BosEriko](https://github.com/BosEriko))
+
+---
+
 # v3.1.14 (Fri Oct 23 2020)
 
 #### 🐛 Bug Fix
