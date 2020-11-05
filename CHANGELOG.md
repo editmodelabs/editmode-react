@@ -1,3 +1,15 @@
+# v3.1.16 (Thu Nov 05 2020)
+
+#### ⚠️ Pushed to `master`
+
+- Hotfix: Remove both swr and react-router-native on dependencies ([@BosEriko](https://github.com/BosEriko))
+
+#### Authors: 1
+
+- Bos Eriko Reyes ([@BosEriko](https://github.com/BosEriko))
+
+---
+
 # v3.1.15 (Fri Oct 30 2020)
 
 #### ⚠️ Pushed to `master`
