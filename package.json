@@ -26,9 +26,7 @@
     "isomorphic-dompurify": "^0.6.0",
     "lodash.kebabcase": "^4.1.1",
     "react-router-dom": "^5.2.0",
-    "react-router-native": "^5.2.0",
-    "react-scripts": "^3.4.3",
-    "swr": "^0.3.0"
+    "react-scripts": "^3.4.3"
   },
   "devDependencies": {
     "@auto-it/all-contributors": "^9.35.1",
