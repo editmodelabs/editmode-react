@@ -75,10 +75,10 @@ import { ChunkCollection, ChunkFieldValue } from "editmode-react";
 function Example() {
 	return (
     <section className="meet_the_team">
-      <ChunkCollection identifier="lst_123" className="team_member">
-        <h2><ChunkFieldValue identifier="prop_001" className="name"/><h2>
-        <h5><ChunkFieldValue identifier="prop_002" className="title"/></h5>
-        <div><ChunkFieldValue identifier="prop_003" className="headshot"/></div>
+      <ChunkCollection identifier="col_123..." className="team_member_container" itemClass="team_member">
+        <h2><ChunkFieldValue identifier="fld_001..." className="name"/><h2>
+        <h5><ChunkFieldValue identifier="fld_002..." className="title"/></h5>
+        <div><ChunkFieldValue identifier="fld_003..." className="headshot"/></div>
       </ChunkCollection>
     </section>
 	);
@@ -86,6 +86,20 @@ function Example() {
 ```
 
 This will render editable headings containing the name and title and an image containing the headshot for every person in the "Team Member" collection.
+#### ChunkCollection Attributes
+|Attribute|Type|Description|
+|---|---|---|
+| identifier | `string` | Takes the id of a collection you want to loop through |
+| limit | `int` `string` |`optional` The number of collection items you want to display  |
+| tags | `array` |`optional` Filter collection items based on tags listed in this prop  |
+| className | `string` | `optional` Class name(s) that will be added along with "chunks-collection-wrapper" to the main collection `<div>` element |
+| itemClass | `string` | `optional` Class name(s) that will be added along with "chunks-collection-item--wrapper" to all collection items |
+
+#### ChunkFieldValue Attributes
+|Attribute|Type|Description|
+|---|---|---|
+| identifier | `string` | Takes the identifier or field_name of a collection field |
+| className | `string` | `optional` Class name(s) that will be added in the chunk `em-span` element |
 
 #### Using default chunks array as fallback:
 
