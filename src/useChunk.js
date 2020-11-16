@@ -4,7 +4,7 @@ import { useContext, useEffect, useState, useMemo } from "react";
 import { EditmodeContext } from "./EditmodeContext";
 import { api, renderChunk, computeContentKey, getCachedData, storeCache } from './utils'
 
-export function useChunk(defaultContent, { identifier, type, contentKey, tag }) {
+export function useChunk(defaultContent, { identifier, type, contentKey, tag }, textOnly = false) {
   const { projectId, defaultChunks } = useContext(EditmodeContext);
   const [chunk, setChunk] = useState({
     chunk_type: type || "single_line_text",
@@ -58,6 +58,11 @@ export function useChunk(defaultContent, { identifier, type, contentKey, tag }) 
 
 
   if (chunk) {
+
+    if (textOnly) {
+      return renderChunk(chunk, null, null, true)
+    }
+    
     return {
       Component: props => {
         return renderChunk(chunk, tag, props)
