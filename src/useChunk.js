@@ -4,7 +4,7 @@ import { useContext, useEffect, useState, useMemo } from "react";
 import { EditmodeContext } from "./EditmodeContext";
 import { api, renderChunk, computeContentKey, getCachedData, storeCache } from './utils'
 
-export function useChunk(defaultContent, { identifier, type, contentKey, tag }, textOnly = false) {
+export function useChunk(defaultContent, { identifier, type, contentKey, tag }) {
   const { projectId, defaultChunks } = useContext(EditmodeContext);
   const [chunk, setChunk] = useState({
     chunk_type: type || "single_line_text",
@@ -12,9 +12,9 @@ export function useChunk(defaultContent, { identifier, type, contentKey, tag }, 
     content_key: contentKey
   });
 
-   if (!contentKey)  {
-     contentKey = defaultContent ? computeContentKey(defaultContent) : null;
-   }
+  if (!contentKey)  {
+    contentKey = defaultContent ? computeContentKey(defaultContent) : null;
+  }
 
   const cacheId = identifier || contentKey + projectId;
 
@@ -40,7 +40,8 @@ export function useChunk(defaultContent, { identifier, type, contentKey, tag }, 
     if (newChunk) setChunk(newChunk)
 
     // Fetch new data
-    api
+    if (contentKey || identifier) {
+      api
       .get(url)
       .then((res) => {
         storeCache(cacheId, res.data)
@@ -53,16 +54,12 @@ export function useChunk(defaultContent, { identifier, type, contentKey, tag }, 
           );
         }
       });
+    }
   }, [cacheId]);
 
 
 
   if (chunk) {
-
-    if (textOnly) {
-      return renderChunk(chunk, null, null, true)
-    }
-    
     return {
       Component: props => {
         return renderChunk(chunk, tag, props)

@@ -21,10 +21,14 @@ export function Editmode({ children, projectId, defaultChunks }) {
     setbranch(params.get("em_branch"));
   }, []);
 
-  return (
-    <EditmodeContext.Provider value={{ branch, projectId, defaultChunks }}>
-      {children}
-    </EditmodeContext.Provider>
-  );
+  if (typeof window !== 'undefined') {
+    return (
+      <EditmodeContext.Provider value={{ branch, projectId, defaultChunks }}>
+        {children}
+      </EditmodeContext.Provider>
+    );
+  } else {
+    return ""
+  }
 }
 export default Editmode;

@@ -1,6 +1,6 @@
 // @ts-check
 
-import React, {useEffect} from "react";
+import React from "react";
 import { useChunk } from "./useChunk";
 
 export function Chunk({ children, identifier, src, contentKey, ...props }) {
@@ -9,21 +9,25 @@ export function Chunk({ children, identifier, src, contentKey, ...props }) {
   const tag = props.tag || "em-span"
   delete props.tag;
 
-  const customProps = getCustomProps(props)
+  const chunkProps = getChunkProps(props)
   const { Component } = useChunk(defaultContent, { identifier, type, contentKey, tag });
 
-  if (customProps.length) {
-    customProps.forEach(prop => {
+  if (chunkProps.length) {
+    chunkProps.forEach(prop => {
       const key = prop[0];
       const attributeId = prop[1];
-      const value = useChunk("", {
+      const prefix =  prop[2]
+      const raw = prefix === "chunk-"
+
+      const value = useChunk(props[key] || "", {
         identifier: attributeId, 
-        type: null,
-        contentKey: null,
-        tag: null
-      }, true)
-      props[key] = value
-      delete props["chunk-" + key]
+        type: undefined,
+        contentKey: "",
+        tag: "em-span"
+      })
+
+      props[key] = raw ? value.content : <value.Component />
+      delete props[prefix + key]
     });
   }
 
@@ -33,12 +37,17 @@ export function Chunk({ children, identifier, src, contentKey, ...props }) {
 // Here for backwards-compatibility, but named exports are preferred
 export default Chunk;
 
+function getChunkProps(obj){
+  let str, key, results = [];
 
-function getCustomProps(obj, str = "chunk-"){
-  var key, results = [];
-
-  for(key in obj) obj.hasOwnProperty(key) 
-               && key.indexOf(str) === 0 
-               && results.push([key.replace(str, ""), obj[key] ]);
+  for(key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      if (key.indexOf("chunk-") === 0 || key.indexOf("Chunk-") === 0) {
+        str = key.substring(0,6)
+        results.push([key.replace(str, ""), obj[key], str ])
+      }
+    }
+  }
+  
   return results;
 }
