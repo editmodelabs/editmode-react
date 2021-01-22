@@ -6,7 +6,8 @@ import { useChunk } from "./useChunk";
 export function Chunk({ children, identifier, src, contentKey, ...props }) {
   const type = src ? "image" : undefined;
   const defaultContent = src || children;
-  const { Component } = useChunk(defaultContent, { identifier, type, contentKey });
+  const variables = props.variables
+  const { Component } = useChunk(defaultContent, { identifier, type, contentKey, variables });
 
   return <Component {...props} />;
 }

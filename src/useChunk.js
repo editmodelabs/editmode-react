@@ -1,10 +1,10 @@
 // @ts-check
-import { useContext, useEffect, useState, useMemo } from "react";
+import { useContext, useEffect, useState, useMemo, Component } from "react";
 
 import { EditmodeContext } from "./EditmodeContext";
-import { api, renderChunk, computeContentKey, getCachedData, storeCache } from './utils'
+import { api, renderChunk, computeContentKey, getCachedData, storeCache, sanitizeContent } from './utilities'
 
-export function useChunk(defaultContent, { identifier, type, contentKey }) {
+export function useChunk(defaultContent, { identifier, type, contentKey, variables }) {
   const { projectId, defaultChunks } = useContext(EditmodeContext);
   const [chunk, setChunk] = useState(undefined);
 
@@ -29,14 +29,24 @@ export function useChunk(defaultContent, { identifier, type, contentKey }) {
   }
 
   const url = `chunks/${identifier || contentKey}?project_id=${projectId}`;
-
+  console.log(url)
   useEffect(() => {
     // Render content
     let cachedChunk = getCachedData(cacheId)
-    let newChunk = cachedChunk ? JSON.parse(cachedChunk) : fallbackChunk || {
-      chunk_type: type || "single_line_text",
-      content: defaultContent,
-      content_key: contentKey
+    let newChunk;
+    if (cachedChunk) {
+      let dataChunk = JSON.parse(cachedChunk);
+      const parsedChunk = sanitizeContent(dataChunk, variables, fallbackChunk)
+
+      newChunk = parsedChunk;
+    } else if (fallbackChunk) {
+      newChunk = fallbackChunk;
+    } else {
+      newChunk = {
+        chunk_type: type || "single_line_text",
+        content: defaultContent,
+        content_key: contentKey
+      }
     }
 
     if (newChunk) setChunk(newChunk)
@@ -47,7 +57,10 @@ export function useChunk(defaultContent, { identifier, type, contentKey }) {
       .get(url)
       .then((res) => {
         storeCache(cacheId, res.data)
-        if (!cachedChunk) setChunk(res.data)
+        if (!cachedChunk) {
+          const parsedChunk = sanitizeContent(res.data, variables, fallbackChunk)
+          setChunk(parsedChunk)
+        }
       }) // Store chunk to localstorage
       .catch((error) => console.log(error)); // Set error state
 
