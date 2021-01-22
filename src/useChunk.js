@@ -29,7 +29,7 @@ export function useChunk(defaultContent, { identifier, type, contentKey, variabl
   }
 
   const url = `chunks/${identifier || contentKey}?project_id=${projectId}`;
-  console.log(url)
+
   useEffect(() => {
     // Render content
     let cachedChunk = getCachedData(cacheId)
