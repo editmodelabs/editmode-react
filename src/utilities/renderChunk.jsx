@@ -1,5 +1,4 @@
 import React from "react";
-import { sanitizeContent } from './'
 
 export const renderChunk = (chunk, props) => {
   // const { chunk, content } = sanitizeContent(data, props)
