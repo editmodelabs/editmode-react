@@ -1,3 +1,15 @@
+# v3.1.17 (Tue Jan 26 2021)
+
+#### 🐛 Bug Fix
+
+- Remove  submodule, Add referrer to api header [#35](https://github.com/editmodelabs/editmode-react/pull/35) ([@puuripurii](https://github.com/puuripurii))
+
+#### Authors: 1
+
+- Jen Villaganas  ([@puuripurii](https://github.com/puuripurii))
+
+---
+
 # v3.1.16 (Thu Nov 05 2020)
 
 #### ⚠️ Pushed to `master`
