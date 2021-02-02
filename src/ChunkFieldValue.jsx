@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { renderChunk } from "./utilities";
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
 
-export function ChunkFieldValue({ children, identifier, ...props }) {
+export function ChunkFieldValue({ children, identifier, transformation, ...props }) {
   const chunk = useContext(ChunkCollectionContext);
 
   if (!chunk) {

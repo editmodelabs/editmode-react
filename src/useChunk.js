@@ -1,10 +1,11 @@
 // @ts-check
+import { transform } from "babel-core";
 import { useContext, useEffect, useState, useMemo } from "react";
 
 import { EditmodeContext } from "./EditmodeContext";
 import { api, renderChunk, computeContentKey, getCachedData, storeCache } from './utilities'
 
-export function useChunk(defaultContent, { identifier, type, contentKey }) {
+export function useChunk(defaultContent, { identifier, type, contentKey, transformation }) {
   const { projectId, defaultChunks } = useContext(EditmodeContext);
   const [chunk, setChunk] = useState(undefined);
 
@@ -28,8 +29,8 @@ export function useChunk(defaultContent, { identifier, type, contentKey }) {
     );
   }
 
-  const url = `chunks/${identifier || contentKey}?project_id=${projectId}`;
-
+  let url = `chunks/${identifier || contentKey}?project_id=${projectId}`;
+  if (transformation) url += `&transformation=${transformation}`
   useEffect(() => {
     // Render content
     let cachedChunk = getCachedData(cacheId)
