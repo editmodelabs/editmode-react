@@ -139,6 +139,20 @@ function Example() {
 
 With this, chunks such as `Hello, {{name}}!` will be parsed as `Hello, John!`
 
+#### Working with Image Transformation:
+Use `transformation` attribute to perform real-time image transformations to deliver perfect images to the end-users.
+
+```js
+// This chunk should render an image with 200 x 200 dimension
+<Chunk identifier='cnk_23123123' transformation="w-200 h-200" />
+
+// For image inside a collection
+<ChunkCollection identifier="col_123...">
+	<ChunkFieldValue identifier='Avatar' transformation="w-200 h-200"  />
+</ChunkCollection>
+```
+Please see complete list of [transformation parameters](https://editmode.com/docs#/imagekit_properties).
+
 ### Step 3:
 
 You can now edit and save all of the chunks in your React app from within the browser - just add `editmode=1` as a query string parameter to the current URL.
