@@ -1,5 +1,4 @@
 // @ts-check
-import { transform } from "babel-core";
 import { useContext, useEffect, useState, useMemo } from "react";
 
 import { EditmodeContext } from "./EditmodeContext";
