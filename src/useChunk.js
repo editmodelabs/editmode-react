@@ -30,7 +30,7 @@ export function useChunk(defaultContent, { identifier, type, contentKey, transfo
   }
 
   let url = `chunks/${identifier || contentKey}?project_id=${projectId}`;
-  if (transformation) url += `&transformation=${transformation}`
+
   useEffect(() => {
     // Render content
     let cachedChunk = getCachedData(cacheId)
