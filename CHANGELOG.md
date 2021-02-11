@@ -1,3 +1,15 @@
+# v3.1.18 (Thu Feb 11 2021)
+
+#### 🐛 Bug Fix
+
+- Handle image transformation [#36](https://github.com/editmodelabs/editmode-react/pull/36) ([@puuripurii](https://github.com/puuripurii))
+
+#### Authors: 1
+
+- Jen Villaganas  ([@puuripurii](https://github.com/puuripurii))
+
+---
+
 # v3.1.17 (Tue Jan 26 2021)
 
 #### 🐛 Bug Fix
