@@ -4,9 +4,9 @@ import { sanitizeContent, transformImage } from './'
 export const renderChunk = (data, props) => {
   const { chunk, parsedChunk } = sanitizeContent(data, props)
   const transformation = props.transformation
-
   if (transformation && chunk.chunk_type == 'image') {
     chunk.content = transformImage(chunk.content, transformation)
+    console.log(transformImage(chunk.content, transformation))
   }
 
   const defaultprops = {
