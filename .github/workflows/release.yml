@@ -9,11 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Prepare repository
-        run: |
-          git fetch --unshallow --tags --recurse-submodules
-          git submodule update --init --recursive --remote
-
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
