@@ -1,3 +1,19 @@
+# v3.1.19 (Mon Feb 22 2021)
+
+#### 🐛 Bug Fix
+
+- Fix Bable-Jest Issue [#37](https://github.com/editmodelabs/editmode-react/pull/37) ([@puuripurii](https://github.com/puuripurii))
+
+#### ⚠️ Pushed to `master`
+
+- Update release.yml ([@puuripurii](https://github.com/puuripurii))
+
+#### Authors: 1
+
+- Jen Villaganas  ([@puuripurii](https://github.com/puuripurii))
+
+---
+
 # v3.1.18 (Thu Feb 11 2021)
 
 #### 🐛 Bug Fix
