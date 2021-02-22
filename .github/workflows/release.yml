@@ -13,6 +13,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
+          
+      - name: Prepare repository
+        run: |
+          git fetch --unshallow --tags --recurse-submodules
 
       - name: Cache node modules
         uses: actions/cache@v1
