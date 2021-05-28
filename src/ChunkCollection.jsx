@@ -1,8 +1,8 @@
 // @ts-check
 import React, { useEffect, useState } from "react";
-
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
-import { api, getCachedData, storeCache } from './utilities'
+import { api, getCachedData, storeCache } from "./utilities";
+import { useCollectionData } from "./useCollectionData";
 
 export function ChunkCollection({
   children,
@@ -13,7 +13,8 @@ export function ChunkCollection({
   itemClass = "",
 }) {
   const [chunks, setChunk] = useState([]);
-  const cacheId = identifier + limit + tags.join("")
+  const cacheId = identifier + limit + tags.join("");
+  const { collection } = useCollectionData(["Featured Projects"]);
 
   useEffect(() => {
     // Get data from localStorage
@@ -33,44 +34,52 @@ export function ChunkCollection({
     api
       .get(`chunks?${urlParams}`)
       .then((res) => {
-        storeCache(cacheId, res.data.chunks)
-        if (!cachedChunk) setChunk(res.data.chunks)
+        storeCache(cacheId, res.data.chunks);
+        if (!cachedChunk) setChunk(res.data.chunks);
       })
       .catch((error) => {
-        console.error(`Something went wrong trying to retrieve chunk collection: ${error}. Have you provided the correct Editmode identifier as a prop to your ChunkCollection component instance?`)
-        }
-      )
+        console.error(
+          `Something went wrong trying to retrieve chunk collection: ${error}. Have you provided the correct Editmode identifier as a prop to your ChunkCollection component instance?`
+        );
+      });
   }, [identifier]);
 
   if (!chunks?.length) {
     return null;
   }
-  
-  const placeholderChunk = chunks.length ? {...chunks[0], placeholder: true} : {}
+
+  console.log("COL", collection);
+  const placeholderChunk = chunks.length
+    ? { ...chunks[0], placeholder: true }
+    : {};
 
   return (
-    <div className={className + " chunks-collection-wrapper"} data-chunk-cache-id={cacheId} data-chunk-collection-identifier={identifier}>
-      {
-        chunks.map((chunk) => (
-          <ChunkCollectionContext.Provider key={chunk.identifier} value={chunk}>
-            <div className="chunks-collection-item--wrapper">
-              {children}
-            </div>
-          </ChunkCollectionContext.Provider>
-        ))
-      }
-      {
-        chunks.length &&(
-          <ChunkCollectionContext.Provider key={chunks[0].identifier + "dummy"} value={placeholderChunk}>
-            <div className={itemClass + " chunks-col-placeholder-wrapper chunks-hide"}>
-              {children}
-            </div>
-          </ChunkCollectionContext.Provider>
-        )
-      }
-      
+    <div
+      className={className + " chunks-collection-wrapper"}
+      data-chunk-cache-id={cacheId}
+      data-chunk-collection-identifier={identifier}
+    >
+      {chunks.map((chunk) => (
+        <ChunkCollectionContext.Provider key={chunk.identifier} value={chunk}>
+          <div className="chunks-collection-item--wrapper">{children}</div>
+        </ChunkCollectionContext.Provider>
+      ))}
+      {chunks.length && (
+        <ChunkCollectionContext.Provider
+          key={chunks[0].identifier + "dummy"}
+          value={placeholderChunk}
+        >
+          <div
+            className={
+              itemClass + " chunks-col-placeholder-wrapper chunks-hide"
+            }
+          >
+            {children}
+          </div>
+        </ChunkCollectionContext.Provider>
+      )}
     </div>
-  )
+  );
 }
 
 export default ChunkCollection;
