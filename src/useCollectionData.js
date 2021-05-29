@@ -2,10 +2,8 @@ import { useEffect, useState } from "react";
 import { api } from "./utilities";
 
 export function useCollectionData(projectId, collection_filter) {
-  console.log("PROJ", projectId);
   const [collection, setCollection] = useState(null);
   const url = `collections/?project_id=${projectId}`;
-  console.log("url", url);
 
   useEffect(() => {
     if (projectId) {
@@ -14,7 +12,6 @@ export function useCollectionData(projectId, collection_filter) {
         .then((res) => {
           if (collection_filter) {
             const filtered = filterCollection(collection_filter, res.data);
-            console.log("FF", filtered);
             setCollection(filtered);
           } else setCollection(res.data);
         })

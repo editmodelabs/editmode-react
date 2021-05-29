@@ -53,7 +53,11 @@ export function ChunkCollection({
 
   return (
     <div
-      className={className + " chunks-collection-wrapper"}
+      className={
+        className
+          ? className + " chunks-collection-wrapper"
+          : "chunks-collection-wrapper"
+      }
       data-chunk-cache-id={cacheId}
       data-chunk-collection-identifier={identifier}
     >
