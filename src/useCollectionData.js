@@ -11,7 +11,7 @@ export function useCollectionData(projectId, collection_filter) {
         .get(url)
         .then((res) => {
           if (collection_filter) {
-            const filtered = filterCollection(collection_filter, res.data);
+            const filtered = filterCollections(collection_filter, res.data);
             setCollection(filtered);
           } else setCollection(res.data);
         })
@@ -21,9 +21,9 @@ export function useCollectionData(projectId, collection_filter) {
   return [collection];
 }
 
-function filterCollection(filter_arr, res_data) {
-  const new_obj = res_data.filter((res_object, i) =>
-    filter_arr.includes(res_object["name"])
+function filterCollections(filter_arr, collections) {
+  const new_obj = collections.filter((collection, i) =>
+    filter_arr.includes(collection["name"])
   );
   return new_obj;
 }
