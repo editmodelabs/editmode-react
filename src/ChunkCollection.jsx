@@ -14,7 +14,7 @@ export function ChunkCollection({
 }) {
   const [chunks, setChunk] = useState([]);
   const cacheId = identifier + limit + tags.join("");
-  const { collection } = useCollectionData(["Featured Projects"]);
+  // const { collection } = useCollectionData(["Featured Projects"]);
 
   useEffect(() => {
     // Get data from localStorage
@@ -47,8 +47,6 @@ export function ChunkCollection({
   if (!chunks?.length) {
     return null;
   }
-
-  console.log("COL", collection);
   const placeholderChunk = chunks.length
     ? { ...chunks[0], placeholder: true }
     : {};

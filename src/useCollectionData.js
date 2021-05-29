@@ -1,26 +1,27 @@
-import { useContext, useEffect, useState, useMemo } from "react";
-import { EditmodeContext } from "./EditmodeContext";
+import { useEffect, useState } from "react";
 import { api } from "./utilities";
 
-export function useCollectionData(fieldFilter) {
-  const { projectId } = useContext(EditmodeContext);
+export function useCollectionData(projectId, collection_filter) {
+  console.log("PROJ", projectId);
   const [collection, setCollection] = useState(null);
   const url = `collections/?project_id=${projectId}`;
+  console.log("url", url);
 
   useEffect(() => {
-    let error;
-    api
-      .get(url)
-      .then((res) => {
-        if (fieldFilter) {
-          const filtered_collection = filterCollection(fieldFilter, res.data);
-          setCollection(filtered_collection);
-        } else setCollection(filterCollection(res.data));
-      })
-      .catch((error) => console.log(error));
+    if (projectId) {
+      api
+        .get(url)
+        .then((res) => {
+          if (collection_filter) {
+            const filtered = filterCollection(collection_filter, res.data);
+            console.log("FF", filtered);
+            setCollection(filtered);
+          } else setCollection(res.data);
+        })
+        .catch((error) => console.log(error));
+    }
   }, []);
-
-  return { collection };
+  return [collection];
 }
 
 function filterCollection(filter_arr, res_data) {
