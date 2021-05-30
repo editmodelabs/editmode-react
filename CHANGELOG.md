@@ -1,3 +1,15 @@
+# v3.1.20 (Sun May 30 2021)
+
+#### 🚀 Enhancement
+
+- Feature: Hook and components for accessing collection chunk data and custom rendering ([@francisbulus](https://github.com/francisbulus))
+
+#### Authors: 1
+
+- Francis Bulus ([@francisbulus](https://github.com/francisbulus))
+
+---
+
 # v3.1.19 (Mon Feb 22 2021)
 
 #### 🐛 Bug Fix
@@ -10,7 +22,7 @@
 
 #### Authors: 1
 
-- Jen Villaganas  ([@puuripurii](https://github.com/puuripurii))
+- Jen Villaganas ([@puuripurii](https://github.com/puuripurii))
 
 ---
 
@@ -22,7 +34,7 @@
 
 #### Authors: 1
 
-- Jen Villaganas  ([@puuripurii](https://github.com/puuripurii))
+- Jen Villaganas ([@puuripurii](https://github.com/puuripurii))
 
 ---
 
@@ -30,11 +42,11 @@
 
 #### 🐛 Bug Fix
 
-- Remove  submodule, Add referrer to api header [#35](https://github.com/editmodelabs/editmode-react/pull/35) ([@puuripurii](https://github.com/puuripurii))
+- Remove submodule, Add referrer to api header [#35](https://github.com/editmodelabs/editmode-react/pull/35) ([@puuripurii](https://github.com/puuripurii))
 
 #### Authors: 1
 
-- Jen Villaganas  ([@puuripurii](https://github.com/puuripurii))
+- Jen Villaganas ([@puuripurii](https://github.com/puuripurii))
 
 ---
 
@@ -70,7 +82,7 @@
 
 #### Authors: 1
 
-- Jen Villaganas  ([@puuripurii](https://github.com/puuripurii))
+- Jen Villaganas ([@puuripurii](https://github.com/puuripurii))
 
 ---
 
@@ -82,7 +94,7 @@
 
 #### Authors: 1
 
-- Jen Villaganas  ([@puuripurii](https://github.com/puuripurii))
+- Jen Villaganas ([@puuripurii](https://github.com/puuripurii))
 
 ---
 
@@ -94,7 +106,7 @@
 
 #### Authors: 1
 
-- Jen Villaganas  ([@puuripurii](https://github.com/puuripurii))
+- Jen Villaganas ([@puuripurii](https://github.com/puuripurii))
 
 ---
 
@@ -118,7 +130,7 @@
 
 #### Authors: 1
 
-- Jen Villaganas  ([@puuripurii](https://github.com/puuripurii))
+- Jen Villaganas ([@puuripurii](https://github.com/puuripurii))
 
 ---
 
@@ -130,7 +142,7 @@
 
 #### Authors: 1
 
-- Jen Villaganas  ([@puuripurii](https://github.com/puuripurii))
+- Jen Villaganas ([@puuripurii](https://github.com/puuripurii))
 
 ---
 
@@ -143,7 +155,7 @@
 #### Authors: 2
 
 - Bos Eriko Reyes ([@BosEriko](https://github.com/BosEriko))
-- Jen Villaganas  ([@puuripurii](https://github.com/puuripurii))
+- Jen Villaganas ([@puuripurii](https://github.com/puuripurii))
 
 ---
 
@@ -161,7 +173,7 @@
 
 # v3.1.6 (Mon Aug 24 2020)
 
-#### ⚠️  Pushed to `master`
+#### ⚠️ Pushed to `master`
 
 - Feature: Add react-native to peerDependecies ([@BosEriko](https://github.com/BosEriko))
 
@@ -226,7 +238,7 @@ Thank you, Bos Eriko Reyes ([@BosEriko](https://github.com/BosEriko)), for all y
 
 # v3.1.1 (Sun Jul 19 2020)
 
-#### ⚠️  Pushed to `master`
+#### ⚠️ Pushed to `master`
 
 - Remove SWR from yarn.lock ([@ericclemmons](https://github.com/ericclemmons))
 
@@ -270,7 +282,7 @@ Thank you, Jen Villaganas ([@puuripurii](https://github.com/puuripurii)), for al
 
 - <Chunk {...props /> are passed to renderChunk(chunk[, props]) [#6](https://github.com/Editmode-app/editmode-react/pull/6) ([@ericclemmons](https://github.com/ericclemmons))
 
-#### ⚠️  Pushed to `master`
+#### ⚠️ Pushed to `master`
 
 - Remove unused exports ([@ericclemmons](https://github.com/ericclemmons))
 
@@ -294,7 +306,7 @@ Thank you, Jen Villaganas ([@puuripurii](https://github.com/puuripurii)), for al
 
 # v2.0.3 (Fri Jun 12 2020)
 
-#### ⚠️  Pushed to `master`
+#### ⚠️ Pushed to `master`
 
 - Merge branch 'master' of github.com:Editmode-app/editmode-react ([@ericclemmons](https://github.com/ericclemmons))
 - Release ([@ericclemmons](https://github.com/ericclemmons))
@@ -308,7 +320,7 @@ Thank you, Jen Villaganas ([@puuripurii](https://github.com/puuripurii)), for al
 
 # v2.0.2 (Fri Jun 12 2020)
 
-#### ⚠️  Pushed to `master`
+#### ⚠️ Pushed to `master`
 
 - Fix call to GET chunks for collections ([@ericclemmons](https://github.com/ericclemmons))
 
@@ -352,7 +364,7 @@ Thank you, Eric Clemmons ([@ericclemmons](https://github.com/ericclemmons)), for
 
 - Add auto [#1](https://github.com/Editmode-app/editmode-react/pull/1) ([@ericclemmons](https://github.com/ericclemmons))
 
-#### ⚠️  Pushed to `master`
+#### ⚠️ Pushed to `master`
 
 - Ignore .env files ([@ericclemmons](https://github.com/ericclemmons))
 
