@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { api } from "./utilities";
 
-export function useCollectionData(projectId, collection_filter) {
-  const [collection, setCollection] = useState(null);
+export function useCollectionData(projectId, coll_id) {
+  const [collections, setCollections] = useState(null);
   const url = `collections/?project_id=${projectId}`;
 
   useEffect(() => {
@@ -10,20 +10,18 @@ export function useCollectionData(projectId, collection_filter) {
       api
         .get(url)
         .then((res) => {
-          if (collection_filter) {
-            const filtered = filterCollections(collection_filter, res.data);
-            setCollection(filtered);
-          } else setCollection(res.data);
+          if (coll_id) {
+            const filtered = filterCollections(coll_id, res.data);
+            setCollections(filtered);
+          } else setCollections(res.data);
         })
         .catch((error) => console.log(error));
     }
   }, []);
-  return [collection];
+  return [collections];
 }
 
-function filterCollections(filter_arr, collections) {
-  const new_obj = collections.filter((collection, i) =>
-    filter_arr.includes(collection["name"])
-  );
+function filterCollections(coll_id, data) {
+  const new_obj = data.find((coll_data, i) => coll_data.identifier == coll_id);
   return new_obj;
 }

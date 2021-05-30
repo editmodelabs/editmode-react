@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
 import { api, getCachedData, storeCache } from "./utilities";
-import { useCollectionData } from "./useCollectionData";
 
 export function ChunkCollection({
   children,
@@ -51,6 +50,7 @@ export function ChunkCollection({
     ? { ...chunks[0], placeholder: true }
     : {};
 
+  console.log("CHUNK", chunks);
   return (
     <div
       className={
