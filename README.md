@@ -146,19 +146,19 @@ function Example () {
 
 #### CustomChunkCollection Attributes
 
-| Attribute  | Type     | Description                                                                                                             |
-| ---------- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
-| identifier | `string` | Takes the identifier or field_name of a collection field                                                                |
-| className  | `string` | `optional` Class name(s) that will be added along with “chunks-collection-wrapper” to the main collection `div` element |
+| Attribute  | Type           | Description                                                                                                             |
+| ---------- | -------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| identifier | `string`       | Takes the identifier or field_name of a collection field                                                                |
+| className  | `string`       | `optional` Class name(s) that will be added along with “chunks-collection-wrapper” to the main collection `div` element |
+| limit      | `int` `string` | `optional` The number of collection items you want to display                                                           |
+| tags       | `array`        | `optional` Filter collection items based on tags listed in this prop                                                    |
 
 #### CollectionItemWrapper Attributes
 
-| Attribute | Type           | Description                                                                                                                   |
-| --------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| chunk     | `object`       | The current chunk object while iterating over a collection of chunks                                                          |
-| className | `string`       | `optional` Class name(s) that will be added along with “chunks-collection-item--wrapper” to the collection item `div `element |
-| limit     | `int` `string` | `optional` The number of collection items you want to display                                                                 |
-| tags      | `array`        | `optional` Filter collection items based on tags listed in this prop                                                          |
+| Attribute | Type     | Description                                                                                                                   |
+| --------- | -------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| chunk     | `object` | The current chunk object while iterating over a collection of chunks                                                          |
+| className | `string` | `optional` Class name(s) that will be added along with “chunks-collection-item--wrapper” to the collection item `div `element |
 
 #### Using default chunks array as fallback:
 
