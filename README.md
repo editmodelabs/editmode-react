@@ -134,7 +134,7 @@ function Example () {
   const chunks = useCollectionChunks(collectionId);
   return (
     <section className="gamer-cards">
-        <CustomChunkCollection identifier="col_Vy60de...y">
+        <CustomChunkCollection identifier="col_Vy60de...y" chunks={chunks}>
           {chunks.map((chunk) => (
             <CollectionItemWrapper chunk={chunk} className={some logic here based on a chunk property}
               key={chunk.identifier}>
@@ -157,6 +157,7 @@ function Example () {
 | Attribute  | Type           | Description                                                                                                             |
 | ---------- | -------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | identifier | `string`       | Takes the id of a collection you want to loop through                                                                   |
+| chunks     | `array`        | This is the array of collections you've extracted from useCollectionChunks                                              |
 | className  | `string`       | `optional` Class name(s) that will be added along with “chunks-collection-wrapper” to the main collection `div` element |
 | limit      | `int` `string` | `optional` The number of collection items you want to display                                                           |
 | tags       | `array`        | `optional` Filter collection items based on tags listed in this prop                                                    |
