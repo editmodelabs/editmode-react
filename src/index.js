@@ -7,3 +7,5 @@ export { ChunkFieldValue } from "./ChunkFieldValue.jsx";
 export { useChunk } from "./useChunk";
 export { useCollectionData } from "./useCollectionData";
 export { useCollectionChunk } from "./useCollectionChunk";
+export { CustomCollection } from "./CustomCollection.jsx";
+export { ChunkCollectionContext } from "./ChunkCollectionContext.js";

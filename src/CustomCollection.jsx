@@ -1,4 +1,5 @@
-import { ChunkCollectionContext } from "./ChunkCollectionContext";
+// @ts-check
+import React from "react";
 export function CustomCollection({
   chunks,
   className,
@@ -18,25 +19,7 @@ export function CustomCollection({
       data-chunk-cache-id={cacheId}
       data-chunk-collection-identifier={identifier}
     >
-      {chunks.map((chunk) => (
-        <ChunkCollectionContext.Provider key={chunk.identifier} value={chunk}>
-          <div className="chunks-collection-item--wrapper">{children}</div>
-        </ChunkCollectionContext.Provider>
-      ))}
-      {chunks.length && (
-        <ChunkCollectionContext.Provider
-          key={chunks[0].identifier + "dummy"}
-          value={placeholderChunk}
-        >
-          <div
-            className={
-              itemClass + " chunks-col-placeholder-wrapper chunks-hide"
-            }
-          >
-            {children}
-          </div>
-        </ChunkCollectionContext.Provider>
-      )}
+      {children}
     </div>
   );
 }
