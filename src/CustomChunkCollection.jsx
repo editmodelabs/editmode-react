@@ -1,7 +1,6 @@
 // @ts-check
 import React from "react";
 export function CustomChunkCollection({
-  chunks,
   className,
   children,
   identifier,
