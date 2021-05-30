@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { api, getCachedData, storeCache } from "./utilities";
 
-export function useCollectionChunk(identifier, limit = "", tags = []) {
+export function useCollectionChunks(identifier, limit = "", tags = []) {
   const [chunks, setChunk] = useState([]);
   const cacheId = identifier + limit + tags.join("");
 
