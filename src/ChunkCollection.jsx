@@ -67,9 +67,10 @@ export function ChunkCollection({
           value={placeholderChunk}
         >
           <div
-            className={
-              itemClass + " chunks-col-placeholder-wrapper chunks-hide"
-            }
+            className={computeClassName(
+              itemClass,
+              "chunks-col-placeholder-wrapper chunks-hide"
+            )}
           >
             {children}
           </div>
