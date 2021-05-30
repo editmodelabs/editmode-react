@@ -50,7 +50,6 @@ export function ChunkCollection({
     ? { ...chunks[0], placeholder: true }
     : {};
 
-  console.log("CHUNK", chunks);
   return (
     <div
       className={

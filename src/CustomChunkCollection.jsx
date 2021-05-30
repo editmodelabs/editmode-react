@@ -1,6 +1,6 @@
 // @ts-check
 import React from "react";
-export function CustomCollection({
+export function CustomChunkCollection({
   chunks,
   className,
   children,
