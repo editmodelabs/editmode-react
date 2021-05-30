@@ -22,6 +22,7 @@ yarn add editmode-react
 
 Within your React app, navigate to the index file within your src directory.
 Import the Editmode wrapper and wrap your App within.
+
 <div class="project-id-holder"></div>
 
 ```js
@@ -86,20 +87,78 @@ function Example() {
 ```
 
 This will render editable headings containing the name and title and an image containing the headshot for every person in the "Team Member" collection.
+
 #### ChunkCollection Attributes
-|Attribute|Type|Description|
-|---|---|---|
-| identifier | `string` | Takes the id of a collection you want to loop through |
-| limit | `int` `string` |`optional` The number of collection items you want to display  |
-| tags | `array` |`optional` Filter collection items based on tags listed in this prop  |
-| className | `string` | `optional` Class name(s) that will be added along with "chunks-collection-wrapper" to the main collection `<div>` element |
-| itemClass | `string` | `optional` Class name(s) that will be added along with "chunks-collection-item--wrapper" to all collection items |
+
+| Attribute  | Type           | Description                                                                                                               |
+| ---------- | -------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| identifier | `string`       | Takes the id of a collection you want to loop through                                                                     |
+| limit      | `int` `string` | `optional` The number of collection items you want to display                                                             |
+| tags       | `array`        | `optional` Filter collection items based on tags listed in this prop                                                      |
+| className  | `string`       | `optional` Class name(s) that will be added along with "chunks-collection-wrapper" to the main collection `<div>` element |
+| itemClass  | `string`       | `optional` Class name(s) that will be added along with "chunks-collection-item--wrapper" to all collection items          |
 
 #### ChunkFieldValue Attributes
-|Attribute|Type|Description|
-|---|---|---|
-| identifier | `string` | Takes the identifier or field_name of a collection field |
-| className | `string` | `optional` Class name(s) that will be added in the chunk `em-span` element |
+
+| Attribute  | Type     | Description                                                                |
+| ---------- | -------- | -------------------------------------------------------------------------- |
+| identifier | `string` | Takes the identifier or field_name of a collection field                   |
+| className  | `string` | `optional` Class name(s) that will be added in the chunk `em-span` element |
+
+### A different way to render a chunk collection based on your definition:
+
+Our ChunkCollection component specifies a default rendering behaviour - it iterates over your chunk collection data and renders each collection item in the exact manner the collection was set up. However, you might be looking for a more specific behavior, like dynamically rendering chunks in the collection based on certain properties in your chunk collection data.
+
+A good use case would be rendering a collection of e-gamer cards. Maybe you'd like to render the card of the highest scorer with a unique class name that specifies a different set of styles. You can achieve this using a combination of our useCollectionChunks hook and a trio of components (CustomChunkCollection, CollectionItemWrapper and ChunkFieldValue).
+
+CustomChunkCollection is the parent wrapper for your collection, a bit like the ChunkCollection component is, but it lets you:
+
+- Supply the data its children will render
+- Determine what precisely is supplied to the inner components and alongside what
+
+CollectionItemWrapper returns and wraps a `div` around each chunk in a collection.
+
+useCollectionChunks returns an array of the chunks in a collection, with each chunk being an object containing data specific to that chunk (you may log its return value to your console to see the content of the array).
+
+```js
+function Example () {
+  const collectionId = "col_Vy60de...";
+  const chunks = useCollectionChunks(collectionId);
+  return (
+    <section className="gamer-cards">
+        <CustomChunkCollection identifier="col_Vy60de...y">
+          {chunks.map((chunk) => (
+            <CollectionItemWrapper chunk={chunk} className={some logic here based on a chunk property}
+              key={chunk.identifier}>
+              <h2>
+                <ChunkFieldValue identifier="fld_QmQNy..." />
+              </h2>
+              <h3>
+                <ChunkFieldValue identifier="fld_vr8o..." />
+              </h3>
+            </CollectionItemWrapper>
+          ))}
+        </CustomChunkCollection>
+    </section>
+  );
+}
+```
+
+#### CustomChunkCollection Attributes
+
+| Attribute  | Type     | Description                                                                                                             |
+| ---------- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
+| identifier | `string` | Takes the identifier or field_name of a collection field                                                                |
+| className  | `string` | `optional` Class name(s) that will be added along with “chunks-collection-wrapper” to the main collection `div` element |
+
+#### CollectionItemWrapper Attributes
+
+| Attribute | Type           | Description                                                                                                                   |
+| --------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| chunk     | `object`       | The current chunk object while iterating over a collection of chunks                                                          |
+| className | `string`       | `optional` Class name(s) that will be added along with “chunks-collection-item--wrapper” to the collection item `div `element |
+| limit     | `int` `string` | `optional` The number of collection items you want to display                                                                 |
+| tags      | `array`        | `optional` Filter collection items based on tags listed in this prop                                                          |
 
 #### Using default chunks array as fallback:
 
@@ -107,7 +166,15 @@ For cases when there's no internet connection but your app is designed to work i
 
 ```js
 const defaultChunksValue = [
-  {"identifier":"cnk_2177d77492a2dead1585","chunk_type":"single_line_text","project_id":"prj_h3Gk3gFVMXbl","branch_id":"d1dWhVyF85Yr","master_branch":true,"content_key":"","content":"This is a single line text!"},
+  {
+    identifier: "cnk_2177d77492a2dead1585",
+    chunk_type: "single_line_text",
+    project_id: "prj_h3Gk3gFVMXbl",
+    branch_id: "d1dWhVyF85Yr",
+    master_branch: true,
+    content_key: "",
+    content: "This is a single line text!",
+  },
 ];
 
 function Example() {
@@ -130,7 +197,10 @@ function Example() {
   return (
     <section>
       <Editmode projectId="prj_h3Gk3gFVMXbl" defaultChunks={defaultChunksValue}>
-        <Chunk identifier="cnk_2177d77492a2dead1585" variables={{ "name": "John" }} />
+        <Chunk
+          identifier="cnk_2177d77492a2dead1585"
+          variables={{ name: "John" }}
+        />
       </Editmode>
     </section>
   );
@@ -140,6 +210,7 @@ function Example() {
 With this, chunks such as `Hello, {{name}}!` will be parsed as `Hello, John!`
 
 #### Working with Image Transformation:
+
 Use `transformation` attribute to perform real-time image transformations to deliver perfect images to the end-users.
 
 ```js
@@ -151,6 +222,7 @@ Use `transformation` attribute to perform real-time image transformations to del
 	<ChunkFieldValue identifier='Avatar' transformation="w-200 h-200"  />
 </ChunkCollection>
 ```
+
 Please see complete list of [transformation parameters](https://editmode.com/docs#/imagekit_properties).
 
 ### Step 3:
