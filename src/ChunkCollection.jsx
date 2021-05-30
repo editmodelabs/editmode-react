@@ -1,7 +1,7 @@
 // @ts-check
 import React, { useEffect, useState } from "react";
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
-import { api, getCachedData, storeCache } from "./utilities";
+import { api, getCachedData, storeCache, computeClassName } from "./utilities";
 
 export function ChunkCollection({
   children,
@@ -52,11 +52,7 @@ export function ChunkCollection({
 
   return (
     <div
-      className={
-        className
-          ? className + " chunks-collection-wrapper"
-          : "chunks-collection-wrapper"
-      }
+      className={computeClassName(className, "chunks-collection-wrapper")}
       data-chunk-cache-id={cacheId}
       data-chunk-collection-identifier={identifier}
     >

@@ -1,5 +1,6 @@
 import React from "react";
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
+import { computeClassName } from "./utilities";
 
 export function CollectionItemWrapper({
   chunk,
@@ -9,14 +10,14 @@ export function CollectionItemWrapper({
 }) {
   return (
     <ChunkCollectionContext.Provider value={chunk}>
-      <div className={computeClassName(className)}>{children}</div>
+      <div
+        className={computeClassName(
+          className,
+          "chunks-collection-item--wrapper"
+        )}
+      >
+        {children}
+      </div>
     </ChunkCollectionContext.Provider>
   );
-}
-
-function computeClassName(className) {
-  className = className
-    ? className + " chunks-collection-item--wrapper"
-    : "chunks-collection-item--wrapper";
-  return className;
 }
