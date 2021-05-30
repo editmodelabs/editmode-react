@@ -105,7 +105,7 @@ This will render editable headings containing the name and title and an image co
 | identifier | `string` | Takes the identifier or field_name of a collection field                   |
 | className  | `string` | `optional` Class name(s) that will be added in the chunk `em-span` element |
 
-### A different way to render a chunk collection based on your definition:
+#### A different way to render a chunk collection based on your definition:
 
 Our ChunkCollection component specifies a default rendering behaviour - it iterates over your chunk collection data and renders each collection item in the exact manner the collection was set up. However, you might be looking for a more specific behavior, like dynamically rendering chunks in the collection based on certain properties in your chunk collection data.
 
@@ -121,6 +121,14 @@ CollectionItemWrapper returns and wraps a `div` around each chunk in a collectio
 useCollectionChunks returns an array of the chunks in a collection, with each chunk being an object containing data specific to that chunk (you may log its return value to your console to see the content of the array).
 
 ```js
+import {
+  Editmode,
+  ChunkFieldValue,
+  useCollectionChunks,
+  CustomChunkCollection,
+  CollectionItemWrapper,
+} from "editmode-react";
+
 function Example () {
   const collectionId = "col_Vy60de...";
   const chunks = useCollectionChunks(collectionId);
@@ -148,7 +156,7 @@ function Example () {
 
 | Attribute  | Type           | Description                                                                                                             |
 | ---------- | -------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| identifier | `string`       | Takes the id of a collection you want to loop through field                                                             |
+| identifier | `string`       | Takes the id of a collection you want to loop through                                                                   |
 | className  | `string`       | `optional` Class name(s) that will be added along with “chunks-collection-wrapper” to the main collection `div` element |
 | limit      | `int` `string` | `optional` The number of collection items you want to display                                                           |
 | tags       | `array`        | `optional` Filter collection items based on tags listed in this prop                                                    |
