@@ -148,7 +148,7 @@ function Example () {
 
 | Attribute  | Type           | Description                                                                                                             |
 | ---------- | -------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| identifier | `string`       | Takes the identifier or field_name of a collection field                                                                |
+| identifier | `string`       | Takes the id of a collection you want to loop through field                                                             |
 | className  | `string`       | `optional` Class name(s) that will be added along with “chunks-collection-wrapper” to the main collection `div` element |
 | limit      | `int` `string` | `optional` The number of collection items you want to display                                                           |
 | tags       | `array`        | `optional` Filter collection items based on tags listed in this prop                                                    |
