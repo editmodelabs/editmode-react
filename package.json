@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack --watch",
     "build": "webpack --mode production --display-modules",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "install-peers -f"
   },
   "peerDependencies": {
     "react": "16.*",
@@ -42,6 +43,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "extract-text-webpack-plugin": "^3.0.2",
+    "install-peers-cli": "^2.2.0",
     "react-art": "^16.13.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
