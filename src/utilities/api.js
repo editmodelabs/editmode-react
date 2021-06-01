@@ -4,6 +4,6 @@ export const api = axios.create({
   baseURL: "https://api.editmode.com/",
   headers: {
     Accept: "application/json",
-    referrer: window.location.href
+    referrer: typeof window !== "undefined" ? window.location.href : "",
   },
 });
