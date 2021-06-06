@@ -58,7 +58,7 @@ export function ChunkCollection({
     >
       {chunks.map((chunk) => (
         <ChunkCollectionContext.Provider key={chunk.identifier} value={chunk}>
-          <div className="chunks-collection-item--wrapper">{children}</div>
+          <div className={computeClassName(itemClass, "chunks-col-placeholder-wrapper")}>{children}</div>
         </ChunkCollectionContext.Provider>
       ))}
       {chunks.length && (

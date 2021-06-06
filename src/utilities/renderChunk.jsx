@@ -14,7 +14,8 @@ export const renderChunk = (data, props) => {
     "data-chunk-editable": true,
     "data-chunk-content-key": chunk.content_key,
     "data-chunk-type": chunk.chunk_type,
-    "key": chunk.identifier
+    "key": chunk.identifier,
+    class: props.className
   }
 
   switch (chunk.chunk_type) {
@@ -28,9 +29,9 @@ export const renderChunk = (data, props) => {
     case "rich_text":
       return (<em-span
         {...defaultprops}
-        class="editmode-richtext-editor"
         dangerouslySetInnerHTML={{__html: parsedChunk}}
         {...props}
+        class={"editmode-richtext-editor " + props.className}
       />);
     case "image":
       return (<img
