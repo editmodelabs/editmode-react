@@ -2,3 +2,6 @@ src
 demo
 .babelrc
 webpack.config.js
+.all-contributorsrc
+.github
+dist
