@@ -1,3 +1,26 @@
+# v3.1.21 (Mon Jun 07 2021)
+
+:tada: This release contains work from a new contributor! :tada:
+
+Thank you, Francis Bulus ([@francisbulus](https://github.com/francisbulus)), for all your work!
+
+#### 🐛 Bug Fix
+
+- Apply itemCLass on item wrapper, add class to defaultProps [#44](https://github.com/editmodelabs/editmode-react/pull/44) ([@jenvillaganas](https://github.com/jenvillaganas))
+
+#### ⚠️ Pushed to `master`
+
+- Revert contributors changes for now (should be automatic) ([@jenvillaganas](https://github.com/jenvillaganas))
+- Edit npmignore ([@jenvillaganas](https://github.com/jenvillaganas))
+- 3.1.20 ([@francisbulus](https://github.com/francisbulus))
+
+#### Authors: 2
+
+- Francis Bulus ([@francisbulus](https://github.com/francisbulus))
+- Jen Villaganas  ([@jenvillaganas](https://github.com/jenvillaganas))
+
+---
+
 # v3.1.20 (Sun May 30 2021)
 
 #### 🚀 Enhancement
