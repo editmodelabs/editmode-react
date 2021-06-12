@@ -13,7 +13,7 @@ export function Editmode({ children, projectId, defaultChunks }) {
     window["chunksProjectIdentifier"] = projectId;
 
     const script = document.createElement("script");
-    script.src = "https://static.editmode.com/editmode@^2.0.0/dist/editmode.js";
+    script.src = "https://static.editmode.com/editmode@2.0.0/dist/editmode.js";
     script.async = true;
     document.body.append(script);
 
