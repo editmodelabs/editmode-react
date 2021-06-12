@@ -1,3 +1,15 @@
+# v3.1.22 (Sat Jun 12 2021)
+
+#### ⚠️ Pushed to `master`
+
+- Set editmode.js specific version ([@jenvillaganas](https://github.com/jenvillaganas))
+
+#### Authors: 1
+
+- Jen Villaganas  ([@jenvillaganas](https://github.com/jenvillaganas))
+
+---
+
 # v3.1.21 (Mon Jun 07 2021)
 
 :tada: This release contains work from a new contributor! :tada:
