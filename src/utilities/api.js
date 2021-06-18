@@ -1,9 +1,11 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://api.editmode.com/",
+  baseURL: "https://api2.editmode.com/",
   headers: {
     Accept: "application/json",
-    referrer: window.location.href
   },
+  params: {
+    referrer: window.location.href
+  }
 });
