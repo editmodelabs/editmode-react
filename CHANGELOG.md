@@ -1,3 +1,15 @@
+# v3.1.23 (Fri Jun 18 2021)
+
+#### 🐛 Bug Fix
+
+- Add CF worker custom API [#45](https://github.com/editmodelabs/editmode-react/pull/45) ([@jenvillaganas](https://github.com/jenvillaganas))
+
+#### Authors: 1
+
+- Jen Villaganas  ([@jenvillaganas](https://github.com/jenvillaganas))
+
+---
+
 # v3.1.22 (Sat Jun 12 2021)
 
 #### ⚠️ Pushed to `master`
