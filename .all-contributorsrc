@@ -43,15 +43,23 @@
         "infra"
       ]
     },
-      {
+    {
       "login": "francisbulus",
       "name": "Francis Bulus",
-      "avatar_url": "https://avatars.githubusercontent.com/u/25318739?v=4,
+      "avatar_url": "https://avatars.githubusercontent.com/u/25318739?v=4",
       "profile": "https://github.com/francisbulus",
       "contributions": [
         "code",
-        "doc",
-        "infra"
+        "doc"
+      ]
+    },
+    {
+      "login": "jenvillaganas",
+      "name": "Jen Villaganas ",
+      "avatar_url": "https://avatars.githubusercontent.com/u/26903002?v=4",
+      "profile": "https://github.com/jenvillaganas",
+      "contributions": [
+        "code"
       ]
     }
   ],
