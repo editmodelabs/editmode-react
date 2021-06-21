@@ -1,7 +1,13 @@
+const isBrowser = () => typeof window !== "undefined";
+
 export const getCachedData = (id) => {
-  return localStorage.getItem(id);
-}
+  if (isBrowser()) {
+    return localStorage.getItem(id);
+  }
+};
 
 export const storeCache = (id, data) => {
-  localStorage.setItem(id, JSON.stringify(data));
-}
+  if (isBrowser()) {
+    localStorage.setItem(id, JSON.stringify(data));
+  }
+};
