@@ -5,7 +5,7 @@ export const api = axios.create({
   headers: {
     Accept: "application/json",
   },
-  params: {
-    referrer: window.location.href,
-  },
+  // params: {
+  //   referrer: window.location.href,
+  // },
 });

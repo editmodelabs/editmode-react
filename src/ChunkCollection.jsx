@@ -1,7 +1,8 @@
 // @ts-check
 import React, { useEffect, useState } from "react";
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
-import { api, getCachedData, storeCache, computeClassName } from "./utilities";
+import { getCachedData, storeCache, computeClassName } from "./utilities";
+import axios from "axios";
 
 export function ChunkCollection({
   children,
@@ -17,6 +18,15 @@ export function ChunkCollection({
 
   useEffect(() => {
     // Get data from localStorage
+    const api = axios.create({
+      baseURL: "https://api2.editmode.com/",
+      headers: {
+        Accept: "application/json",
+      },
+      params: {
+        referrer: window.location.href,
+      },
+    });
     const cachedChunk = getCachedData(cacheId);
     if (cachedChunk) {
       const data = JSON.parse(cachedChunk);
