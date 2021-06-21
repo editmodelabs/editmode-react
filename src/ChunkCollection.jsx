@@ -1,7 +1,8 @@
 // @ts-check
 import React, { useEffect, useState, useContext } from "react";
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
-import { api, getCachedData, storeCache, computeClassName } from "./utilities";
+import { getCachedData, storeCache, computeClassName } from "./utilities";
+import axios from "axios";
 import { EditmodeContext } from "./EditmodeContext";
 
 export function ChunkCollection({
@@ -20,6 +21,15 @@ export function ChunkCollection({
 
   useEffect(() => {
     // Get data from localStorage
+    const api = axios.create({
+      baseURL: "https://api2.editmode.com/",
+      headers: {
+        Accept: "application/json",
+      },
+      params: {
+        referrer: window.location.href,
+      },
+    });
     const cachedChunk = getCachedData(cacheId);
     if (cachedChunk) {
       const data = JSON.parse(cachedChunk);
@@ -29,7 +39,7 @@ export function ChunkCollection({
     const urlParams = new URLSearchParams({
       limit,
       collection_identifier: identifier || contentKey,
-      project_id: projectId
+      project_id: projectId,
     });
 
     tags.forEach((tag) => urlParams.append("tags[]", tag));
@@ -62,7 +72,14 @@ export function ChunkCollection({
     >
       {chunks.map((chunk) => (
         <ChunkCollectionContext.Provider key={chunk.identifier} value={chunk}>
-          <div className={computeClassName(itemClass, "chunks-collection-item--wrapper")}>{children}</div>
+          <div
+            className={computeClassName(
+              itemClass,
+              "chunks-collection-item--wrapper"
+            )}
+          >
+            {children}
+          </div>
         </ChunkCollectionContext.Provider>
       ))}
       {chunks.length && (

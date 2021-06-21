@@ -1,9 +1,9 @@
 // @ts-check
 import { useContext, useEffect, useState, useMemo } from "react";
+import axios from "axios";
 
 import { EditmodeContext } from "./EditmodeContext";
 import {
-  api,
   renderChunk,
   computeContentKey,
   getCachedData,
@@ -41,6 +41,16 @@ export function useChunk(defaultContent, { identifier, type, contentKey }) {
 
   useEffect(() => {
     // Render content
+    const api = axios.create({
+      baseURL: "https://api2.editmode.com/",
+      headers: {
+        Accept: "application/json",
+      },
+      params: {
+        referrer: window.location.href,
+      },
+    });
+
     let cachedChunk = getCachedData(cacheId);
     let newChunk = cachedChunk
       ? JSON.parse(cachedChunk)
