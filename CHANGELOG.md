@@ -1,3 +1,15 @@
+# v3.1.25 (Mon Jun 21 2021)
+
+#### 🐛 Bug Fix
+
+- Fix window undefined issue in NextJS [#47](https://github.com/editmodelabs/editmode-react/pull/47) ([@francisbulus](https://github.com/francisbulus))
+
+#### Authors: 1
+
+- Francis Bulus ([@francisbulus](https://github.com/francis))
+
+---
+
 # v3.1.24 (Mon Jun 21 2021)
 
 #### 🐛 Bug Fix
@@ -6,7 +18,7 @@
 
 #### Authors: 1
 
-- Jen Villaganas  ([@jenvillaganas](https://github.com/jenvillaganas))
+- Jen Villaganas ([@jenvillaganas](https://github.com/jenvillaganas))
 
 ---
 
@@ -18,7 +30,7 @@
 
 #### Authors: 1
 
-- Jen Villaganas  ([@jenvillaganas](https://github.com/jenvillaganas))
+- Jen Villaganas ([@jenvillaganas](https://github.com/jenvillaganas))
 
 ---
 
@@ -30,7 +42,7 @@
 
 #### Authors: 1
 
-- Jen Villaganas  ([@jenvillaganas](https://github.com/jenvillaganas))
+- Jen Villaganas ([@jenvillaganas](https://github.com/jenvillaganas))
 
 ---
 
@@ -53,7 +65,7 @@ Thank you, Francis Bulus ([@francisbulus](https://github.com/francisbulus)), for
 #### Authors: 2
 
 - Francis Bulus ([@francisbulus](https://github.com/francisbulus))
-- Jen Villaganas  ([@jenvillaganas](https://github.com/jenvillaganas))
+- Jen Villaganas ([@jenvillaganas](https://github.com/jenvillaganas))
 
 ---
 
