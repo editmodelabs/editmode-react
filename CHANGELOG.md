@@ -1,3 +1,62 @@
+# v3.1.24 (Mon Jun 21 2021)
+
+#### 🐛 Bug Fix
+
+- contentKey for collection [#47](https://github.com/editmodelabs/editmode-react/pull/47) ([@jenvillaganas](https://github.com/jenvillaganas))
+
+#### Authors: 1
+
+- Jen Villaganas  ([@jenvillaganas](https://github.com/jenvillaganas))
+
+---
+
+# v3.1.23 (Fri Jun 18 2021)
+
+#### 🐛 Bug Fix
+
+- Add CF worker custom API [#45](https://github.com/editmodelabs/editmode-react/pull/45) ([@jenvillaganas](https://github.com/jenvillaganas))
+
+#### Authors: 1
+
+- Jen Villaganas  ([@jenvillaganas](https://github.com/jenvillaganas))
+
+---
+
+# v3.1.22 (Sat Jun 12 2021)
+
+#### ⚠️ Pushed to `master`
+
+- Set editmode.js specific version ([@jenvillaganas](https://github.com/jenvillaganas))
+
+#### Authors: 1
+
+- Jen Villaganas  ([@jenvillaganas](https://github.com/jenvillaganas))
+
+---
+
+# v3.1.21 (Mon Jun 07 2021)
+
+:tada: This release contains work from a new contributor! :tada:
+
+Thank you, Francis Bulus ([@francisbulus](https://github.com/francisbulus)), for all your work!
+
+#### 🐛 Bug Fix
+
+- Apply itemCLass on item wrapper, add class to defaultProps [#44](https://github.com/editmodelabs/editmode-react/pull/44) ([@jenvillaganas](https://github.com/jenvillaganas))
+
+#### ⚠️ Pushed to `master`
+
+- Revert contributors changes for now (should be automatic) ([@jenvillaganas](https://github.com/jenvillaganas))
+- Edit npmignore ([@jenvillaganas](https://github.com/jenvillaganas))
+- 3.1.20 ([@francisbulus](https://github.com/francisbulus))
+
+#### Authors: 2
+
+- Francis Bulus ([@francisbulus](https://github.com/francisbulus))
+- Jen Villaganas  ([@jenvillaganas](https://github.com/jenvillaganas))
+
+---
+
 # v3.1.20 (Sun May 30 2021)
 
 #### 🚀 Enhancement
