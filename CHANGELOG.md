@@ -2,7 +2,9 @@
 
 #### 🐛 Bug Fix
 
-- Fix window undefined issue in NextJS [#47](https://github.com/editmodelabs/editmode-react/pull/47) ([@francisbulus](https://github.com/francisbulus))
+#### ⚠️ Pushed to `master`
+
+- Fix window undefined issue in NextJS ([@francisbulus](https://github.com/francisbulus))
 
 #### Authors: 1
 
