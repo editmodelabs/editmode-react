@@ -1,5 +1,35 @@
 # v3.1.25 (Mon Jun 21 2021)
 
+:tada: This release contains work from a new contributor! :tada:
+
+Thank you, Francis Bulus ([@francisbulus](https://github.com/francisbulus)), for all your work!
+
+#### 🐛 Bug Fix
+
+- delete api file as it is now redundant ([@francisbulus](https://github.com/francisbulus))
+- refactor code so the api variable which uses the window variable is only defined clientside ([@francisbulus](https://github.com/francisbulus))
+- v3.1.25-canary.3 ([@francisbulus](https://github.com/francisbulus))
+- v3.1.25-canary.2 ([@francisbulus](https://github.com/francisbulus))
+- v3.1.21-canary.0 ([@francisbulus](https://github.com/francisbulus))
+- remove hardcoding of local urls ([@francisbulus](https://github.com/francisbulus))
+- _ ([@francisbulus](https://github.com/francisbulus))
+
+#### ⚠️ Pushed to `master`
+
+- edit PR info in changelog ([@francisbulus](https://github.com/francisbulus))
+- rerun install for lock file ([@francisbulus](https://github.com/francisbulus))
+- update change log ([@francisbulus](https://github.com/francisbulus))
+- pull changes from ssr branch ([@francisbulus](https://github.com/francisbulus))
+- resolve merge conflicts ([@francisbulus](https://github.com/francisbulus))
+
+#### Authors: 1
+
+- Francis Bulus ([@francisbulus](https://github.com/francisbulus))
+
+---
+
+# v3.1.25 (Mon Jun 21 2021)
+
 #### 🐛 Bug Fix
 
 #### ⚠️ Pushed to `master`
