@@ -1,3 +1,15 @@
+# v3.1.24 (Mon Jun 21 2021)
+
+#### 🐛 Bug Fix
+
+- contentKey for collection [#47](https://github.com/editmodelabs/editmode-react/pull/47) ([@jenvillaganas](https://github.com/jenvillaganas))
+
+#### Authors: 1
+
+- Jen Villaganas  ([@jenvillaganas](https://github.com/jenvillaganas))
+
+---
+
 # v3.1.23 (Fri Jun 18 2021)
 
 #### 🐛 Bug Fix
