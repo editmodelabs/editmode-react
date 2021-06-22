@@ -3,5 +3,6 @@ export { computeContentKey } from "./computeContentKey";
 export { sanitizeContent } from "./sanitizeContent";
 export { transformImage } from "./transformImage";
 export { computeClassName } from "./computeClassName";
+export { computeIdentifier } from "./computeIdentifier";
 
 export { renderChunk } from "./renderChunk.jsx";
