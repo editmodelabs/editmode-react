@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { renderChunk } from "./utilities";
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
 
-export function ChunkFieldValue({ children, identifier, transformation, contentOnly = false, ...props }) {
+export function ChunkFieldValue({ children, identifier, transformation, ...props }) {
   const chunk = useContext(ChunkCollectionContext);
 
   if (!chunk) {
@@ -34,12 +34,7 @@ export function ChunkFieldValue({ children, identifier, transformation, contentO
     props = {...props, "data-parent-identifier": chunk.identifier, 'data-custom-field-identifier': fieldChunk.custom_field_identifier }
   }
 
-  if (contentOnly) {
-    return fieldChunk.content
-  } else {
-    return renderChunk(dummyFieldChunk || fieldChunk, props);
-  }
-  
+  return renderChunk(dummyFieldChunk || fieldChunk, props);
 }
 
 export default ChunkFieldValue;
