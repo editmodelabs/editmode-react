@@ -4,6 +4,7 @@ import { ChunkCollectionContext } from "./ChunkCollectionContext";
 import { EditmodeContext } from "./EditmodeContext";
 import { getCachedData, storeCache, computeClassName } from "./utilities";
 import axios from "axios";
+const isBrowser = () => typeof window !== "undefined";
 
 export function ChunkCollection({
   children,
@@ -25,10 +26,8 @@ export function ChunkCollection({
       baseURL: "https://api2.editmode.com/",
       headers: {
         Accept: "application/json",
-      },
-      params: {
-        referrer: window.location.href,
-      },
+        "referrer": isBrowser() ? window.location.href : ""
+      }
     });
     const cachedChunk = getCachedData(cacheId);
     if (cachedChunk) {
@@ -64,6 +63,10 @@ export function ChunkCollection({
     ? { ...chunks[0], placeholder: true }
     : {};
 
+  function getChunk(chunk, field) {
+    return chunk.content.find(c => c.custom_field_name == field).content
+  }
+
   return (
     <div
       className={computeClassName(className, "chunks-collection-wrapper")}
@@ -78,7 +81,9 @@ export function ChunkCollection({
               "chunks-collection-item--wrapper"
             )}
           >
-            {children}
+            {
+              children(getChunk, chunk)
+            }
           </div>
         </ChunkCollectionContext.Provider>
       ))}
@@ -100,5 +105,7 @@ export function ChunkCollection({
     </div>
   );
 }
+
+
 
 export default ChunkCollection;
