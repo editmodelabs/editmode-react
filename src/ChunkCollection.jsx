@@ -63,7 +63,7 @@ export function ChunkCollection({
   const placeholderChunk = chunks.length
     ? { ...chunks[0], placeholder: true }
     : {};
-
+  console.log(chunks);
   return (
     <div
       className={computeClassName(className, "chunks-collection-wrapper")}
