@@ -11,8 +11,6 @@ export function useCollectionChunks(identifier, limit = "", tags = []) {
       baseURL: "https://api2.editmode.com/",
       headers: {
         Accept: "application/json",
-      },
-      params: {
         referrer: window.location.href,
       },
     });

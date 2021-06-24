@@ -26,8 +26,8 @@ export function ChunkCollection({
       baseURL: "https://api2.editmode.com/",
       headers: {
         Accept: "application/json",
-        "referrer": isBrowser() ? window.location.href : ""
-      }
+        referrer: window.location.href,
+      },
     });
     const cachedChunk = getCachedData(cacheId);
     if (cachedChunk) {
