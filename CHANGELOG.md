@@ -1,3 +1,15 @@
+# v3.1.30 (Thu Jun 24 2021)
+
+#### ⚠️ Pushed to `master`
+
+- ADd browserChecks to api calls ([@jenvillaganas](https://github.com/jenvillaganas))
+
+#### Authors: 1
+
+- Jen Villaganas  ([@jenvillaganas](https://github.com/jenvillaganas))
+
+---
+
 # v3.1.28 (Thu Jun 24 2021)
 
 #### ⚠️ Pushed to `master`
