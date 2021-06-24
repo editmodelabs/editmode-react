@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { getCachedData, storeCache } from "./utilities";
+import React, { useEffect, useState, useContext } from "react";
+import { getCachedData, storeCache, computeIdentifier } from "./utilities";
 import { EditmodeContext } from "./EditmodeContext";
 import axios from "axios";
 
 export function useCollectionChunks(identifier, limit = "", tags = []) {
   const { projectId } = useContext(EditmodeContext);
   const [chunks, setChunk] = useState([]);
-  const cacheId = identifier + limit + tags.join("");
+  const cacheId = computeIdentifier(identifier)
+    ? identifier + limit + tags.join("")
+    : identifier + projectId;
 
   useEffect(() => {
     const api = axios.create({
