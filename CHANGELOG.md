@@ -1,3 +1,39 @@
+# v3.1.30 (Thu Jun 24 2021)
+
+#### ⚠️ Pushed to `master`
+
+- ADd browserChecks to api calls ([@jenvillaganas](https://github.com/jenvillaganas))
+
+#### Authors: 1
+
+- Jen Villaganas  ([@jenvillaganas](https://github.com/jenvillaganas))
+
+---
+
+# v3.1.28 (Thu Jun 24 2021)
+
+#### ⚠️ Pushed to `master`
+
+- Add referrer header ([@jenvillaganas](https://github.com/jenvillaganas))
+
+#### Authors: 1
+
+- Jen Villaganas  ([@jenvillaganas](https://github.com/jenvillaganas))
+
+---
+
+# v3.1.27 (Wed Jun 23 2021)
+
+#### 🐛 Bug Fix
+
+- Fix cache issue with referrer [#49](https://github.com/editmodelabs/editmode-react/pull/49) ([@jenvillaganas](https://github.com/jenvillaganas))
+
+#### Authors: 1
+
+- Jen Villaganas  ([@jenvillaganas](https://github.com/jenvillaganas))
+
+---
+
 # v3.1.25 (Mon Jun 21 2021)
 
 :tada: This release contains work from a new contributor! :tada:
