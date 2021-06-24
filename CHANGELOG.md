@@ -1,3 +1,15 @@
+# v3.1.28 (Thu Jun 24 2021)
+
+#### ⚠️ Pushed to `master`
+
+- Add referrer header ([@jenvillaganas](https://github.com/jenvillaganas))
+
+#### Authors: 1
+
+- Jen Villaganas  ([@jenvillaganas](https://github.com/jenvillaganas))
+
+---
+
 # v3.1.27 (Wed Jun 23 2021)
 
 #### 🐛 Bug Fix
