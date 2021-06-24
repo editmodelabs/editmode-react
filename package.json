@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack --watch",
     "build": "webpack --mode production --display-modules",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "yarn run build"
   },
   "peerDependencies": {
     "react": "16.*",
