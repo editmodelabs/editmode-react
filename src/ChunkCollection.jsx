@@ -82,7 +82,9 @@ export function ChunkCollection({
             )}
           >
             {
-              children(getChunk, chunk)
+              typeof children === 'function' ?
+                children(getChunk, chunk) :
+                children
             }
           </div>
         </ChunkCollectionContext.Provider>

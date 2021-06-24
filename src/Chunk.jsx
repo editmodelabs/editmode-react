@@ -3,10 +3,10 @@
 import React from "react";
 import { useChunk } from "./useChunk";
 
-export function Chunk({ children, identifier, src, contentKey, ...props }) {
+export function Chunk({ children, identifier, src, contentKey, field = "", ...props }) {
   const type = src ? "image" : undefined;
   const defaultContent = src || children;
-  const { Component } = useChunk(defaultContent, { identifier, type, contentKey });
+  const { Component } = useChunk(defaultContent, { identifier, type, contentKey, field });
 
   return <Component {...props} />;
 }
