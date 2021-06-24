@@ -4,6 +4,7 @@ import { ChunkCollectionContext } from "./ChunkCollectionContext";
 import { EditmodeContext } from "./EditmodeContext";
 import { getCachedData, storeCache, computeClassName } from "./utilities";
 import axios from "axios";
+const isBrowser = () => typeof window !== "undefined";
 
 export function ChunkCollection({
   children,
@@ -25,7 +26,7 @@ export function ChunkCollection({
       baseURL: "https://api2.editmode.com/",
       headers: {
         Accept: "application/json",
-        "referrer": window.location.href
+        "referrer": isBrowser() ? window.location.href : ""
       }
     });
     const cachedChunk = getCachedData(cacheId);
