@@ -2,7 +2,7 @@
 
 import { storeCache, getCachedData, api } from './utilities'
 
-export const getChunk = (identifier, projectId) => {
+export const getChunk = (identifier, projectId = "") => {
   const cacheId = identifier + projectId;
   let cachedChunk = getCachedData(cacheId);
   let chunk = cachedChunk && JSON.parse(cachedChunk);
