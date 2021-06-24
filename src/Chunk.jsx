@@ -7,7 +7,6 @@ export function Chunk({ children, identifier, src, contentKey, field = "", ...pr
   const type = src ? "image" : undefined;
   const defaultContent = src || children;
   const { Component } = useChunk(defaultContent, { identifier, type, contentKey, field });
-  console.log("lugg")
   return <Component {...props} />;
 }
 

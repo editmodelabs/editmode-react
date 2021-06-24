@@ -1,5 +1,6 @@
 import React from "react";
 import { sanitizeContent, transformImage } from './'
+import SVG from 'react-inlinesvg';
 
 export const renderChunk = (data, props) => {
   const { chunk, parsedChunk } = sanitizeContent(data, props)
@@ -7,7 +8,6 @@ export const renderChunk = (data, props) => {
   if (transformation && chunk.chunk_type == 'image') {
     chunk.content = transformImage(chunk.content, transformation)
   } 
-
   const defaultprops = {
     "data-chunk": chunk.identifier,
     "data-chunk-editable": true,
@@ -33,14 +33,29 @@ export const renderChunk = (data, props) => {
         class={"editmode-richtext-editor " + props.className}
       />);
     case "image":
-      return (<img
-        {...defaultprops}
-        src={chunk.content}
-        data-chunk-editable={false}
-        alt=""
-        {...props}
-      />);
+      if (isSvg(chunk.content)) {
+        return <SVG 
+          {...defaultprops}
+          src={chunk.content}
+          data-chunk-editable={false}
+          alt=""
+          wrapper="svg"
+          {...props}
+         />
+      } else {
+        return (<img
+          {...defaultprops}
+          src={chunk.content}
+          data-chunk-editable={false}
+          alt=""
+          {...props}
+        />);
+      }
     default:
       return <span {...props}>{parsedChunk}</span>;
   }
 };
+
+function isSvg(url) {
+  return(url.match(/\.(svg)$/) != null);
+}

@@ -5,7 +5,7 @@ export { Chunk } from "./Chunk.jsx";
 export { ChunkCollection } from "./ChunkCollection.jsx";
 export { ChunkFieldValue } from "./ChunkFieldValue.jsx";
 export { useChunk } from "./useChunk";
-export { getChunk } from "./getChunk";
+export { useGetChunk } from "./useGetChunk";
 export { useCollectionChunks } from "./useCollectionChunks";
 export { CustomChunkCollection } from "./CustomChunkCollection.jsx";
 export { ChunkCollectionContext } from "./ChunkCollectionContext.js";

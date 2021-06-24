@@ -2909,6 +2909,11 @@ execa@^4.0.0:
     signal-exit "^3.0.2"
     strip-final-newline "^2.0.0"
 
+exenv@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/exenv/-/exenv-1.2.2.tgz#2ae78e85d9894158670b03d47bec1f03bd91bb9d"
+  integrity sha1-KueOhdmJQVhnCwPUe+wfA72Ru50=
+
 expand-brackets@^0.1.4:
   version "0.1.5"
   resolved "https://registry.npmjs.org/expand-brackets/-/expand-brackets-0.1.5.tgz"
@@ -5063,6 +5068,19 @@ react-art@^17.0.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     scheduler "^0.20.2"
+
+react-from-dom@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/react-from-dom/-/react-from-dom-0.6.0.tgz#8b9710ba7fbd36cde9e13e9eb26f5f67ab933678"
+  integrity sha512-W5m1pYV7qlc9bmpA7p2K/wspYNlAh3aqJ9Tc5KRXe6vt/JlX6/84ol+RQlCMK69z+5e38sOpoVW5i4Qpqgs+EA==
+
+react-inlinesvg@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/react-inlinesvg/-/react-inlinesvg-2.3.0.tgz#62283c0ce7e9d11d8190ec3e89589102288830fd"
+  integrity sha512-fEGOdDf4k4bcveArbEpj01pJcH8pOCKLxmSj2POFdGvEk5YK0NZVnH6BXpW/PzACHPRsuh1YKAhNZyFnD28oxg==
+  dependencies:
+    exenv "^1.2.2"
+    react-from-dom "^0.6.0"
 
 react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
