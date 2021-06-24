@@ -33,6 +33,7 @@ export function ChunkFieldValue({ children, identifier, transformation, ...props
   if (chunk && fieldChunk) {
     props = {...props, "data-parent-identifier": chunk.identifier, 'data-custom-field-identifier': fieldChunk.custom_field_identifier }
   }
+
   return renderChunk(dummyFieldChunk || fieldChunk, props);
 }
 
