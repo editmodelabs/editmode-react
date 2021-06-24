@@ -45,8 +45,6 @@ export function useChunk(defaultContent, { identifier, type, contentKey }) {
       baseURL: "https://api2.editmode.com/",
       headers: {
         Accept: "application/json",
-      },
-      params: {
         referrer: window.location.href,
       },
     });
