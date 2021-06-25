@@ -57,5 +57,5 @@ export const renderChunk = (data, props) => {
 };
 
 function isSvg(url) {
-  return(url.match(/\.(svg)$/) != null);
+  return(url.match(/\.(svg)/) != null);
 }
