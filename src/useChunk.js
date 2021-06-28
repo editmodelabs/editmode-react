@@ -18,7 +18,7 @@ export function useChunk(defaultContent, { identifier, type, contentKey, field }
     contentKey = defaultContent ? computeContentKey(defaultContent) : null;
   }
 
-  const cacheId = identifier || contentKey + projectId + field;
+  let cacheId = identifier || contentKey + projectId + field;
 
   let fallbackChunk;
   if (typeof defaultChunks !== "undefined") {
@@ -36,10 +36,12 @@ export function useChunk(defaultContent, { identifier, type, contentKey, field }
       }
     }, [defaultChunks, identifier]);
   }
-  const branchId = branch || window["chunksBranchIdentifier"] || ""
+
+  let params = new URL(document.location.href).searchParams;
+  const branchId = branch || params.get("em_branch_id") || ""
   const branchParams = branchId && `branch_id=${branchId}` || ""
   let url = `chunks/${identifier || contentKey}?project_id=${projectId}&${branchParams}`;
-
+  if (branchId) cacheId += branchId
   useEffect(() => {
     let cachedChunk = getCachedData(cacheId);
     let newChunk = cachedChunk

@@ -27,8 +27,9 @@ export function ChunkCollection({
     //   const data = JSON.parse(cachedChunk);
     //   setChunk(data);
     // }
-    const branchId = branch || window["chunksBranchIdentifier"] || ""
 
+    let params = new URL(document.location.href).searchParams;
+    const branchId = branch || params.get("em_branch_id") || ""
     const urlParams = new URLSearchParams({
       limit,
       collection_identifier: identifier || contentKey,
@@ -96,7 +97,11 @@ export function ChunkCollection({
               "chunks-col-placeholder-wrapper chunks-hide"
             )}
           >
-            {children}
+            {
+              typeof children === 'function' ?
+                children(getChunk, placeholderChunk) :
+                children
+            }
           </div>
         </ChunkCollectionContext.Provider>
       )}
