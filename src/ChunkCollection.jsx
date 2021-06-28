@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
 import { EditmodeContext } from "./EditmodeContext";
-import { getCachedData, storeCache, computeClassName } from "./utilities";
+import { getCachedData, storeCache, computeClassName, api } from "./utilities";
 import axios from "axios";
 const isBrowser = () => typeof window !== "undefined";
 
@@ -18,27 +18,22 @@ export function ChunkCollection({
   const [chunks, setChunk] = useState([]);
   const cacheId = identifier + limit + tags.join("");
   // const { collection } = useCollectionData(["Featured Projects"]);
-  const { projectId } = useContext(EditmodeContext);
+  const { projectId, branch } = useContext(EditmodeContext);
 
   useEffect(() => {
-    // Get data from localStorage
-    const api = axios.create({
-      baseURL: "https://api2.editmode.com/",
-      headers: {
-        Accept: "application/json",
-        "referrer": isBrowser() ? window.location.href : ""
-      }
-    });
-    const cachedChunk = getCachedData(cacheId);
-    if (cachedChunk) {
-      const data = JSON.parse(cachedChunk);
-      setChunk(data);
-    }
+
+    const cachedChunk = false // getCachedData(cacheId);
+    // if (cachedChunk) {
+    //   const data = JSON.parse(cachedChunk);
+    //   setChunk(data);
+    // }
+    const branchId = branch || window["chunksBranchIdentifier"] || ""
 
     const urlParams = new URLSearchParams({
       limit,
       collection_identifier: identifier || contentKey,
       project_id: projectId,
+      branch_id: branchId
     });
 
     tags.forEach((tag) => urlParams.append("tags[]", tag));
@@ -46,6 +41,7 @@ export function ChunkCollection({
     api
       .get(`chunks?${urlParams}`)
       .then((res) => {
+        if (res.data.error) throw res.data.error
         storeCache(cacheId, res.data.chunks);
         if (!cachedChunk) setChunk(res.data.chunks);
       })
