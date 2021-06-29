@@ -12,8 +12,9 @@ export function Editmode({ children, projectId, defaultChunks }) {
     let params = new URL(document.location.href).searchParams;
     setbranch(params.get("em_branch_id"));
     window["chunksProjectIdentifier"] = projectId;
+
     const script = document.createElement("script");
-    script.src = "https://unpkg.com/editmode-magic-editor@0.0.5-canary.2.1ee49e8.0/dist/magic-editor.js";
+    script.src = "https://static.editmode.com/editmode@2.0.1/dist/editmode.js";
     script.async = true;
     document.body.append(script);
     
