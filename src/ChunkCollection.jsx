@@ -3,8 +3,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
 import { EditmodeContext } from "./EditmodeContext";
 import { getCachedData, storeCache, computeClassName, api } from "./utilities";
-import axios from "axios";
-const isBrowser = () => typeof window !== "undefined";
+
 
 export function ChunkCollection({
   children,
@@ -22,11 +21,11 @@ export function ChunkCollection({
 
   useEffect(() => {
 
-    const cachedChunk = false // getCachedData(cacheId);
-    // if (cachedChunk) {
-    //   const data = JSON.parse(cachedChunk);
-    //   setChunk(data);
-    // }
+    const cachedChunk = getCachedData(cacheId);
+    if (cachedChunk) {
+      const data = JSON.parse(cachedChunk);
+      setChunk(data);
+    }
 
     let params = new URL(document.location.href).searchParams;
     const branchId = branch || params.get("em_branch_id") || ""
@@ -61,7 +60,12 @@ export function ChunkCollection({
     : {};
 
   function getChunk(chunk, field) {
-    return chunk.content.find(c => c.custom_field_name == field).content
+    const fieldChunk = chunk.content.find(c => c.custom_field_name == field)
+    if (fieldChunk && typeof fieldChunk !== 'undefined') {
+      return fieldChunk.content
+    } else {
+      return ""
+    }
   }
 
   return (

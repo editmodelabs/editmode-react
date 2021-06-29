@@ -1,7 +1,7 @@
 // @ts-check
 import React, { useEffect, useState } from "react";
 import { EditmodeContext } from "./EditmodeContext";
-import MagicEditor from 'editmode-magic-editor'
+import ReactDOM from 'react-dom'
 
 export function Editmode({ children, projectId, defaultChunks }) {
   const [branch, setbranch] = useState(null);
@@ -13,7 +13,11 @@ export function Editmode({ children, projectId, defaultChunks }) {
     let params = new URL(document.location.href).searchParams;
     setbranch(params.get("em_branch_id"));
     window["chunksProjectIdentifier"] = projectId;
-    MagicEditor.start()
+    const script = document.createElement("script");
+    script.src = "https://unpkg.com/editmode-magic-editor@0.0.5-canary.2.1ee49e8.0/dist/magic-editor.js";
+    script.async = true;
+    document.body.append(script);
+    
   }, []);
 
   return (
