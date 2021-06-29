@@ -1,7 +1,6 @@
 // @ts-check
 import React, { useEffect, useState } from "react";
 import { EditmodeContext } from "./EditmodeContext";
-import ReactDOM from 'react-dom'
 
 export function Editmode({ children, projectId, defaultChunks }) {
   const [branch, setbranch] = useState(null);
