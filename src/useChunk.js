@@ -11,14 +11,14 @@ import {
 } from "./utilities";
 
 export function useChunk(defaultContent, { identifier, type, contentKey, field }) {
-  const { projectId, defaultChunks } = useContext(EditmodeContext);
+  const { projectId, defaultChunks, branch } = useContext(EditmodeContext);
   let [chunk, setChunk] = useState(undefined);
 
   if (!contentKey) {
     contentKey = defaultContent ? computeContentKey(defaultContent) : null;
   }
 
-  const cacheId = identifier || contentKey + projectId + field;
+  let cacheId = identifier || contentKey + projectId + field;
 
   let fallbackChunk;
   if (typeof defaultChunks !== "undefined") {
@@ -37,7 +37,11 @@ export function useChunk(defaultContent, { identifier, type, contentKey, field }
     }, [defaultChunks, identifier]);
   }
 
-  let url = `chunks/${identifier || contentKey}?project_id=${projectId}`;
+  let params = new URL(document.location.href).searchParams;
+  const branchId = branch || params.get("em_branch_id") || ""
+  const branchParams = branchId && `branch_id=${branchId}` || ""
+  let url = `chunks/${identifier || contentKey}?project_id=${projectId}&${branchParams}`;
+  if (branchId) cacheId += branchId
 
   useEffect(() => {
     let cachedChunk = getCachedData(cacheId);
