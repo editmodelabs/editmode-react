@@ -37,13 +37,12 @@ export function useChunk(defaultContent, { identifier, type, contentKey, field }
     }, [defaultChunks, identifier]);
   }
 
-  let params = new URL(document.location.href).searchParams;
-  const branchId = branch || params.get("em_branch_id") || ""
-  const branchParams = branchId && `branch_id=${branchId}` || ""
-  let url = `chunks/${identifier || contentKey}?project_id=${projectId}&${branchParams}`;
-  if (branchId) cacheId += branchId
-
   useEffect(() => {
+    let params = new URL(document.location.href).searchParams;
+    const branchId = branch || params.get("em_branch_id") || ""
+    const branchParams = branchId && `branch_id=${branchId}` || ""
+    let url = `chunks/${identifier || contentKey}?project_id=${projectId}&${branchParams}`;
+    if (branchId) cacheId += branchId
     let cachedChunk = getCachedData(cacheId);
     let newChunk = cachedChunk
       ? JSON.parse(cachedChunk)
