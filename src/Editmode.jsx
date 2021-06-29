@@ -14,7 +14,6 @@ export function Editmode({ children, projectId, defaultChunks }) {
 
     const script = document.createElement("script");
     script.src = "https://unpkg.com/editmode-magic-editor@0.0.5-canary.2.1ee49e8.0/dist/magic-editor.js";
-    script.async = true;
     document.body.append(script);
 
     let params = new URL(document.location.href).searchParams;
