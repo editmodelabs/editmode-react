@@ -8,7 +8,6 @@ import Watermark from "./Watermark.jsx";
 export function Editmode({ children, projectId, defaultChunks }) {
   const [branch, setbranch] = useState(null);
   const [hasWaterMark, setHasWaterMark] = useState(null);
-  const [cachedData, setCachedData] = useState(null);
   if (!projectId) {
     throw new Error("<Editmode projectId={...}> is missing a valid projectId");
   }
