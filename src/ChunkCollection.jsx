@@ -72,7 +72,7 @@ export function ChunkCollection({
       data-chunk-cache-id={cacheId}
       data-chunk-collection-identifier={identifier}
     >
-      {chunks.map((chunk) => (
+      {chunks.map((chunk, index) => (
         <ChunkCollectionContext.Provider key={chunk.identifier} value={chunk}>
           <div
             className={computeClassName(
@@ -82,7 +82,7 @@ export function ChunkCollection({
           >
             {
               typeof children === 'function' ?
-                children(getChunk, chunk) :
+                children(getChunk, chunk, index) :
                 children
             }
           </div>
@@ -101,7 +101,7 @@ export function ChunkCollection({
           >
             {
               typeof children === 'function' ?
-                children(getChunk, placeholderChunk) :
+                children(getChunk, placeholderChunk, 0) :
                 children
             }
           </div>

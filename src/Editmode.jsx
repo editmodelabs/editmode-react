@@ -36,10 +36,8 @@ export function Editmode({ children, projectId, defaultChunks }) {
 
   return (
     <EditmodeContext.Provider value={{ branch, projectId, defaultChunks }}>
-      {children}
-      {
-        hasWaterMark && <Watermark />
-      }
+      { children }
+      { hasWaterMark && <Watermark /> }
     </EditmodeContext.Provider>
   );
 }
