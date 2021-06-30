@@ -5,6 +5,7 @@ import axios from "axios";
 
 export function useCollectionChunks(identifier, limit = "", tags = []) {
   const { projectId } = useContext(EditmodeContext);
+  console.log(projectId);
   const [chunks, setChunk] = useState([]);
   const cacheId = computeIdentifier(identifier)
     ? identifier + limit + tags.join("")
