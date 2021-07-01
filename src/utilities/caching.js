@@ -33,6 +33,6 @@ export const getTimedCachedData = (id) => {
       localStorage.removeItem(id);
       return null;
     }
-    return data.value;
+    return item.value;
   }
 };

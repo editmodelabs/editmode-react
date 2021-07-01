@@ -1,7 +1,7 @@
 // @ts-check
 import React, { useEffect, useState } from "react";
 import { EditmodeContext } from "./EditmodeContext";
-import { getCachedData, storeCache } from "./utilities";
+import { getTimedCachedData, storeTimedCache } from "./utilities";
 import { api } from "./utilities";
 import Watermark from "./Watermark.jsx";
 
@@ -13,10 +13,10 @@ export function Editmode({ children, projectId, defaultChunks }) {
   }
   const cacheId = projectId + "_provider";
   useEffect(() => {
-    const cachedItem = getCachedData(cacheId);
-    const data = JSON.parse(cachedItem);
     window["chunksProjectIdentifier"] = projectId;
-
+    let data;
+    const cachedItem = getTimedCachedData(cacheId);
+    if (cachedItem) data = JSON.parse(cachedItem);
     const script = document.createElement("script");
     script.src = "http://localhost:10001/magic-editor.js";
     document.body.append(script);
@@ -28,7 +28,7 @@ export function Editmode({ children, projectId, defaultChunks }) {
       api
         .get(`/projects/${projectId}`)
         .then((res) => {
-          storeCache(cacheId, res.data);
+          storeTimedCache(cacheId, res.data, 3000);
           const project = res.data;
           if (project.has_watermark) {
             setHasWaterMark(true);
