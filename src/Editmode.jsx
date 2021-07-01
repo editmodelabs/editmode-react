@@ -28,7 +28,7 @@ export function Editmode({ children, projectId, defaultChunks }) {
       api
         .get(`/projects/${projectId}`)
         .then((res) => {
-          storeTimedCache(cacheId, res.data, 3000);
+          storeTimedCache(cacheId, res.data, 3600);
           const project = res.data;
           if (project.has_watermark) {
             setHasWaterMark(true);
