@@ -18,7 +18,8 @@ export function Editmode({ children, projectId, defaultChunks }) {
     window["chunksProjectIdentifier"] = projectId;
 
     const script = document.createElement("script");
-    script.src = "http://localhost:10001/magic-editor.js";
+    script.src =
+      "https://unpkg.com/editmode-magic-editor@^0/dist/magic-editor.js";
     document.body.append(script);
 
     let params = new URL(document.location.href).searchParams;
