@@ -26,20 +26,22 @@ export function ChunkCollection({
       setChunk(data);
     }
     let params = new URL(document.location.href).searchParams;
-    const branchId = branch || params.get("em_branch_id") || ""
+    const branchId = branch || params.get("em_branch_id") || "";
     const urlParams = new URLSearchParams({
       limit,
       collection_identifier: identifier || contentKey,
       project_id: projectId,
-      branch_id: branchId
+      branch_id: branchId,
     });
+
+    console.log("tags", tags);
 
     tags.forEach((tag) => urlParams.append("tags[]", tag));
 
     api
       .get(`chunks?${urlParams}`)
       .then((res) => {
-        if (res.data.error) throw res.data.error
+        if (res.data.error) throw res.data.error;
         storeCache(cacheId, res.data.chunks);
         if (!cachedChunk) setChunk(res.data.chunks);
       })
@@ -58,11 +60,11 @@ export function ChunkCollection({
     : {};
 
   function getChunk(chunk, field) {
-    const fieldChunk = chunk.content.find(c => c.custom_field_name == field)
-    if (fieldChunk && typeof fieldChunk !== 'undefined') {
-      return fieldChunk.content
+    const fieldChunk = chunk.content.find((c) => c.custom_field_name == field);
+    if (fieldChunk && typeof fieldChunk !== "undefined") {
+      return fieldChunk.content;
     } else {
-      return ""
+      return "";
     }
   }
 
@@ -81,11 +83,9 @@ export function ChunkCollection({
               "chunks-collection-item--wrapper"
             )}
           >
-            {
-              typeof children === 'function' ?
-                children(getChunk, chunk, index) :
-                children
-            }
+            {typeof children === "function"
+              ? children(getChunk, chunk, index)
+              : children}
           </div>
         </ChunkCollectionContext.Provider>
       ))}
@@ -100,18 +100,14 @@ export function ChunkCollection({
               "chunks-col-placeholder-wrapper chunks-hide"
             )}
           >
-            {
-              typeof children === 'function' ?
-                children(getChunk, placeholderChunk, 0) :
-                children
-            }
+            {typeof children === "function"
+              ? children(getChunk, placeholderChunk, 0)
+              : children}
           </div>
         </ChunkCollectionContext.Provider>
       )}
     </div>
   );
 }
-
-
 
 export default ChunkCollection;
