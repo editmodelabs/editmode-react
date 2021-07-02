@@ -25,9 +25,7 @@ export function ChunkFieldValue({ children, identifier, transformation, ...props
   const dummyFieldChunk = chunk?.placeholder && ({
     ...fieldChunk,
     identifier: '',
-    content: fieldChunk.chunk_type === 'image'
-      ? 'https://editmode.com/upload.png'
-      : "",
+    content: '',
   })
 
   if (chunk && fieldChunk) {

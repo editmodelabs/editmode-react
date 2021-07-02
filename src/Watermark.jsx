@@ -14,9 +14,9 @@ const styles = {
   boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1),0 1px 2px 0 rgba(0, 0, 0, 0.06)"
 }
 
-export default function Watermark() {
+export default function Watermark({projectId}) {
   return (
-    <div style={styles} onClick={() => window.location.href = "https://editmode.com"}>
+    <div style={styles} onClick={() => window.open(`https://editmode.com?ref=pb&pid=${projectId}`)}>
       <svg xmlns="http://www.w3.org/2000/svg"  width="25" height="25" viewBox="0 0 548 532" version="1.1" fill="currentColor">
         <g id="Page-2" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g id="Group-2-Copy" fill="#02164B" fillRule="nonzero">
