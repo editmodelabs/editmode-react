@@ -1,20 +1,22 @@
 import React from 'react'
 const styles = {
   zIndex: 9999,
-  bottom: 2,
-  right: 3,
+  bottom: 8,
+  right: 8,
   position: "fixed",
-  opacity: 0.5,
+  opacity: 1,
   display: 'flex',
   alignItems: "center",
   background: "rgba(255,255,255, 0.9)",
   cursor: "pointer",
+  borderRadius: 5,
+  padding: "2px 5px 2px 2px",
   boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1),0 1px 2px 0 rgba(0, 0, 0, 0.06)"
 }
 
-export default function Watermark() {
+export default function Watermark({projectId}) {
   return (
-    <div style={styles} onClick={() => window.location.href = "https://editmode.com"}>
+    <div style={styles} onClick={() => window.open(`https://editmode.com?ref=pb&pid=${projectId}`)}>
       <svg xmlns="http://www.w3.org/2000/svg"  width="25" height="25" viewBox="0 0 548 532" version="1.1" fill="currentColor">
         <g id="Page-2" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g id="Group-2-Copy" fill="#02164B" fillRule="nonzero">
@@ -22,7 +24,7 @@ export default function Watermark() {
             </g>
         </g>
       </svg>
-      <span style={{fontSize: 13, fontWeight: 600}}>Made in Editmode</span>
+      <span style={{fontSize: 13, fontWeight: 600}}>Powered by Editmode</span>
     </div>
   )
 }

@@ -96,8 +96,6 @@ export function useChunk(defaultContent, { identifier, type, contentKey, field }
       },
       content: chunk.content,
     };
-    
-    
   } else {
     return {
       Component() {
