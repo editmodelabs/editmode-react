@@ -73,7 +73,7 @@ export function ChunkCollection({
       className={computeClassName(className, "chunks-collection-wrapper")}
       data-chunk-cache-id={cacheId}
       data-chunk-collection-identifier={identifier}
-      data-tags={tags ? tags.join("-") : ""}
+      data-tags={tags ? tags.join("|") : ""}
     >
       {chunks.map((chunk, index) => (
         <ChunkCollectionContext.Provider key={chunk.identifier} value={chunk}>
