@@ -4,3 +4,4 @@ demo
 webpack.config.js
 .all-contributorsrc
 .github
+dist
