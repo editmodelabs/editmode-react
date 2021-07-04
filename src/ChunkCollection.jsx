@@ -34,8 +34,6 @@ export function ChunkCollection({
       branch_id: branchId,
     });
 
-    console.log("tags", tags);
-
     tags.forEach((tag) => urlParams.append("tags[]", tag));
 
     api
@@ -94,16 +92,16 @@ export function ChunkCollection({
           key={chunks[0].identifier + "dummy"}
           value={placeholderChunk}
         >
-          <div
+          <template
             className={computeClassName(
               itemClass,
-              "chunks-col-placeholder-wrapper chunks-hide"
+              "chunks-col-placeholder-wrapper"
             )}
           >
             {typeof children === "function"
               ? children(getChunk, placeholderChunk, 0)
               : children}
-          </div>
+          </template>
         </ChunkCollectionContext.Provider>
       )}
     </div>

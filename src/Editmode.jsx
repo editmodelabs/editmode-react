@@ -14,6 +14,8 @@ export function Editmode({ children, projectId, defaultChunks }) {
   const cacheId = projectId + "_provider";
   useEffect(() => {
     window["chunksProjectIdentifier"] = projectId;
+    window["chunksAppFramework"] = "reactjs"
+
     let data;
     const cachedItem = getTimedCachedData(cacheId);
     if (cachedItem) data = JSON.parse(cachedItem);
