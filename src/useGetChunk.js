@@ -9,7 +9,7 @@ export const useGetChunk = (identifier, field = "") => {
   const [project, setProject] = useState(projectId)
   const [chunk, setChunk] = useState(undefined);
 
-  const cacheId = identifier + project + field.replaceAll(/\s/g,'');
+  const cacheId = identifier + project + field;
 
   useEffect(() => {
     if (!project && window["chunksProjectIdentifier"])  {
