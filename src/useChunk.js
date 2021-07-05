@@ -18,7 +18,7 @@ export function useChunk(defaultContent, { identifier, type, contentKey, field }
     contentKey = defaultContent ? computeContentKey(defaultContent) : null;
   }
 
-  let cacheId = identifier || contentKey + projectId + field;
+  let cacheId = identifier || contentKey + projectId + field.replaceAll(/\s/g,'');
 
   let fallbackChunk;
   if (typeof defaultChunks !== "undefined") {
