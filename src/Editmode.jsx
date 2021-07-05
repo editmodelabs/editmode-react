@@ -18,7 +18,8 @@ export function Editmode({ children, projectId, defaultChunks }) {
 
     let data;
     const cachedItem = getTimedCachedData(cacheId);
-    if (cachedItem) data = JSON.parse(cachedItem);
+    try { if (cachedItem) data = JSON.parse(cachedItem); } catch (error) {}
+
     const script = document.createElement("script");
     script.src = "https://unpkg.com/editmode-magic-editor@^0/dist/magic-editor.js";
     document.body.append(script);
