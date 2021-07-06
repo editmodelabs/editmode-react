@@ -1,3 +1,15 @@
+# v3.1.31 (Tue Jul 06 2021)
+
+#### 🐛 Bug Fix
+
+- MSIAB Improvements [#52](https://github.com/editmodelabs/editmode-react/pull/52) ([@jenvillaganas](https://github.com/jenvillaganas))
+
+#### Authors: 1
+
+- Jen Villaganas  ([@jenvillaganas](https://github.com/jenvillaganas))
+
+---
+
 # v3.1.30 (Thu Jun 24 2021)
 
 #### ⚠️ Pushed to `master`
