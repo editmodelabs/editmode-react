@@ -1,24 +1,24 @@
 // @ts-check
 import { useContext, useEffect, useState, useMemo } from "react";
-import axios from "axios";
 
 import { EditmodeContext } from "./EditmodeContext";
 import {
+  api,
   renderChunk,
   computeContentKey,
   getCachedData,
   storeCache,
 } from "./utilities";
 
-export function useChunk(defaultContent, { identifier, type, contentKey }) {
-  const { projectId, defaultChunks } = useContext(EditmodeContext);
-  const [chunk, setChunk] = useState(undefined);
+export function useChunk(defaultContent, { identifier, type, contentKey, field }) {
+  const { projectId, defaultChunks, branch } = useContext(EditmodeContext);
+  let [chunk, setChunk] = useState(undefined);
 
   if (!contentKey) {
     contentKey = defaultContent ? computeContentKey(defaultContent) : null;
   }
 
-  const cacheId = identifier || contentKey + projectId;
+  let cacheId = identifier || contentKey + projectId + field;
 
   let fallbackChunk;
   if (typeof defaultChunks !== "undefined") {
@@ -37,20 +37,12 @@ export function useChunk(defaultContent, { identifier, type, contentKey }) {
     }, [defaultChunks, identifier]);
   }
 
-  let url = `chunks/${identifier || contentKey}?project_id=${projectId}`;
-
   useEffect(() => {
-    // Render content
-    const api = axios.create({
-      baseURL: "https://api2.editmode.com/",
-      headers: {
-        Accept: "application/json",
-      },
-      params: {
-        referrer: window.location.href,
-      },
-    });
-
+    let params = new URL(document.location.href).searchParams;
+    const branchId = branch || params.get("em_branch_id") || ""
+    const branchParams = branchId && `branch_id=${branchId}` || ""
+    let url = `chunks/${identifier || contentKey}?project_id=${projectId}&${branchParams}`;
+    if (branchId) cacheId += branchId
     let cachedChunk = getCachedData(cacheId);
     let newChunk = cachedChunk
       ? JSON.parse(cachedChunk)
@@ -79,10 +71,28 @@ export function useChunk(defaultContent, { identifier, type, contentKey }) {
     }
   }, [cacheId]);
 
+  // Modify chunk if field is present and chunk_type is collection
+  // e.g. <Chunk identifier="identifier_......" field="Title"/>
+  if ( chunk && chunk.chunk_type == "collection_item" && field) {
+    field = field.toLowerCase();
+    const fieldChunk = chunk.content.find(c =>
+      c.custom_field_identifier.toLowerCase() == field || c.custom_field_name.toLowerCase() == field
+    )
+    if (fieldChunk) {
+      setChunk(fieldChunk) // This will set chunk to fieldChunk, and will be rendered by line: 92
+    } else {
+      return {
+        Component() {
+          return null;
+        },
+      };
+    }
+  }
+
   if (chunk) {
     return {
       Component(props) {
-        return renderChunk(chunk, props);
+        return renderChunk(chunk, props, cacheId);
       },
       content: chunk.content,
     };

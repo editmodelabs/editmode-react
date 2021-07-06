@@ -2,9 +2,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
 import { EditmodeContext } from "./EditmodeContext";
-import { getCachedData, storeCache, computeClassName } from "./utilities";
-import axios from "axios";
-const isBrowser = () => typeof window !== "undefined";
+import { getCachedData, storeCache, computeClassName, api } from "./utilities";
 
 export function ChunkCollection({
   children,
@@ -18,27 +16,22 @@ export function ChunkCollection({
   const [chunks, setChunk] = useState([]);
   const cacheId = identifier + limit + tags.join("");
   // const { collection } = useCollectionData(["Featured Projects"]);
-  const { projectId } = useContext(EditmodeContext);
+  const { projectId, branch } = useContext(EditmodeContext);
 
   useEffect(() => {
     // Get data from localStorage
-    const api = axios.create({
-      baseURL: "https://api2.editmode.com/",
-      headers: {
-        Accept: "application/json",
-        "referrer": isBrowser() ? window.location.href : ""
-      }
-    });
     const cachedChunk = getCachedData(cacheId);
     if (cachedChunk) {
       const data = JSON.parse(cachedChunk);
       setChunk(data);
     }
-
+    let params = new URL(document.location.href).searchParams;
+    const branchId = branch || params.get("em_branch_id") || "";
     const urlParams = new URLSearchParams({
       limit,
       collection_identifier: identifier || contentKey,
       project_id: projectId,
+      branch_id: branchId,
     });
 
     tags.forEach((tag) => urlParams.append("tags[]", tag));
@@ -46,6 +39,7 @@ export function ChunkCollection({
     api
       .get(`chunks?${urlParams}`)
       .then((res) => {
+        if (res.data.error) throw res.data.error;
         storeCache(cacheId, res.data.chunks);
         if (!cachedChunk) setChunk(res.data.chunks);
       })
@@ -63,13 +57,23 @@ export function ChunkCollection({
     ? { ...chunks[0], placeholder: true }
     : {};
 
+  function getChunk(chunk, field) {
+    const fieldChunk = chunk.content.find((c) => c.custom_field_name == field);
+    if (fieldChunk && typeof fieldChunk !== "undefined") {
+      return fieldChunk.content;
+    } else {
+      return "";
+    }
+  }
+
   return (
     <div
       className={computeClassName(className, "chunks-collection-wrapper")}
       data-chunk-cache-id={cacheId}
       data-chunk-collection-identifier={identifier}
+      data-chunk-tags={tags ? tags.join("|") : ""}
     >
-      {chunks.map((chunk) => (
+      {chunks.map((chunk, index) => (
         <ChunkCollectionContext.Provider key={chunk.identifier} value={chunk}>
           <div
             className={computeClassName(
@@ -77,7 +81,9 @@ export function ChunkCollection({
               "chunks-collection-item--wrapper"
             )}
           >
-            {children}
+            {typeof children === "function"
+              ? children(getChunk, chunk, index)
+              : children}
           </div>
         </ChunkCollectionContext.Provider>
       ))}
@@ -86,14 +92,16 @@ export function ChunkCollection({
           key={chunks[0].identifier + "dummy"}
           value={placeholderChunk}
         >
-          <div
+          <template
             className={computeClassName(
               itemClass,
-              "chunks-col-placeholder-wrapper chunks-hide"
+              "chunks-col-placeholder-wrapper"
             )}
           >
-            {children}
-          </div>
+            {typeof children === "function"
+              ? children(getChunk, placeholderChunk, 0)
+              : children}
+          </template>
         </ChunkCollectionContext.Provider>
       )}
     </div>

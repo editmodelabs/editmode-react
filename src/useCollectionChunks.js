@@ -1,21 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { getCachedData, storeCache } from "./utilities";
-import axios from "axios";
+import { getCachedData, storeCache, api } from "./utilities";
 
 export function useCollectionChunks(identifier, limit = "", tags = []) {
   const [chunks, setChunk] = useState([]);
   const cacheId = identifier + limit + tags.join("");
 
   useEffect(() => {
-    const api = axios.create({
-      baseURL: "https://api2.editmode.com/",
-      headers: {
-        Accept: "application/json",
-      },
-      params: {
-        referrer: window.location.href,
-      },
-    });
     const cachedChunk = getCachedData(cacheId);
     if (cachedChunk) {
       const data = JSON.parse(cachedChunk);
