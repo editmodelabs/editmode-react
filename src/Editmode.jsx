@@ -16,23 +16,21 @@ export function Editmode({ children, projectId, defaultChunks }) {
     window["chunksProjectIdentifier"] = projectId;
     window["chunksAppFramework"] = "reactjs"
 
-    let data;
     const cachedItem = getTimedCachedData(cacheId);
-    try { if (cachedItem) data = JSON.parse(cachedItem); } catch (error) {}
 
     const script = document.createElement("script");
+
     script.src = "https://unpkg.com/editmode-magic-editor@^0/dist/magic-editor.js";
-    script.defer = true
     document.body.append(script);
 
     let params = new URL(document.location.href).searchParams;
     setbranch(params.get("em_branch_id"));
 
-    if (!data) {
+    if (!cachedItem) {
       api
         .get(`/projects/${projectId}`)
         .then((res) => {
-          storeTimedCache(cacheId, res.data, 3600);
+          storeTimedCache(cacheId, res.data);
           const project = res.data;
           if (project.has_watermark) {
             setHasWaterMark(true);
@@ -42,7 +40,7 @@ export function Editmode({ children, projectId, defaultChunks }) {
           console.error(error);
         });
     } else {
-      const project = data;
+      const project = cachedItem;
       if (project.has_watermark) setHasWaterMark(true);
     }
   }, []);
@@ -54,4 +52,5 @@ export function Editmode({ children, projectId, defaultChunks }) {
     </EditmodeContext.Provider>
   );
 }
+
 export default Editmode;

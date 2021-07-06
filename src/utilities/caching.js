@@ -12,12 +12,12 @@ export const storeCache = (id, data) => {
   }
 };
 
-export const storeTimedCache = (id, data, expiryTime) => {
+export const storeTimedCache = (id, data) => {
   if (isBrowser()) {
-    const now = new Date();
+    const expiry = new Date(new Date().setHours(new Date().getHours() + 1)); // Set 1 hour expiration
     const item = {
       value: data,
-      expiry: now.getTime() + expiryTime,
+      expiry: expiry.getTime(),
     };
     localStorage.setItem(id, JSON.stringify(item));
   }
