@@ -16,7 +16,6 @@ export function useChunk(
 ) {
   const { projectId, defaultChunks, branch } = useContext(EditmodeContext);
   let [chunk, setChunk] = useState(undefined);
-  console.log(projectId);
 
   if (!contentKey) {
     contentKey = defaultContent ? computeContentKey(defaultContent) : null;
@@ -62,13 +61,15 @@ export function useChunk(
 
     // Fetch new data
     let error;
-    api
-      .get(url)
-      .then((res) => {
-        storeCache(cacheId, res.data);
-        if (!cachedChunk) setChunk(res.data);
-      }) // Store chunk to localstorage
-      .catch((error) => console.log(error)); // Set error state
+    if (!cachedChunk) {
+      api
+        .get(url)
+        .then((res) => {
+          storeCache(cacheId, res.data);
+          if (!cachedChunk) setChunk(res.data);
+        }) // Store chunk to localstorage
+        .catch((error) => console.log(error));
+    } // Set error state
 
     if (error && identifier) {
       console.warn(

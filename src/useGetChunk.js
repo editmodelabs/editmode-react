@@ -19,16 +19,18 @@ export const useGetChunk = (identifier, field = "") => {
 
     let url = `chunks/${identifier}?project_id=${project}`;
 
-    api
-      .get(url)
-      .then((res) => {
-        const error = res.data.error || res.data.message;
-        if (!error) {
-          storeCache(cacheId, res.data);
-          if (!cachedChunk) setChunk(res.data);
-        }
-      })
-      .catch((error) => console.error(error, identifier, field)); // Set error state
+    if (!cachedChunk) {
+      api
+        .get(url)
+        .then((res) => {
+          const error = res.data.error || res.data.message;
+          if (!error) {
+            storeCache(cacheId, res.data);
+            if (!cachedChunk) setChunk(res.data);
+          }
+        })
+        .catch((error) => console.error(error, identifier, field));
+    }
   }, [cacheId]);
 
   if (field && chunk && chunk.chunk_type == "collection_item") {
