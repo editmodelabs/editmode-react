@@ -15,12 +15,11 @@ export function Editmode({ children, projectId, defaultChunks }) {
   useEffect(() => {
     window["chunksProjectIdentifier"] = projectId;
     window["chunksAppFramework"] = "reactjs"
-
     const cachedItem = getTimedCachedData(cacheId);
-
+    if (cachedItem) window["chunksProjectLoaded"] = true;
     const script = document.createElement("script");
 
-    script.src = "https://unpkg.com/editmode-magic-editor@^0/dist/magic-editor.js";
+    script.src = "http://unpkg.com/editmode-magic-editor@^0/dist/magic-editor.js";
     document.body.append(script);
 
     let params = new URL(document.location.href).searchParams;
