@@ -2,7 +2,7 @@ import React from "react";
 import { sanitizeContent, transformImage } from './'
 import SVG from 'react-inlinesvg';
 
-export const renderChunk = (data, props) => {
+export const renderChunk = (data, props, cacheId) => {
   const { chunk, parsedChunk } = sanitizeContent(data, props)
   const transformation = props.transformation
   if (transformation && chunk.chunk_type == 'image') {
@@ -13,6 +13,7 @@ export const renderChunk = (data, props) => {
     "data-chunk-editable": true,
     "data-chunk-content-key": chunk.content_key,
     "data-chunk-type": chunk.chunk_type,
+    "data-chunk-cache-id": cacheId,
     "key": chunk.identifier,
     class: props.className
   }

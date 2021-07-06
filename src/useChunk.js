@@ -92,7 +92,7 @@ export function useChunk(defaultContent, { identifier, type, contentKey, field }
   if (chunk) {
     return {
       Component(props) {
-        return renderChunk(chunk, props);
+        return renderChunk(chunk, props, cacheId);
       },
       content: chunk.content,
     };
