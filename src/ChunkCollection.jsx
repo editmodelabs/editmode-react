@@ -36,18 +36,20 @@ export function ChunkCollection({
 
     tags.forEach((tag) => urlParams.append("tags[]", tag));
 
-    api
-      .get(`chunks?${urlParams}`)
-      .then((res) => {
-        if (res.data.error) throw res.data.error;
-        storeCache(cacheId, res.data.chunks);
-        if (!cachedChunk) setChunk(res.data.chunks);
-      })
-      .catch((error) => {
-        console.error(
-          `Something went wrong trying to retrieve chunk collection: ${error}. Have you provided the correct Editmode identifier as a prop to your ChunkCollection component instance?`
-        );
-      });
+    if (!cachedChunk) {
+      api
+        .get(`chunks?${urlParams}`)
+        .then((res) => {
+          if (res.data.error) throw res.data.error;
+          storeCache(cacheId, res.data.chunks);
+          if (!cachedChunk) setChunk(res.data.chunks);
+        })
+        .catch((error) => {
+          console.error(
+            `Something went wrong trying to retrieve chunk collection: ${error}. Have you provided the correct Editmode identifier as a prop to your ChunkCollection component instance?`
+          );
+        });
+    }
   }, [identifier]);
 
   if (!chunks?.length) {
