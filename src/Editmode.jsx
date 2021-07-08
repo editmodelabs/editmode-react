@@ -20,13 +20,12 @@ export function Editmode({ children, projectId, defaultChunks, branchId }) {
   const cacheId = projectId + "_provider";
   useEffect(() => {
     let params = new URL(document.location.href).searchParams;
-    let queryParams = new URLSearchParams(window.location.search);
     branchId ? setbranch(branchId) : setbranch(params.get("em_branch_id"));
     setIsEditorActive(window.location.href.indexOf("editmode") > -1);
 
     if (branchId && isEditorActive) {
-      queryParams.set("em_branch_id", `${branchId}`);
-      history.pushState(null, null, "?" + queryParams.toString());
+      params.set("em_branch_id", `${branchId}`);
+      history.pushState(null, null, "?" + params.toString());
     }
 
     window["chunksProjectIdentifier"] = projectId;
