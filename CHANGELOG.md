@@ -1,5 +1,17 @@
 # v3.1.32 (Thu Jul 08 2021)
 
+#### 🐛 Bug Fix
+
+- Branch id prop [#54](https://github.com/editmodelabs/editmode-react/pull/54) ([@francisbulus](https://github.com/francisbulus))
+
+#### Authors: 1
+
+- Francis Bulus ([@francisbulus](https://github.com/francisbulus))
+
+---
+
+# v3.1.32 (Thu Jul 08 2021)
+
 #### 🚀 Enhancement
 
 - Add Branch ID Prop to Editmode Wrapper ([@francisbulus](https://github.com/francisbulus))
