@@ -1,5 +1,21 @@
 # v3.1.33 (Thu Jul 08 2021)
 
+#### 🐛 Bug Fix
+
+- Merge branch 'master' of https://github.com/editmodelabs/editmode-react [#55](https://github.com/editmodelabs/editmode-react/pull/55) ([@francisbulus](https://github.com/francisbulus))
+
+#### ⚠️ Pushed to `master`
+
+- pull from remote branch ([@francisbulus](https://github.com/francisbulus))
+
+#### Authors: 1
+
+- Francis Bulus ([@francisbulus](https://github.com/francisbulus))
+
+---
+
+# v3.1.33 (Thu Jul 08 2021)
+
 #### ⚠️ Pushed to `master`
 
 - Fix script scr and initialize preset id for window variable earlier ([@francisbulus](https://github.com/francisbulus))
