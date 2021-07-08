@@ -16,7 +16,6 @@ export function Editmode({
   if (!projectId) {
     throw new Error("<Editmode projectId={...}> is missing a valid projectId");
   }
-  if (branchId) setbranch(branchId);
   const cacheId = projectId + "_provider";
   useEffect(() => {
     window["chunksProjectIdentifier"] = projectId;
@@ -28,9 +27,12 @@ export function Editmode({
     script.src =
       "https://unpkg.com/editmode-magic-editor@^0/dist/magic-editor.js";
     document.body.append(script);
-
     let params = new URL(document.location.href).searchParams;
-    setbranch(params.get("em_branch_id"));
+    if (branchId) {
+      setbranch(branchId);
+    } else {
+      setbranch(params.get("em_branch_id"));
+    }
 
     if (!cachedItem) {
       api
