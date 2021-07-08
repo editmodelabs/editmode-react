@@ -1,8 +1,8 @@
-# v3.1.32 (Thu Jul 08 2021)
+# v3.1.33 (Thu Jul 08 2021)
 
-#### 🐛 Bug Fix
+#### ⚠️ Pushed to `master`
 
-- Branch id prop [#54](https://github.com/editmodelabs/editmode-react/pull/54) ([@francisbulus](https://github.com/francisbulus))
+- Fix script scr and initialize preset id for window variable earlier ([@francisbulus](https://github.com/francisbulus))
 
 #### Authors: 1
 
