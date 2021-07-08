@@ -14,7 +14,6 @@ export function Editmode({ children, projectId, defaultChunks, branchId }) {
   useHotkeys("cmd+shift+e", () => {
     setIsEditorActive(!isEditorActive);
   });
-  console.log(isEditorActive);
   if (!projectId) {
     throw new Error("<Editmode projectId={...}> is missing a valid projectId");
   }
