@@ -10,7 +10,10 @@ import {
   storeCache,
 } from "./utilities";
 
-export function useChunk(defaultContent, { identifier, type, contentKey, field }) {
+export function useChunk(
+  defaultContent,
+  { identifier, type, contentKey, field }
+) {
   const { projectId, defaultChunks, branch } = useContext(EditmodeContext);
   let [chunk, setChunk] = useState(undefined);
 
@@ -34,15 +37,17 @@ export function useChunk(defaultContent, { identifier, type, contentKey, field }
             chunkItem.project_id == projectId
         );
       }
-    }, [defaultChunks, identifier]);
+    }, [defaultChunks, identifier, branch]);
   }
 
   useEffect(() => {
     let params = new URL(document.location.href).searchParams;
-    const branchId = branch || params.get("em_branch_id") || ""
-    const branchParams = branchId && `branch_id=${branchId}` || ""
-    let url = `chunks/${identifier || contentKey}?project_id=${projectId}&${branchParams}`;
-    if (branchId) cacheId += branchId
+    const branchId = branch || params.get("em_branch_id") || "";
+    const branchParams = (branchId && `branch_id=${branchId}`) || "";
+    let url = `chunks/${
+      identifier || contentKey
+    }?project_id=${projectId}&${branchParams}`;
+    if (branchId) cacheId += branchId;
     let cachedChunk = getCachedData(cacheId);
     let newChunk = cachedChunk
       ? JSON.parse(cachedChunk)
@@ -69,17 +74,19 @@ export function useChunk(defaultContent, { identifier, type, contentKey, field }
         `Something went wrong trying to retrieve chunk data: ${error}. Have you provided the correct Editmode identifier (${identifier}) as a prop to your Chunk component instance?`
       );
     }
-  }, [cacheId]);
+  }, [cacheId, branch]);
 
   // Modify chunk if field is present and chunk_type is collection
   // e.g. <Chunk identifier="identifier_......" field="Title"/>
-  if ( chunk && chunk.chunk_type == "collection_item" && field) {
+  if (chunk && chunk.chunk_type == "collection_item" && field) {
     field = field.toLowerCase();
-    const fieldChunk = chunk.content.find(c =>
-      c.custom_field_identifier.toLowerCase() == field || c.custom_field_name.toLowerCase() == field
-    )
+    const fieldChunk = chunk.content.find(
+      (c) =>
+        c.custom_field_identifier.toLowerCase() == field ||
+        c.custom_field_name.toLowerCase() == field
+    );
     if (fieldChunk) {
-      setChunk(fieldChunk) // This will set chunk to fieldChunk, and will be rendered by line: 92
+      setChunk(fieldChunk); // This will set chunk to fieldChunk, and will be rendered by line: 92
     } else {
       return {
         Component() {
