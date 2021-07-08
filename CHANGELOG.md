@@ -1,3 +1,15 @@
+# v3.1.32 (Thu Jul 08 2021)
+
+#### 🚀 Enhancement
+
+- Add Branch ID Prop ([@francisbulus](https://github.com/francisbulus))
+
+#### Authors: 1
+
+- Francis Bulus ([@francisbulus](https://github.com/francisbulus))
+
+---
+
 # v3.1.31 (Tue Jul 06 2021)
 
 #### 🐛 Bug Fix
@@ -6,7 +18,7 @@
 
 #### Authors: 1
 
-- Jen Villaganas  ([@jenvillaganas](https://github.com/jenvillaganas))
+- Jen Villaganas ([@jenvillaganas](https://github.com/jenvillaganas))
 
 ---
 
@@ -18,7 +30,7 @@
 
 #### Authors: 1
 
-- Jen Villaganas  ([@jenvillaganas](https://github.com/jenvillaganas))
+- Jen Villaganas ([@jenvillaganas](https://github.com/jenvillaganas))
 
 ---
 
@@ -30,7 +42,7 @@
 
 #### Authors: 1
 
-- Jen Villaganas  ([@jenvillaganas](https://github.com/jenvillaganas))
+- Jen Villaganas ([@jenvillaganas](https://github.com/jenvillaganas))
 
 ---
 
@@ -42,7 +54,7 @@
 
 #### Authors: 1
 
-- Jen Villaganas  ([@jenvillaganas](https://github.com/jenvillaganas))
+- Jen Villaganas ([@jenvillaganas](https://github.com/jenvillaganas))
 
 ---
 
@@ -60,7 +72,7 @@ Thank you, Francis Bulus ([@francisbulus](https://github.com/francisbulus)), for
 - v3.1.25-canary.2 ([@francisbulus](https://github.com/francisbulus))
 - v3.1.21-canary.0 ([@francisbulus](https://github.com/francisbulus))
 - remove hardcoding of local urls ([@francisbulus](https://github.com/francisbulus))
-- _ ([@francisbulus](https://github.com/francisbulus))
+- \_ ([@francisbulus](https://github.com/francisbulus))
 
 #### ⚠️ Pushed to `master`
 
