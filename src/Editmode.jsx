@@ -6,11 +6,19 @@ import { api } from "./utilities";
 import Watermark from "./Watermark.jsx";
 import { useHotkeys } from "react-hotkeys-hook";
 
-export function Editmode({ children, projectId, defaultChunks, branchId }) {
+export function Editmode({
+  children,
+  projectId,
+  defaultChunks,
+  branchId = "",
+}) {
   const [branch, setbranch] = useState("");
   const [hasWaterMark, setHasWaterMark] = useState(null);
   const [isEditorActive, setIsEditorActive] = useState(false);
-
+  const isBrowser = () => typeof window !== "undefined";
+  if (isBrowser()) {
+    window["chunksPresetBranchId"] = branchId;
+  }
   useHotkeys("cmd+shift+e", () => {
     setIsEditorActive(!isEditorActive);
   });
