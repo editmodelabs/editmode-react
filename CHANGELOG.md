@@ -2,7 +2,7 @@
 
 #### 🚀 Enhancement
 
-- Add Branch ID Prop ([@francisbulus](https://github.com/francisbulus))
+- Add Branch ID Prop to Editmode Wrapper ([@francisbulus](https://github.com/francisbulus))
 
 #### Authors: 1
 
