@@ -5,21 +5,28 @@ import { getTimedCachedData, storeTimedCache } from "./utilities";
 import { api } from "./utilities";
 import Watermark from "./Watermark.jsx";
 
-export function Editmode({ children, projectId, defaultChunks }) {
+export function Editmode({
+  children,
+  projectId,
+  defaultChunks,
+  branchId = "",
+}) {
   const [branch, setbranch] = useState(null);
   const [hasWaterMark, setHasWaterMark] = useState(null);
   if (!projectId) {
     throw new Error("<Editmode projectId={...}> is missing a valid projectId");
   }
+  if (branchId) setbranch(branchId);
   const cacheId = projectId + "_provider";
   useEffect(() => {
     window["chunksProjectIdentifier"] = projectId;
-    window["chunksAppFramework"] = "reactjs"
+    window["chunksAppFramework"] = "reactjs";
     const cachedItem = getTimedCachedData(cacheId);
     if (cachedItem) window["chunksProjectLoaded"] = true;
     const script = document.createElement("script");
 
-    script.src = "https://unpkg.com/editmode-magic-editor@^0/dist/magic-editor.js";
+    script.src =
+      "https://unpkg.com/editmode-magic-editor@^0/dist/magic-editor.js";
     document.body.append(script);
 
     let params = new URL(document.location.href).searchParams;
@@ -46,8 +53,8 @@ export function Editmode({ children, projectId, defaultChunks }) {
 
   return (
     <EditmodeContext.Provider value={{ branch, projectId, defaultChunks }}>
-      { children }
-      { hasWaterMark && <Watermark projectId={projectId}/> }
+      {children}
+      {hasWaterMark && <Watermark projectId={projectId} />}
     </EditmodeContext.Provider>
   );
 }
