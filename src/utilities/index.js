@@ -1,9 +1,4 @@
-export {
-  getCachedData,
-  storeCache,
-  getTimedCachedData,
-  storeTimedCache,
-} from "./caching";
+export { getCachedData, storeCache } from "./caching";
 export { computeContentKey } from "./computeContentKey";
 export { sanitizeContent } from "./sanitizeContent";
 export { transformImage } from "./transformImage";
