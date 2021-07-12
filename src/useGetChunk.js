@@ -1,4 +1,4 @@
-import { storeCache, getCachedData, api } from "./utilities";
+import { api } from "./utilities";
 import { EditmodeContext } from "./EditmodeContext";
 import { useEffect, useState, useContext } from "react";
 
@@ -9,9 +9,6 @@ export const useGetChunk = (identifier, field = "") => {
   const cacheId = identifier + project + field;
 
   useEffect(() => {
-    const cachedChunk = getCachedData(cacheId);
-    if (cachedChunk) setChunk(JSON.parse(cachedChunk));
-
     let url = `chunks/${identifier}?project_id=${project}`;
 
     api
@@ -19,8 +16,7 @@ export const useGetChunk = (identifier, field = "") => {
       .then((res) => {
         const error = res.data.error || res.data.message;
         if (!error) {
-          storeCache(cacheId, res.data);
-          if (!cachedChunk) setChunk(res.data);
+          setChunk(res.data);
         }
       })
       .catch((error) => console.error(error, identifier, field)); // Set error state
