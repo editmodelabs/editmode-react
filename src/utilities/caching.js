@@ -1,38 +1,21 @@
-const isBrowser = () => typeof window !== "undefined";
+import AsyncStorage from "@react-native-community/async-storage";
 
-export const getCachedData = (id) => {
-  if (isBrowser()) {
-    return localStorage.getItem(id);
-  }
-};
-
-export const storeCache = (id, data) => {
-  if (isBrowser()) {
-    localStorage.setItem(id, JSON.stringify(data));
-  }
-};
-
-export const storeTimedCache = (id, data) => {
-  if (isBrowser()) {
-    const expiry = new Date(new Date().setHours(new Date().getHours() + 1)); // Set 1 hour expiration
-    const item = {
-      value: data,
-      expiry: expiry.getTime(),
+export const getCachedData = false
+  ? (id) => localStorage.getItem(id)
+  : async (id) => {
+      try {
+        return await AsyncStorage.getItem(id);
+      } catch (error) {
+        console.error("Error in fetching chunk.", error);
+      }
     };
-    localStorage.setItem(id, JSON.stringify(item));
-  }
-};
 
-export const getTimedCachedData = (id) => {
-  if (isBrowser()) {
-    const cachedItem = localStorage.getItem(id);
-    if (!cachedItem) return null;
-    const item = JSON.parse(cachedItem);
-    const now = new Date();
-    if (now.getTime() > item.expiry) {
-      localStorage.removeItem(id);
-      return null;
-    }
-    return item.value;
-  }
-};
+export const storeCache = false
+  ? (id, data) => localStorage.setItem(id, JSON.stringify(data))
+  : async (id, data) => {
+      try {
+        await AsyncStorage.setItem(id, JSON.stringify(data));
+      } catch (error) {
+        console.error("Error in saving chunk.", error);
+      }
+    };
