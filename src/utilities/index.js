@@ -10,3 +10,4 @@ export { transformImage } from "./transformImage";
 export { computeClassName } from "./computeClassName";
 export { api } from "./api";
 export { renderChunk } from "./renderChunk.jsx";
+export { setDefaultContent } from "./setDefaultContent"

@@ -8,12 +8,14 @@ import {
   computeContentKey,
   getCachedData,
   storeCache,
+  setDefaultContent
 } from "./utilities";
 
 export function useChunk(
   defaultContent,
   { identifier, type, contentKey, field }
 ) {
+  defaultContent = setDefaultContent(defaultContent)
   const { projectId, defaultChunks, branch } = useContext(EditmodeContext);
   let [chunk, setChunk] = useState(undefined);
 
@@ -64,8 +66,10 @@ export function useChunk(
     api
       .get(url)
       .then((res) => {
-        storeCache(cacheId, res.data);
-        if (!cachedChunk) setChunk(res.data);
+        if (!res.data.message) {
+          storeCache(cacheId, res.data);
+          if (!cachedChunk) setChunk(res.data);
+        }
       }) // Store chunk to localstorage
       .catch((error) => console.log(error)); // Set error state
 

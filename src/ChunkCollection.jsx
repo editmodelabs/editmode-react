@@ -1,5 +1,6 @@
 // @ts-check
 import React, { useEffect, useState, useContext } from "react";
+import ReactDomServer from 'react-dom/server'
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
 import { EditmodeContext } from "./EditmodeContext";
 import { getCachedData, storeCache, computeClassName, api } from "./utilities";
@@ -84,7 +85,7 @@ export function ChunkCollection({
             {typeof children === "function"
               ? children(getChunk, chunk, index)
               : children}
-          </div>
+          </div>  
         </ChunkCollectionContext.Provider>
       ))}
       {chunks.length && (
@@ -92,7 +93,7 @@ export function ChunkCollection({
           key={chunks[0].identifier + "dummy"}
           value={placeholderChunk}
         >
-          <template
+          <Template
             className={computeClassName(
               itemClass,
               "chunks-col-placeholder-wrapper"
@@ -101,10 +102,20 @@ export function ChunkCollection({
             {typeof children === "function"
               ? children(getChunk, placeholderChunk, 0)
               : children}
-          </template>
+          </Template>
         </ChunkCollectionContext.Provider>
       )}
     </div>
+  );
+}
+
+function Template({ children, ...attrs }) {
+  const childrenString = ReactDomServer.renderToString(children)
+  return (
+    <template
+      {...attrs}
+      dangerouslySetInnerHTML={{ __html: childrenString }}
+    />
   );
 }
 
