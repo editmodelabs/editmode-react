@@ -15,7 +15,7 @@ export function ChunkCollection({
 }) {
   const [chunks, setChunk] = useState([]);
   const cacheId = identifier + limit + tags.join("");
-  const { projectId, branch, defaultChunks } = useContext(EditmodeContext);
+  const { defaultChunks } = useContext(EditmodeContext);
 
   useEffect(() => {
     let collection_chunks;
