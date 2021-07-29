@@ -7,19 +7,21 @@ export const useGetChunk = (identifier, field = "") => {
 
   useEffect(() => {
     let fallbackChunk;
-    if (identifier) {
-      fallbackChunk = defaultChunks.find((chunkItem) => {
-        return chunkItem.identifier === identifier;
-      });
-    } else {
-      fallbackChunk = defaultChunks.find(
-        (chunkItem) =>
-          chunkItem.content_key === contentKey &&
-          chunkItem.project_id == projectId
-      );
+    if (defaultChunks) {
+      if (identifier) {
+        fallbackChunk = defaultChunks.find((chunkItem) => {
+          return chunkItem.identifier === identifier;
+        });
+      } else {
+        fallbackChunk = defaultChunks.find(
+          (chunkItem) =>
+            chunkItem.content_key === contentKey &&
+            chunkItem.project_id == projectId
+        );
+      }
+      setChunk(fallbackChunk);
     }
-    setChunk(fallbackChunk);
-  }, []);
+  }, [defaultChunks]);
 
   if (field && chunk && chunk.chunk_type == "collection_item") {
     field = field.toLowerCase();

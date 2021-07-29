@@ -18,19 +18,21 @@ export function useChunk(
 
   useEffect(() => {
     let fallbackChunk;
-    if (identifier) {
-      fallbackChunk = defaultChunks.find((chunkItem) => {
-        return chunkItem.identifier === identifier;
-      });
-    } else {
-      fallbackChunk = defaultChunks.find(
-        (chunkItem) =>
-          chunkItem.content_key === contentKey &&
-          chunkItem.project_id == projectId
-      );
+    if (defaultChunks) {
+      if (identifier) {
+        fallbackChunk = defaultChunks.find((chunkItem) => {
+          return chunkItem.identifier === identifier;
+        });
+      } else {
+        fallbackChunk = defaultChunks.find(
+          (chunkItem) =>
+            chunkItem.content_key === contentKey &&
+            chunkItem.project_id == projectId
+        );
+      }
+      setChunk(fallbackChunk);
     }
-    setChunk(fallbackChunk);
-  }, [cacheId, branch]);
+  }, [defaultChunks]);
 
   // Modify chunk if field is present and chunk_type is collection
   // e.g. <Chunk identifier="identifier_......" field="Title"/>

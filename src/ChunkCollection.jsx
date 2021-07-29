@@ -18,13 +18,16 @@ export function ChunkCollection({
   const { projectId, branch, defaultChunks } = useContext(EditmodeContext);
 
   useEffect(() => {
-    const collection_chunks = defaultChunks.filter(
-      (chunk) =>
-        (chunk.collection && chunk.collection.identifier == identifier) ||
-        (chunk.collection && chunk.collection.name == identifier)
-    );
-    setChunk(collection_chunks);
-  }, [identifier]);
+    let collection_chunks;
+    if (defaultChunks) {
+      collection_chunks = defaultChunks.filter(
+        (chunk) =>
+          (chunk.collection && chunk.collection.identifier == identifier) ||
+          (chunk.collection && chunk.collection.name == identifier)
+      );
+      setChunk(collection_chunks);
+    }
+  }, [defaultChunks]);
 
   if (!chunks?.length) {
     return null;
@@ -34,7 +37,8 @@ export function ChunkCollection({
     : {};
 
   function getChunk(chunk, field) {
-    const fieldChunk = chunk.content.find((c) => c.custom_field_name == field);
+    const fieldChunk =
+      chunk && chunk.content.find((c) => c.custom_field_name == field);
     if (fieldChunk && typeof fieldChunk !== "undefined") {
       return fieldChunk.content;
     } else {
