@@ -14,7 +14,7 @@ export function useChunk(
     contentKey = defaultContent ? computeContentKey(defaultContent) : null;
   }
 
-  let cacheId = identifier || contentKey + projectId + field;
+  let cacheId = identifier || projectId + field;
 
   useEffect(() => {
     let fallbackChunk;
