@@ -66,6 +66,10 @@ export function ChunkCollection({
     }
   }
 
+  chunks = defaultChunks.filter(
+    (chunk) => chunk.collection && chunk.collection.identifier == identifier
+  );
+
   return (
     <div
       className={computeClassName(className, "chunks-collection-wrapper")}
