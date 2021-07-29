@@ -18,7 +18,6 @@ export function Editmode({
   if (isBrowser()) {
     window["chunksPresetBranchId"] = branchId;
   }
-  console.log(defaultChunks);
   if (!projectId) {
     throw new Error("<Editmode projectId={...}> is missing a valid projectId");
   }
