@@ -21,7 +21,10 @@ export function useChunk(
     if (defaultChunks) {
       if (identifier) {
         fallbackChunk = defaultChunks.find((chunkItem) => {
-          return chunkItem.identifier === identifier;
+          return (
+            chunkItem.identifier === identifier ||
+            chunkItem.content_key === identifier
+          );
         });
       } else {
         fallbackChunk = defaultChunks.find(

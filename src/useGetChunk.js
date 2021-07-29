@@ -10,7 +10,10 @@ export const useGetChunk = (identifier, field = "") => {
     if (defaultChunks) {
       if (identifier) {
         fallbackChunk = defaultChunks.find((chunkItem) => {
-          return chunkItem.identifier === identifier;
+          return (
+            chunkItem.content_key === identifier ||
+            chunkItem.identifier === identifier
+          );
         });
       } else {
         fallbackChunk = defaultChunks.find(
