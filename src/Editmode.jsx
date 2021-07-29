@@ -4,7 +4,6 @@ import { EditmodeContext } from "./EditmodeContext";
 import { getTimedCachedData, storeTimedCache } from "./utilities";
 import { api } from "./utilities";
 import Watermark from "./Watermark.jsx";
-import { useHotkeys } from "react-hotkeys-hook";
 
 export function Editmode({
   children,
@@ -19,9 +18,7 @@ export function Editmode({
   if (isBrowser()) {
     window["chunksPresetBranchId"] = branchId;
   }
-  useHotkeys("cmd+shift+e", () => {
-    setIsEditorActive(!isEditorActive);
-  });
+  console.log(defaultChunks);
   if (!projectId) {
     throw new Error("<Editmode projectId={...}> is missing a valid projectId");
   }
@@ -29,12 +26,6 @@ export function Editmode({
   useEffect(() => {
     let params = new URL(document.location.href).searchParams;
     branchId ? setbranch(branchId) : setbranch(params.get("em_branch_id"));
-    setIsEditorActive(window.location.href.indexOf("editmode") > -1);
-
-    if (branchId && isEditorActive) {
-      params.set("em_branch_id", `${branchId}`);
-      history.pushState(null, null, "?" + params.toString());
-    }
 
     window["chunksProjectIdentifier"] = projectId;
     window["chunksAppFramework"] = "reactjs";

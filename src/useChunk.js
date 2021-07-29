@@ -1,4 +1,3 @@
-// @ts-check
 import { useContext, useEffect, useState, useMemo } from "react";
 
 import { EditmodeContext } from "./EditmodeContext";
@@ -49,14 +48,7 @@ export function useChunk(
     }?project_id=${projectId}&${branchParams}`;
     if (branchId) cacheId += branchId;
     let cachedChunk = getCachedData(cacheId);
-    let newChunk = cachedChunk
-      ? JSON.parse(cachedChunk)
-      : fallbackChunk || {
-          chunk_type: type || "single_line_text",
-          content: defaultContent,
-          content_key: contentKey,
-        };
-
+    let newChunk = fallbackChunk;
     if (newChunk) setChunk(newChunk);
 
     // Fetch new data
