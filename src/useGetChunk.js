@@ -4,8 +4,9 @@ import { useEffect, useState, useContext, useMemo } from "react";
 export const useGetChunk = (identifier, field = "") => {
   const { projectId, defaultChunks } = useContext(EditmodeContext);
   const [chunk, setChunk] = useState(undefined);
-  let fallbackChunk;
+
   useEffect(() => {
+    let fallbackChunk;
     if (defaultChunks) {
       if (identifier) {
         fallbackChunk = defaultChunks.find((chunkItem) => {

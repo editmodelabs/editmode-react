@@ -1,5 +1,6 @@
 // @ts-check
 import React, { useEffect, useState, useContext } from "react";
+import { createPortal } from "react-dom";
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
 import { EditmodeContext } from "./EditmodeContext";
 import { getCachedData, storeCache, computeClassName, api } from "./utilities";
@@ -17,14 +18,29 @@ export function ChunkCollection({
   const cacheId = identifier + limit + tags.join("");
   const { defaultChunks } = useContext(EditmodeContext);
 
+  const filterByTag = (
+    /** @type {any[]} */ chunks,
+    /** @type {any[]} */ filters
+  ) => {
+    return chunks.filter((chunk) =>
+      filters.every(
+        (tag) => chunk.collection && chunk.tags && chunk.tags.includes(tag)
+      )
+    );
+  };
+
   useEffect(() => {
     let collection_chunks;
     if (defaultChunks) {
       collection_chunks = defaultChunks.filter(
         (chunk) =>
           (chunk.collection && chunk.collection.identifier == identifier) ||
-          (chunk.collection && chunk.collection.name == identifier)
+          (chunk.collection && chunk.collection.name == identifier) ||
+          (chunk.collection && chunk.collection.content_key == identifier)
       );
+      if (tags) {
+        collection_chunks = filterByTag(collection_chunks, tags);
+      }
       setChunk(collection_chunks);
     }
   }, [defaultChunks]);
