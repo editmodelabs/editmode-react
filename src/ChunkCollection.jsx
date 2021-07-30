@@ -44,6 +44,7 @@ export function ChunkCollection({
       setChunk(collection_chunks);
     }
   }, [defaultChunks]);
+  console.log(chunks);
 
   if (!chunks?.length) {
     return null;
