@@ -9,6 +9,7 @@ export function Editmode({
   children,
   projectId,
   defaultChunks,
+  next = false,
   branchId = "",
 }) {
   const [branch, setbranch] = useState("");
@@ -31,12 +32,11 @@ export function Editmode({
     const cachedItem = getTimedCachedData(cacheId);
     if (cachedItem) window["chunksProjectLoaded"] = true;
     const script = document.createElement("script");
-
     script.src =
       "https://unpkg.com/editmode-magic-editor@^0/dist/magic-editor.js";
-    document.body.append(script);
     script.setAttribute("async", "");
     script.defer = true;
+    document.body.append(script);
 
     if (!cachedItem) {
       api
