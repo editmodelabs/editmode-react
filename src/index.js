@@ -10,4 +10,4 @@ export { useCollectionChunks } from "./useCollectionChunks";
 export { CustomChunkCollection } from "./CustomChunkCollection.jsx";
 export { ChunkCollectionContext } from "./ChunkCollectionContext.js";
 export { CollectionItemWrapper } from "./CollectionItemWrapper.jsx";
-export { Image } from "./NextImage.jsx";
+export { NextImage } from "./NextImage.jsx";

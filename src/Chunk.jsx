@@ -1,5 +1,4 @@
-// @ts-check
-
+// @ts-nocheck
 import React from "react";
 import { useChunk } from "./useChunk";
 

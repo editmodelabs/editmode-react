@@ -168,7 +168,7 @@ function handleLoading(img, src, placeholder, onLoadingComplete) {
   }
 }
 
-export function Image({
+export function NextImage({
   src,
   sizes,
   unoptimized = false,

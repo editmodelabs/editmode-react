@@ -35,6 +35,7 @@ export function Editmode({
     script.src =
       "https://unpkg.com/editmode-magic-editor@^0/dist/magic-editor.js";
     document.body.append(script);
+    script.setAttribute("async", "");
 
     if (!cachedItem) {
       api

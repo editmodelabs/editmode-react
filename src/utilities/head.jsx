@@ -14,7 +14,6 @@ export function defaultHead(inAmpMode = false) {
 }
 
 function onlyReactElement(list, child) {
-  // React children can be "string" or "number" in this case we ignore them for backwards compat
   if (typeof child === "string" || typeof child === "number") {
     return list;
   }
@@ -40,11 +39,6 @@ function onlyReactElement(list, child) {
 
 const METATYPES = ["name", "httpEquiv", "charSet", "itemProp"];
 
-/*
- returns a function for filtering head child elements
- which shouldn't be duplicated, like <title/>
- Also adds support for deduplicated `key` properties
-*/
 function unique() {
   const keys = new Set();
   const tags = new Set();
@@ -131,7 +125,6 @@ function reduceComponents(headElements, props) {
         if (
           c.type === "link" &&
           c.props["href"] &&
-          // TODO(prateekbh@): Replace this with const from `constants` when the tree shaking works.
           ["https://fonts.googleapis.com/css", "https://use.typekit.net/"].some(
             (url) => c.props["href"].startsWith(url)
           )
@@ -140,7 +133,6 @@ function reduceComponents(headElements, props) {
           newProps["data-href"] = newProps["href"];
           newProps["href"] = undefined;
 
-          // Add this attribute to make it easy to identify optimized tags
           newProps["data-optimized-fonts"] = true;
 
           return React.cloneElement(c, newProps);
@@ -150,10 +142,6 @@ function reduceComponents(headElements, props) {
     });
 }
 
-/**
- * This component injects elements to `<head>` of your page.
- * To avoid duplicated `tags` in `<head>` you can use the `key` property, which will make sure every tag is only rendered once.
- */
 export function Head({ children }) {
   const ampState = useContext(AmpStateContext);
   const headManager = useContext(HeadManagerContext);
