@@ -4,4 +4,5 @@ export const EditmodeContext = createContext({
   branch: null,
   projectId: null,
   defaultChunks: [],
+  next: false,
 });
