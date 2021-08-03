@@ -94,7 +94,7 @@ export function useChunk(
       }
       setChunk(fallbackChunk);
     }
-  }, [cacheId, branch]);
+  }, [cacheId, branch, defaultChunks]);
 
   // Modify chunk if field is present and chunk_type is collection
   // e.g. <Chunk identifier="identifier_......" field="Title"/>
