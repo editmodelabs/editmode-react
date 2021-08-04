@@ -11,3 +11,11 @@ export { computeClassName } from "./computeClassName";
 export { api } from "./api";
 export { renderChunk } from "./renderChunk.jsx";
 export { setDefaultContent } from "./setDefaultContent"
+
+export const tryParse = (string) => {
+  try {
+    return JSON.parse(string)
+  } catch (error) {
+    return null
+  }
+}

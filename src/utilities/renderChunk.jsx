@@ -18,8 +18,6 @@ export const renderChunk = (data, props, cacheId) => {
     class: props.className
   }
 
-  console.log(chunk.chunk_type,data, props )
-
   switch (chunk.chunk_type) {
     case "single_line_text":
     case "long_text":

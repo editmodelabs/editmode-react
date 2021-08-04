@@ -23,7 +23,6 @@
   "dependencies": {
     "@emotion/hash": "^0.8.0",
     "axios": "0.20.0",
-    "isomorphic-dompurify": "^0.6.0",
     "lodash.kebabcase": "^4.1.1",
     "react-hotkeys-hook": "^3.3.2",
     "react-inlinesvg": "^2.3.0",
