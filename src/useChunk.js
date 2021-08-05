@@ -8,7 +8,8 @@ import {
   computeContentKey,
   getCachedData,
   storeCache,
-  setDefaultContent
+  setDefaultContent,
+  tryParse
 } from "./utilities";
 
 export function useChunk(
@@ -46,18 +47,17 @@ export function useChunk(
     let params = new URL(document.location.href).searchParams;
     const branchId = branch || params.get("em_branch_id") || "";
     const branchParams = (branchId && `branch_id=${branchId}`) || "";
-    let url = `chunks/${
-      identifier || contentKey
-    }?project_id=${projectId}&${branchParams}`;
+    let url = `chunks/${identifier || contentKey}?project_id=${projectId}&${branchParams}`;
     if (branchId) cacheId += branchId;
     let cachedChunk = getCachedData(cacheId);
     let newChunk = cachedChunk
-      ? JSON.parse(cachedChunk)
-      : fallbackChunk || {
-          chunk_type: type || "single_line_text",
-          content: defaultContent,
-          content_key: contentKey,
-        };
+      && tryParse(cachedChunk)
+      || fallbackChunk
+      || {
+      chunk_type: type || "single_line_text",
+      content: defaultContent,
+      content_key: contentKey,
+    };
 
     if (newChunk) setChunk(newChunk);
 

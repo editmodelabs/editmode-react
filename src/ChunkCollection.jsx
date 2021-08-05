@@ -95,7 +95,6 @@ export function ChunkCollection({
         >
           <Template
             className={computeClassName(
-              itemClass,
               "chunks-col-placeholder-wrapper"
             )}
           >

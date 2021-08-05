@@ -1,10 +1,10 @@
 
 
-import { storeCache, getCachedData, api } from './utilities'
+import { storeCache, getCachedData, api, tryParse } from './utilities'
 import { EditmodeContext } from "./EditmodeContext"
 import {useEffect, useState, useContext} from 'react'
 
-export const useGetChunk = (identifier, field = "") => {
+export const useGetChunk = (identifier, field = "", fallback = "") => {
   const { projectId } = useContext(EditmodeContext);
   const [project, setProject] = useState(projectId)
   const [chunk, setChunk] = useState(undefined);
@@ -17,10 +17,15 @@ export const useGetChunk = (identifier, field = "") => {
     }
 
     const cachedChunk = getCachedData(cacheId);
-    if (cachedChunk) setChunk(JSON.parse(cachedChunk))
+
+    const newChunk = cachedChunk && tryParse(cachedChunk) || {
+      chunk_type: "single_line_text",
+      content: fallback,
+    }
+
+    setChunk(newChunk)
 
     let url = `chunks/${identifier}?project_id=${project}`;
-
     api
       .get(url)
       .then((res) => {
@@ -45,6 +50,6 @@ export const useGetChunk = (identifier, field = "") => {
       return ""
     }
   }
-  
+
   return chunk && chunk.content || ""
 }

@@ -15,10 +15,8 @@ export const renderChunk = (data, props, cacheId) => {
     "data-chunk-type": chunk.chunk_type,
     "data-chunk-cache-id": cacheId,
     "key": chunk.identifier,
-    class: props.className
+    className: props.className
   }
-
-  console.log(chunk.chunk_type,data, props )
 
   switch (chunk.chunk_type) {
     case "single_line_text":
@@ -33,7 +31,7 @@ export const renderChunk = (data, props, cacheId) => {
         {...defaultprops}
         dangerouslySetInnerHTML={{__html: parsedChunk}}
         {...props}
-        class={"editmode-richtext-editor " + props.className}
+        className={"editmode-richtext-editor " + props.className}
       />);
     case "image":
       if (isSvg(chunk.content)) {

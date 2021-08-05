@@ -43,7 +43,7 @@ export function Editmode({
     const script = document.createElement("script");
 
     script.src =
-      "https://unpkg.com/editmode-magic-editor@1.0.1--canary.73c8f7c.0/dist/magic-editor.js";
+      "https://unpkg.com/editmode-magic-editor@1.0.1--canary.16.6a0d22b.0/dist/magic-editor.js";
     document.body.append(script);
 
     if (!cachedItem) {
