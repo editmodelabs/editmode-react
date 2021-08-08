@@ -18,7 +18,6 @@ export const sanitizeContent = (data, props) => {
 
 
 var HtmlSanitizer = new (function () {
-
 	var tagWhitelist_ = {
 		'A': true, 'ABBR': true, 'B': true, 'BLOCKQUOTE': true, 'BODY': true, 'BR': true, 'CENTER': true, 'CODE': true, 'DIV': true, 'EM': true, 'FONT': true,
 		'H1': true, 'H2': true, 'H3': true, 'H4': true, 'H5': true, 'H6': true, 'HR': true, 'I': true, 'IMG': true, 'LABEL': true, 'LI': true, 'OL': true, 'P': true, 'PRE': true,
@@ -36,8 +35,7 @@ var HtmlSanitizer = new (function () {
 	var uriAttributes_ = { 'href': true, 'action': true };
 
 	this.SanitizeHtml = function(input) {
-		input = input.trim();
-		if (input == "") return ""; //to save performance and not create iframe
+		if (!input || input == "") return ""; //to save performance and not create iframe
 
 		//firefox "bogus node" workaround
 		if (input == "<br>") return "";
