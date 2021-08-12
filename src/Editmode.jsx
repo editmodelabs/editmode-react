@@ -43,8 +43,13 @@ export function Editmode({
     const script = document.createElement("script");
 
     script.src =
-      "https://unpkg.com/editmode-magic-editor@~1/dist/magic-editor.js";
-    document.body.append(script);
+      "http://localhost:10001/magic-editor.js";
+    
+    if (!window["magicEditorInjected"]) {
+      document.body.append(script);
+      window["magicEditorInjected"] = true
+    }
+    
 
     if (!cachedItem) {
       api

@@ -1,6 +1,5 @@
 // @ts-check
 import React, { useEffect, useState, useContext } from "react";
-import ReactDomServer from 'react-dom/server'
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
 import { EditmodeContext } from "./EditmodeContext";
 import { getCachedData, storeCache, computeClassName, api } from "./utilities";
@@ -109,12 +108,14 @@ export function ChunkCollection({
 }
 
 function Template({ children, ...attrs }) {
-  const childrenString = ReactDomServer.renderToString(children)
+  console.log
   return (
-    <template
+    <em-template
       {...attrs}
-      dangerouslySetInnerHTML={{ __html: childrenString }}
-    />
+      style={{display: "none"}}
+    >
+      {children}
+    </em-template>
   );
 }
 
