@@ -8,14 +8,16 @@ import {
   computeContentKey,
   getCachedData,
   storeCache,
+  setDefaultContent,
+  tryParse
 } from "./utilities";
 
 export function useChunk(
   defaultContent,
   { identifier, type, contentKey, field }
 ) {
-  const { projectId, defaultChunks, branch, next } =
-    useContext(EditmodeContext);
+  defaultContent = setDefaultContent(defaultContent)
+  const { projectId, defaultChunks, branch, next } = useContext(EditmodeContext);
   let [chunk, setChunk] = useState(undefined);
 
   if (!contentKey) {
@@ -52,22 +54,25 @@ export function useChunk(
       if (branchId) cacheId += branchId;
       let cachedChunk = getCachedData(cacheId);
       let newChunk = cachedChunk
-        ? JSON.parse(cachedChunk)
-        : fallbackChunk || {
-            chunk_type: type || "single_line_text",
-            content: defaultContent,
-            content_key: contentKey,
-          };
+        && tryParse(cachedChunk)
+        || fallbackChunk
+        || {
+        chunk_type: type || "single_line_text",
+        content: defaultContent,
+        content_key: contentKey,
+      };
 
       if (newChunk) setChunk(newChunk);
 
-      // Fetch new data
+    // Fetch new data
       let error;
       api
         .get(url)
         .then((res) => {
-          storeCache(cacheId, res.data);
-          if (!cachedChunk) setChunk(res.data);
+          if (!res.data.message) {
+            storeCache(cacheId, res.data);
+            if (!cachedChunk) setChunk(res.data);
+          }
         }) // Store chunk to localstorage
         .catch((error) => console.log(error)); // Set error state
 

@@ -44,10 +44,14 @@ export function Editmode({
     const script = document.createElement("script");
 
     script.src =
-      "https://unpkg.com/editmode-magic-editor@^0/dist/magic-editor.js";
-    script.setAttribute("async", "");
-    document.body.append(script);
-
+      "https://unpkg.com/editmode-magic-editor@~1/dist/magic-editor.js";
+    
+    if (!window["magicEditorInjected"]) {
+      script.setAttribute("async", "");
+      document.body.append(script);
+      window["magicEditorInjected"] = true
+    }
+    
     if (!cachedItem) {
       api
         .get(`/projects/${projectId}`)

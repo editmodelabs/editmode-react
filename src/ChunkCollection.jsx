@@ -105,7 +105,7 @@ export function ChunkCollection({
             {typeof children === "function"
               ? children(getChunk, chunk, index)
               : children}
-          </div>
+          </div>  
         </ChunkCollectionContext.Provider>
       ))}
       {chunks.length && (
@@ -113,19 +113,30 @@ export function ChunkCollection({
           key={chunks[0].identifier + "dummy"}
           value={placeholderChunk}
         >
-          <template
+          <Template
             className={computeClassName(
-              itemClass,
               "chunks-col-placeholder-wrapper"
             )}
           >
             {typeof children === "function"
               ? children(getChunk, placeholderChunk, 0)
               : children}
-          </template>
+          </Template>
         </ChunkCollectionContext.Provider>
       )}
     </div>
+  );
+}
+
+function Template({ children, ...attrs }) {
+  console.log
+  return (
+    <em-template
+      {...attrs}
+      style={{display: "none"}}
+    >
+      {children}
+    </em-template>
   );
 }
 
