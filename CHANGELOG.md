@@ -1,3 +1,15 @@
+# v3.1.35 (Mon Aug 16 2021)
+
+#### 🐛 Bug Fix
+
+- Adjustments for Ruby Compatibility with MagicEditor [#58](https://github.com/editmodelabs/editmode-react/pull/58) ([@jenvillaganas](https://github.com/jenvillaganas))
+
+#### Authors: 1
+
+- Jen Villaganas  ([@jenvillaganas](https://github.com/jenvillaganas))
+
+---
+
 # v3.1.34 (Tue Aug 03 2021)
 
 #### 🐛 Bug Fix
