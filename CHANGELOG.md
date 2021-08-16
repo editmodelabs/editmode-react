@@ -1,3 +1,15 @@
+# v3.1.34 (Tue Aug 03 2021)
+
+#### 🐛 Bug Fix
+
+- Changes for Next [#56](https://github.com/editmodelabs/editmode-react/pull/56) ([@francisbulus](https://github.com/francisbulus))
+
+#### Authors: 1
+
+- Francis Bulus ([@francisbulus](https://github.com/francisbulus))
+
+---
+
 # v3.1.33 (Thu Jul 08 2021)
 
 #### 🐛 Bug Fix

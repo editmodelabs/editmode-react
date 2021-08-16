@@ -11,6 +11,7 @@ export function Editmode({
   projectId,
   defaultChunks,
   branchId = "",
+  next = false,
 }) {
   const [branch, setbranch] = useState("");
   const [hasWaterMark, setHasWaterMark] = useState(null);
@@ -46,11 +47,11 @@ export function Editmode({
       "https://unpkg.com/editmode-magic-editor@~1/dist/magic-editor.js";
     
     if (!window["magicEditorInjected"]) {
+      script.setAttribute("async", "");
       document.body.append(script);
       window["magicEditorInjected"] = true
     }
     
-
     if (!cachedItem) {
       api
         .get(`/projects/${projectId}`)
@@ -71,7 +72,9 @@ export function Editmode({
   }, [branch, isEditorActive]);
 
   return (
-    <EditmodeContext.Provider value={{ branch, projectId, defaultChunks }}>
+    <EditmodeContext.Provider
+      value={{ branch, projectId, defaultChunks, next }}
+    >
       {children}
       {hasWaterMark && <Watermark projectId={projectId} />}
     </EditmodeContext.Provider>
