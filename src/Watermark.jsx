@@ -17,7 +17,7 @@ const styles = {
 export default function Watermark({projectId}) {
   return (
     <div style={styles} onClick={() => window.open(`https://editmode.com?ref=pb&pid=${projectId}`)}>
-      <svg preserveAspectRatio="xMidYMid meet" version="1.0" viewBox="0 0 22 23" xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="margin-right: 5px">
+      <svg preserveAspectRatio="xMidYMid meet" version="1.0" viewBox="0 0 22 23" xmlns="http://www.w3.org/2000/svg" width="24" height="24" style={{marginRight: "5px"}}>
         <g opacity=".8">
         <path d="m1.6925 4.2131s6.9175-3.7666 7.5952-4.1192c0.67776-0.35253 1.2739 0.35253 1.2739 1.025v8.0945c0 1.7257-0.2199 1.7257-0.92232 2.1684-0.70239 0.4428-7.9929 4.3926-8.3935 4.5953-0.40061 0.2028-1.2459-0.0997-1.2459-1.0136v-8.4086c0-1.5545 1.6925-2.3418 1.6925-2.3418z" clip-rule="evenodd" fill="#203260" fill-rule="evenodd"></path>
         <mask id="b" x="0" y="0" width="11" height="17" mask-type="alpha" maskUnits="userSpaceOnUse">
