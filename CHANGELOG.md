@@ -1,3 +1,15 @@
+# v3.1.36 (Mon Sep 27 2021)
+
+#### 🐛 Bug Fix
+
+- Change Logo [#59](https://github.com/editmodelabs/editmode-react/pull/59) ([@jenvillaganas](https://github.com/jenvillaganas))
+
+#### Authors: 1
+
+- Jen Villaganas  ([@jenvillaganas](https://github.com/jenvillaganas))
+
+---
+
 # v3.1.35 (Mon Aug 16 2021)
 
 #### 🐛 Bug Fix
