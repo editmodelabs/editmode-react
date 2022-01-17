@@ -28,6 +28,17 @@ export function Editmode({
   }
   const cacheId = projectId + "_provider";
   useEffect(() => {
+    let quickGuideUrl = `/quick_guide_status/${projectId}`;
+    api
+      .get(quickGuideUrl)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+  useEffect(() => {
     let params = new URL(document.location.href).searchParams;
     branchId ? setbranch(branchId) : setbranch(params.get("em_branch_id"));
     setIsEditorActive(window.location.href.indexOf("editmode") > -1);
@@ -45,13 +56,13 @@ export function Editmode({
 
     script.src =
       "https://unpkg.com/editmode-magic-editor@~1/dist/magic-editor.js";
-    
+
     if (!window["magicEditorInjected"]) {
       script.setAttribute("async", "");
       document.body.append(script);
-      window["magicEditorInjected"] = true
+      window["magicEditorInjected"] = true;
     }
-    
+
     if (!cachedItem) {
       api
         .get(`/projects/${projectId}`)
