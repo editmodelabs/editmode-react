@@ -1,6 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
-import "./styles/style.css";
+// import "./styles/style.css";
+import "../../src/index.css";
 import { createContainerElement } from "./utils/createContainer";
 import { addDefaults } from "./utils/addDefaults";
 import { renderOnboardingPopup } from "./components/renderOnboardingPopup.jsx";
