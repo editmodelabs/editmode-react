@@ -1,4 +1,5 @@
-export default function StepThree() {
+import React from "react";
+export default function StepTwo() {
   return (
     <div className="relative py-16 bg-white overflow-hidden">
       <div className="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
@@ -108,24 +109,41 @@ export default function StepThree() {
         <div className="text-lg max-w-prose mx-auto">
           <h1>
             <span className="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase">
-              Demo
+              Introducing
             </span>
             <span className="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-              The Magic Editor in Action
+              The Magic Editor
             </span>
           </h1>
         </div>
         <div className="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
-          <p className="text-center">
-            Seamless inline edits being made with no code changes required.
+          <p>
+            The Magic Editor lets you make changes to your theme inline i.e
+            directly on the page that the content appears.
           </p>
-        </div>
-        <div class="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
-          <img
-            class="transform translate-x-6 translate-y-6 rounded-md object-cover"
-            src="https://editmode.gitbook.io/~/files/v0/b/gitbook-28427.appspot.com/o/assets%2F-MXQVCL50RwglOms2GWH%2F-MhQ4H_wgsxlr38hYlHS%2F-MhQ6g6vMHyzIE4DvE1f%2Finlineediting2.gif?alt=media&token=5f53bdf8-dd92-4c6c-8be5-95f445a6a89b"
-            alt="App screenshot"
-          />
+          <div className="text-lg max-w-prose mx-auto mt-5">
+            <h1>
+              <span className="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase">
+                How it Works
+              </span>
+            </h1>
+          </div>
+
+          <ul role="list" className="mt-3 flex flex-col justify-between">
+            <li className="mb-3">
+              <span className="font-bold">Step 1</span>: Hit the keyboard
+              shortcut - CMD/CTRL + Shift + E - to activate the editor{" "}
+            </li>
+            <li className="mb-3">
+              <span className="font-bold">Step 2</span>: Find the content you
+              want to change, and modify it as you please.
+            </li>
+            <li>
+              <span className="font-bold">Step 3</span>: When you're done, click
+              "Save Changes" on the Editmode bar at the top-right corner of your
+              screen
+            </li>
+          </ul>
         </div>
       </div>
     </div>

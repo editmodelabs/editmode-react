@@ -1,4 +1,5 @@
-export default function StepTwo() {
+import React from "react";
+export default function StepSix() {
   return (
     <div className="relative py-16 bg-white overflow-hidden">
       <div className="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
@@ -108,41 +109,25 @@ export default function StepTwo() {
         <div className="text-lg max-w-prose mx-auto">
           <h1>
             <span className="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase">
-              Introducing
+              Core Concept #3
             </span>
             <span className="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-              The Magic Editor
+              Tags
             </span>
           </h1>
         </div>
         <div className="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
           <p>
-            The Magic Editor lets you make changes to your theme inline i.e
-            directly on the page that the content appears.
+            Tags help you group chunks together to make it easier to keep track
+            of them on editmode.com
           </p>
-          <div className="text-lg max-w-prose mx-auto mt-5">
-            <h1>
-              <span className="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase">
-                How it Works
-              </span>
-            </h1>
-          </div>
-
-          <ul role="list" className="mt-3 flex flex-col justify-between">
-            <li className="mb-3">
-              <span className="font-bold">Step 1</span>: Hit the keyboard
-              shortcut - CMD/CTRL + Shift + E - to activate the editor{" "}
-            </li>
-            <li className="mb-3">
-              <span className="font-bold">Step 2</span>: Find the content you
-              want to change, and modify it as you please.
-            </li>
-            <li>
-              <span className="font-bold">Step 3</span>: When you're done, click
-              "Save Changes" on the Editmode bar at the top-right corner of your
-              screen
-            </li>
-          </ul>
+          <br />
+          <p>
+            Say, you have a page on your website with a chunk for your heading
+            and description. To easily find these chunks, it is useful to be
+            able to group them.
+          </p>
+          <br />
         </div>
       </div>
     </div>

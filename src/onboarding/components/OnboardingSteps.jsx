@@ -1,6 +1,6 @@
 import React from "react";
 
-class Steps extends React.Component {
+class OnboardingSteps extends React.Component {
   constructor(props) {
     super(props);
 
@@ -36,4 +36,4 @@ class Steps extends React.Component {
   }
 }
 
-export { Steps };
+export { OnboardingSteps };

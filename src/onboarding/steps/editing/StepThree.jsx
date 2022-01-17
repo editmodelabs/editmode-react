@@ -1,4 +1,5 @@
-export default function StepFour() {
+import React from "react";
+export default function StepThree() {
   return (
     <div className="relative py-16 bg-white overflow-hidden">
       <div className="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
@@ -108,25 +109,24 @@ export default function StepFour() {
         <div className="text-lg max-w-prose mx-auto">
           <h1>
             <span className="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase">
-              Core Concept #3
+              Demo
             </span>
             <span className="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-              Tags
+              The Magic Editor in Action
             </span>
           </h1>
         </div>
         <div className="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
-          <p>
-            Tags help you group chunks together to make it easier to keep track
-            of them on editmode.com
+          <p className="text-center">
+            Seamless inline edits being made with no code changes required.
           </p>
-          <br />
-          <p>
-            Say, you have a page on your website with a chunk for your heading
-            and description. To easily find these chunks, it is useful to be
-            able to group them.
-          </p>
-          <br />
+        </div>
+        <div class="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
+          <img
+            class="transform translate-x-6 translate-y-6 rounded-md object-cover"
+            src="https://editmode.gitbook.io/~/files/v0/b/gitbook-28427.appspot.com/o/assets%2F-MXQVCL50RwglOms2GWH%2F-MhQ4H_wgsxlr38hYlHS%2F-MhQ6g6vMHyzIE4DvE1f%2Finlineediting2.gif?alt=media&token=5f53bdf8-dd92-4c6c-8be5-95f445a6a89b"
+            alt="App screenshot"
+          />
         </div>
       </div>
     </div>

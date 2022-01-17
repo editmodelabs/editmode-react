@@ -1,4 +1,4 @@
-// @ts-check
+// @ts-nocheck
 import React, { useEffect, useState, useContext } from "react";
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
 import { EditmodeContext } from "./EditmodeContext";
@@ -105,7 +105,7 @@ export function ChunkCollection({
             {typeof children === "function"
               ? children(getChunk, chunk, index)
               : children}
-          </div>  
+          </div>
         </ChunkCollectionContext.Provider>
       ))}
       {chunks.length && (
@@ -114,9 +114,7 @@ export function ChunkCollection({
           value={placeholderChunk}
         >
           <Template
-            className={computeClassName(
-              "chunks-col-placeholder-wrapper"
-            )}
+            className={computeClassName("chunks-col-placeholder-wrapper")}
           >
             {typeof children === "function"
               ? children(getChunk, placeholderChunk, 0)
@@ -129,12 +127,9 @@ export function ChunkCollection({
 }
 
 function Template({ children, ...attrs }) {
-  console.log
+  console.log;
   return (
-    <em-template
-      {...attrs}
-      style={{display: "none"}}
-    >
+    <em-template {...attrs} style={{ display: "none" }}>
       {children}
     </em-template>
   );

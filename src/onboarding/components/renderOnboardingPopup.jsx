@@ -1,6 +1,6 @@
 import React from "react";
-import { Steps } from "./Steps";
-import { Step } from "./Step";
+import { OnboardingSteps } from "./OnboardingSteps.jsx";
+import { OnboardingStep } from "./OnboardingStep.jsx";
 import { removeContainerElement } from "../utils/removeContainer";
 
 export const renderOnboardingPopup = (config) => (
@@ -9,10 +9,10 @@ export const renderOnboardingPopup = (config) => (
       className="react-onboarding-pro-blur-background full-screen"
       onClick={config.overlayClose ? removeContainerElement : undefined}
     />
-    <Steps>
+    <OnboardingSteps>
       {config.steps.map((step, index) => (
-        <Step step={step} key={index} />
+        <OnboardingStep step={step} key={index} />
       ))}
-    </Steps>
+    </OnboardingSteps>
   </>
 );

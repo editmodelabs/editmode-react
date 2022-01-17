@@ -1,4 +1,5 @@
-export default function StepHalf() {
+import React from "react";
+export default function StepFour() {
   return (
     <div className="relative py-16 bg-white overflow-hidden">
       <div className="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
@@ -108,49 +109,35 @@ export default function StepHalf() {
         <div className="text-lg max-w-prose mx-auto">
           <h1>
             <span className="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase">
-              Welcome To
+              A LITTLE BIT ON THE
             </span>
             <span className="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-              Editmode
+              Admin Panel
             </span>
           </h1>
         </div>
         <div className="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
-          <p className="mb-5">
-            Editmode is one place in which you - or your team - can create,
-            manage and update content for your website or web app in a safe,
-            secure way.
+          <p className="mb-3">
+            The admin panel is a more robust way of managing the content for
+            your project(s), via a dashboard-like view, and it can be accessed
+            by visiting editmode.com and authenticating.
           </p>
           <p>
-            It's designed to eliminate code alterations when making changes to
-            content of all kinds.
+            It is currently the only way to create non-template projects and add
+            collaborators (for shared content management capabilities) to your
+            projects and set permissions.
           </p>
-          <div className="text-lg max-w-prose mx-auto mt-5">
-            <h1>
-              <span className="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase">
-                A FEW THINGS YOU CAN DO WITH EDITMODE
-              </span>
-            </h1>
-          </div>
-
-          <ul
-            role="list"
-            className="mt-4 flex flex-col justify-between list-disc"
-          >
-            <li className="mb-3">
-              {/* <span className="font-bold">Step 1</span>: Hit the keyboard
-              shortcut - CMD/CTRL + Shift + E - to activate the editor{" "} */}
-              Make content changes to websites and web apps without involving a
-              developer
-            </li>
-            <li className="mb-3">Modify content inline on your website</li>
-            <li>
-              Collaborate on content changes and share internally before
-              publishing
-            </li>
-          </ul>
+        </div>
+        <div class="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1 mt-4">
+          <img
+            class="transform translate-x-6 translate-y-6 rounded-md object-cover"
+            src="https://i.imgur.com/sJpZgju.jpg"
+            alt="App screenshot"
+          />
         </div>
       </div>
     </div>
   );
 }
+
+// https://i.imgur.com/sJpZgju.jpg

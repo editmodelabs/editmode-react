@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { removeContainerElement } from "../utils/removeContainer";
-// import { useRouter } from "next/router";
-// import Router from "next/router";
 
 const cn = (...args) => args.filter(Boolean).join(" ");
 
-export const Step = ({
+export const OnboardingStep = ({
   step,
   isActive,
   displayNext,
@@ -14,7 +12,7 @@ export const Step = ({
   goToPreviousStep,
   displayPrevious,
 }) => {
-  //   const router = useRouter();
+  // const router = useRouter();
   const validateFields = () => {
     return !step.fields.reduce((valid, field) => {
       if (!field.validation) {
@@ -46,18 +44,15 @@ export const Step = ({
 
   if (!isActive) return null;
 
-  const complete = () => {
+  const finito = () => {
     removeContainerElement();
     // router?.push("/");
-    // Router.push({
-    //   pathname: "/",
-    // });
   };
 
   let buttonText, buttonFunction;
   if (displayFinish) {
     buttonText = "Finish";
-    buttonFunction = complete;
+    buttonFunction = finito;
   } else if (displayNext) {
     buttonText = "Next";
     buttonFunction = goToNextStep;
