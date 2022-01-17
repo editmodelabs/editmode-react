@@ -22,7 +22,11 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
     ],
   },
-  externals: [nodeExternals(), {react: 'react', 'react-dom': 'react-dom'}],
+  externals: [nodeExternals(), { react: "react", "react-dom": "react-dom" }],
 };
