@@ -43,15 +43,14 @@ export function Editmode({
     if (cachedItem) window["chunksProjectLoaded"] = true;
     const script = document.createElement("script");
 
-    script.src =
-      "https://unpkg.com/editmode-magic-editor@~1/dist/magic-editor.js";
-    
+    script.src = "http://localhost:10001/magic-editor.js";
+
     if (!window["magicEditorInjected"]) {
       script.setAttribute("async", "");
       document.body.append(script);
-      window["magicEditorInjected"] = true
+      window["magicEditorInjected"] = true;
     }
-    
+
     if (!cachedItem) {
       api
         .get(`/projects/${projectId}`)
@@ -76,7 +75,7 @@ export function Editmode({
       value={{ branch, projectId, defaultChunks, next }}
     >
       {children}
-      {hasWaterMark && <Watermark projectId={projectId} />}
+      {/* {hasWaterMark && <Watermark projectId={projectId} />} */}
     </EditmodeContext.Provider>
   );
 }

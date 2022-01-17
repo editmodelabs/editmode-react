@@ -1,4 +1,4 @@
-// @ts-check
+// @ts-nocheck
 import React, { useEffect, useState, useContext } from "react";
 import { ChunkCollectionContext } from "./ChunkCollectionContext";
 import { EditmodeContext } from "./EditmodeContext";
