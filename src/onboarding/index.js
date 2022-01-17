@@ -4,7 +4,7 @@ import { createContainerElement } from "./utils/createContainer";
 import { addDefaults } from "./utils/addDefaults";
 import { renderOnboardingPopup } from "./components/renderOnboardingPopup";
 
-const quickOnboarding = (config) => {
+export const renderOnboarding = (config) => {
   if (!Array.isArray(config.steps) || !config.steps.length) {
     console.error("Invalid configuration for Onboarding");
   }
@@ -14,4 +14,4 @@ const quickOnboarding = (config) => {
   render(renderOnboardingPopup(configWithDefaults), container);
 };
 
-export default quickOnboarding;
+export default renderOnboarding;
