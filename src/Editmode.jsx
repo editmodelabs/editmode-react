@@ -29,7 +29,7 @@ export function Editmode({
   });
 
   if (!projectId) {
-    throw new Error("<Editmode projectId={...}> is missing a valid projectId");
+    throw new Error("<Editmode projectId={...}> is missing a valid projectId.");
   }
   const cacheId = projectId + "_provider";
   useEffect(() => {
