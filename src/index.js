@@ -1,5 +1,4 @@
 // @ts-check
-// import "./globals.css";
 export { Editmode } from "./Editmode.jsx";
 export { Chunk } from "./Chunk.jsx";
 export { ChunkCollection } from "./ChunkCollection.jsx";

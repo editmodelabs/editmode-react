@@ -28,9 +28,7 @@
     "react-hotkeys-hook": "^3.3.2",
     "react-inlinesvg": "^2.3.0",
     "react-keyboard-event-handler": "^1.5.4",
-    "react-keyboard-shortcuts": "^1.1.3",
-    "react-router-dom": "^5.2.0",
-    "use-key-capture": "^1.0.1-beta.1"
+    "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
     "@auto-it/all-contributors": "^9.35.1",
