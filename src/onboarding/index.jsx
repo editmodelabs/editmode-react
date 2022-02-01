@@ -1,6 +1,4 @@
-import React from "react";
 import { render } from "react-dom";
-// import "./styles/style.css";
 import "../../src/index.css";
 import { createContainerElement } from "./utils/createContainer";
 import { addDefaults } from "./utils/addDefaults";
@@ -29,7 +27,7 @@ export const renderOnboarding = (config) => {
   render(renderOnboardingPopup(configWithDefaults), container);
 };
 
-export const silly = () => {
+export const renderOnboarder = () => {
   const OpenOnboarding = () => {
     const config = {
       steps: [
@@ -94,69 +92,3 @@ export const silly = () => {
   };
   OpenOnboarding();
 };
-
-// export function Onboarding({ active }) {
-//   const OpenOnboarding = () => {
-//     const config = {
-//       steps: [
-//         {
-//           title: "Welcome to our Quick Editmode Guide",
-//           description:
-//             "You'll be shown a few basic Editmode concepts in the next steps.",
-//         },
-//         {
-//           type: "component",
-//           component: StepOneCC,
-//         },
-//         {
-//           type: "component",
-//           component: StepTwoCC,
-//         },
-//         {
-//           type: "component",
-//           component: StepThreeCC,
-//         },
-//         {
-//           type: "component",
-//           component: StepFourCC,
-//         },
-//         {
-//           type: "component",
-//           component: StepFiveCC,
-//         },
-//         {
-//           type: "component",
-//           component: StepSixCC,
-//         },
-//         {
-//           type: "component",
-//           component: StepOneEC,
-//         },
-//         {
-//           type: "component",
-//           component: StepTwoEC,
-//         },
-//         {
-//           type: "component",
-//           component: StepThreeEC,
-//         },
-//         {
-//           type: "component",
-//           component: StepFourEC,
-//         },
-//         {
-//           type: "component",
-//           component: StepFiveEC,
-//         },
-//         {
-//           type: "component",
-//           component: StepSixEC,
-//         },
-//       ],
-//       overlayClose: false,
-//     };
-
-//     renderOnboarding(config, active);
-//   };
-//   return <div>{typeof window !== "undefined" && OpenOnboarding()}</div>;
-// }
