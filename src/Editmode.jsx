@@ -81,7 +81,7 @@ export function Editmode({
       value={{ branch, projectId, defaultChunks, next }}
     >
       <KeyboardEventHandler
-        handleKeys={["cmd + shift + l"]}
+        handleKeys={["cmd+shift+l"]}
         onKeyEvent={() => {
           if (!isOnboardingActive) {
             renderOnboarder(setIsOnboardingActive);
