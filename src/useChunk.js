@@ -9,15 +9,16 @@ import {
   getCachedData,
   storeCache,
   setDefaultContent,
-  tryParse
+  tryParse,
 } from "./utilities";
 
 export function useChunk(
   defaultContent,
   { identifier, type, contentKey, field }
 ) {
-  defaultContent = setDefaultContent(defaultContent)
-  const { projectId, defaultChunks, branch, next } = useContext(EditmodeContext);
+  defaultContent = setDefaultContent(defaultContent);
+  const { projectId, defaultChunks, branch, next } =
+    useContext(EditmodeContext);
   let [chunk, setChunk] = useState(undefined);
 
   if (!contentKey) {
@@ -53,18 +54,16 @@ export function useChunk(
       }?project_id=${projectId}&${branchParams}`;
       if (branchId) cacheId += branchId;
       let cachedChunk = getCachedData(cacheId);
-      let newChunk = cachedChunk
-        && tryParse(cachedChunk)
-        || fallbackChunk
-        || {
-        chunk_type: type || "single_line_text",
-        content: defaultContent,
-        content_key: contentKey,
-      };
+      let newChunk = (cachedChunk && tryParse(cachedChunk)) ||
+        fallbackChunk || {
+          chunk_type: type || "single_line_text",
+          content: defaultContent,
+          content_key: contentKey,
+        };
 
       if (newChunk) setChunk(newChunk);
 
-    // Fetch new data
+      // Fetch new data
       let error;
       api
         .get(url)
