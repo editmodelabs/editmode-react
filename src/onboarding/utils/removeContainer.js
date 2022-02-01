@@ -1,6 +1,9 @@
 import { CONTAINER_CLASS } from "./CONSTANTS";
+const isBrowser = () => typeof window !== "undefined";
 
 export const removeContainerElement = () => {
-  let containerDiv = document.querySelector(`.${CONTAINER_CLASS}`);
-  containerDiv.remove();
+  if (isBrowser()) {
+    let containerDiv = document.querySelector(`.${CONTAINER_CLASS}`);
+    containerDiv.remove();
+  }
 };

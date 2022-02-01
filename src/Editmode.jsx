@@ -80,19 +80,25 @@ export function Editmode({
     <EditmodeContext.Provider
       value={{ branch, projectId, defaultChunks, next }}
     >
-      <KeyboardEventHandler
-        handleKeys={["cmd+shift+l"]}
-        onKeyEvent={() => {
-          if (!isOnboardingActive) {
-            renderOnboarder(setIsOnboardingActive);
-            setIsOnboardingActive((isOnboardingActive) => !isOnboardingActive);
-          } else {
-            let containerDiv = document.querySelector(`.${CONTAINER_CLASS}`);
-            containerDiv.remove();
-            setIsOnboardingActive((isOnboardingActive) => !isOnboardingActive);
-          }
-        }}
-      />
+      {isBrowser() && (
+        <KeyboardEventHandler
+          handleKeys={["cmd+shift+l"]}
+          onKeyEvent={() => {
+            if (!isOnboardingActive) {
+              renderOnboarder(setIsOnboardingActive);
+              setIsOnboardingActive(
+                (isOnboardingActive) => !isOnboardingActive
+              );
+            } else {
+              let containerDiv = document.querySelector(`.${CONTAINER_CLASS}`);
+              containerDiv.remove();
+              setIsOnboardingActive(
+                (isOnboardingActive) => !isOnboardingActive
+              );
+            }
+          }}
+        />
+      )}
       {children}
       {hasWaterMark && <Watermark projectId={projectId} />}
     </EditmodeContext.Provider>
