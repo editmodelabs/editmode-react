@@ -29,7 +29,7 @@ export const renderOnboarding = (config) => {
   render(renderOnboardingPopup(configWithDefaults), container);
 };
 
-export function Onboarding() {
+export const silly = () => {
   const OpenOnboarding = () => {
     const config = {
       steps: [
@@ -92,5 +92,71 @@ export function Onboarding() {
 
     renderOnboarding(config);
   };
-  return <div>{typeof window !== "undefined" && OpenOnboarding()}</div>;
-}
+  OpenOnboarding();
+};
+
+// export function Onboarding({ active }) {
+//   const OpenOnboarding = () => {
+//     const config = {
+//       steps: [
+//         {
+//           title: "Welcome to our Quick Editmode Guide",
+//           description:
+//             "You'll be shown a few basic Editmode concepts in the next steps.",
+//         },
+//         {
+//           type: "component",
+//           component: StepOneCC,
+//         },
+//         {
+//           type: "component",
+//           component: StepTwoCC,
+//         },
+//         {
+//           type: "component",
+//           component: StepThreeCC,
+//         },
+//         {
+//           type: "component",
+//           component: StepFourCC,
+//         },
+//         {
+//           type: "component",
+//           component: StepFiveCC,
+//         },
+//         {
+//           type: "component",
+//           component: StepSixCC,
+//         },
+//         {
+//           type: "component",
+//           component: StepOneEC,
+//         },
+//         {
+//           type: "component",
+//           component: StepTwoEC,
+//         },
+//         {
+//           type: "component",
+//           component: StepThreeEC,
+//         },
+//         {
+//           type: "component",
+//           component: StepFourEC,
+//         },
+//         {
+//           type: "component",
+//           component: StepFiveEC,
+//         },
+//         {
+//           type: "component",
+//           component: StepSixEC,
+//         },
+//       ],
+//       overlayClose: false,
+//     };
+
+//     renderOnboarding(config, active);
+//   };
+//   return <div>{typeof window !== "undefined" && OpenOnboarding()}</div>;
+// }

@@ -4,7 +4,13 @@ import { EditmodeContext } from "./EditmodeContext";
 import { getTimedCachedData, storeTimedCache } from "./utilities";
 import { api } from "./utilities";
 import Watermark from "./Watermark.jsx";
-import { useHotkeys } from "react-hotkeys-hook";
+import { useHotkeys, isHotkeyPressed } from "react-hotkeys-hook";
+import { Onboarding } from ".";
+import useKey from "use-key-capture";
+import { hotkeys } from "react-keyboard-shortcuts";
+import KeyboardEventHandler from "react-keyboard-event-handler";
+import { CONTAINER_CLASS } from "./onboarding/utils/CONSTANTS";
+import { silly } from "./onboarding/index.jsx";
 
 export function Editmode({
   children,
@@ -16,6 +22,7 @@ export function Editmode({
   const [branch, setbranch] = useState("");
   const [hasWaterMark, setHasWaterMark] = useState(null);
   const [isEditorActive, setIsEditorActive] = useState(false);
+  const [isOnboardingActive, setIsOnboardingActive] = useState(false);
   const isBrowser = () => typeof window !== "undefined";
   if (isBrowser()) {
     window["chunksPresetBranchId"] = branchId;
@@ -23,21 +30,22 @@ export function Editmode({
   useHotkeys("cmd+shift+e", () => {
     setIsEditorActive(!isEditorActive);
   });
+
+  // useHotkeys("cmd+shift+l", () => {
+  //   if (!isOnboardingActive) {
+  //     silly();
+  //     setIsOnboardingActive(true);
+  //   } else {
+  //     let containerDiv = document.querySelector(`.${CONTAINER_CLASS}`);
+  //     containerDiv.remove();
+  //   }
+  //   // setIsOnboardingActive(!isOnboardingActive);
+  // });
+
   if (!projectId) {
     throw new Error("<Editmode projectId={...}> is missing a valid projectId");
   }
   const cacheId = projectId + "_provider";
-  useEffect(() => {
-    let quickGuideUrl = `/quick_guide_status/${projectId}`;
-    api
-      .get(quickGuideUrl)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
   useEffect(() => {
     let params = new URL(document.location.href).searchParams;
     branchId ? setbranch(branchId) : setbranch(params.get("em_branch_id"));
@@ -86,10 +94,22 @@ export function Editmode({
     <EditmodeContext.Provider
       value={{ branch, projectId, defaultChunks, next }}
     >
+      <KeyboardEventHandler
+        handleKeys={["shift+/", "a"]}
+        onKeyEvent={() => {
+          if (!isOnboardingActive) {
+            silly();
+            setIsOnboardingActive((isOnboardingActive) => !isOnboardingActive);
+          } else {
+            let containerDiv = document.querySelector(`.${CONTAINER_CLASS}`);
+            containerDiv.remove();
+            setIsOnboardingActive((isOnboardingActive) => !isOnboardingActive);
+          }
+        }}
+      />
+      {/* {isOnboardingActive && <Onboarding active={isOnboardingActive} />} */}
       {children}
       {hasWaterMark && <Watermark projectId={projectId} />}
     </EditmodeContext.Provider>
   );
 }
-
-export default Editmode;
