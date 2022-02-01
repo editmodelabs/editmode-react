@@ -17,17 +17,20 @@ import StepFourCC from "./steps/coreConcepts/StepFour.jsx";
 import StepFiveCC from "./steps/coreConcepts/StepFive.jsx";
 import StepSixCC from "./steps/coreConcepts/StepSix.jsx";
 
-export const renderOnboarding = (config) => {
+export const renderOnboarding = (config, setIsOnboardingActive) => {
   if (!Array.isArray(config.steps) || !config.steps.length) {
     console.error("Invalid configuration for Onboarding");
   }
   const container = createContainerElement();
 
   const configWithDefaults = addDefaults(config);
-  render(renderOnboardingPopup(configWithDefaults), container);
+  render(
+    renderOnboardingPopup(configWithDefaults, setIsOnboardingActive),
+    container
+  );
 };
 
-export const renderOnboarder = () => {
+export const renderOnboarder = (setIsOnboardingActive) => {
   const OpenOnboarding = () => {
     const config = {
       steps: [
@@ -88,7 +91,7 @@ export const renderOnboarder = () => {
       overlayClose: false,
     };
 
-    renderOnboarding(config);
+    renderOnboarding(config, setIsOnboardingActive);
   };
   OpenOnboarding();
 };

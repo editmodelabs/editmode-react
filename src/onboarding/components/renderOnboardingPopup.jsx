@@ -3,7 +3,7 @@ import { OnboardingSteps } from "./OnboardingSteps.jsx";
 import { OnboardingStep } from "./OnboardingStep.jsx";
 import { removeContainerElement } from "../utils/removeContainer";
 
-export const renderOnboardingPopup = (config, active) => {
+export const renderOnboardingPopup = (config, setIsOnboardingActive) => {
   return (
     <>
       <div
@@ -12,7 +12,11 @@ export const renderOnboardingPopup = (config, active) => {
       />
       <OnboardingSteps>
         {config.steps.map((step, index) => (
-          <OnboardingStep step={step} key={index} />
+          <OnboardingStep
+            step={step}
+            key={index}
+            setIsOnboardingActive={setIsOnboardingActive}
+          />
         ))}
       </OnboardingSteps>
     </>

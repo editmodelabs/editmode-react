@@ -84,7 +84,7 @@ export function Editmode({
         handleKeys={["cmd + shift + l"]}
         onKeyEvent={() => {
           if (!isOnboardingActive) {
-            renderOnboarder();
+            renderOnboarder(setIsOnboardingActive);
             setIsOnboardingActive((isOnboardingActive) => !isOnboardingActive);
           } else {
             let containerDiv = document.querySelector(`.${CONTAINER_CLASS}`);

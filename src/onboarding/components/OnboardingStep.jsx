@@ -11,6 +11,7 @@ export const OnboardingStep = ({
   displayFinish,
   goToPreviousStep,
   displayPrevious,
+  setIsOnboardingActive,
 }) => {
   // const router = useRouter();
   const validateFields = () => {
@@ -44,15 +45,15 @@ export const OnboardingStep = ({
 
   if (!isActive) return null;
 
-  const finito = () => {
+  const finishSteps = () => {
+    setIsOnboardingActive(false);
     removeContainerElement();
-    // router?.push("/");
   };
 
   let buttonText, buttonFunction;
   if (displayFinish) {
     buttonText = "Finish";
-    buttonFunction = finito;
+    buttonFunction = finishSteps;
   } else if (displayNext) {
     buttonText = "Next";
     buttonFunction = goToNextStep;
